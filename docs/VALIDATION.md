@@ -136,6 +136,14 @@ records are preserved; new evidence is under
 `reference/diagnostics/nonfinite_rescale/`. Backend choice and any future
 zero-component policy require a separate decision. Gate 3 remains out of scope.
 
+The subsequent [backend policy study](FFT_BACKEND_POLICY.md) independently
+screens 21 synthetic arrays and three bundled photos at two resolutions.
+NumPy and matched pyFFTW each match all 162 new uint8 outputs exactly. It
+recommends retaining NumPy with documented degeneracy limits. This is a
+recommendation awaiting policy adoption; it does not alter the gate, any test
+status, or the existing bounds. New evidence lives in
+`reference/backend_policy/`, separate from the earlier diagnostic history.
+
 HSV/CIELab comparisons, scikit-image adoption and end-to-end mode/iteration
 validation have not been attempted. Scikit-image was available (0.25.2), but
 has not been added as a runtime dependency. SciPy is a development/test

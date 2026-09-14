@@ -1,0 +1,127 @@
+{
+  "criteria_sha256": "006cff977277c20fea7ca5cc760e824c854cb6ae70157eb6f16c1d16112fc5f9",
+  "groups": [
+    {
+      "name": "synthetic_31x31",
+      "kind": "synthetic_candidate",
+      "shape": [
+        31,
+        31
+      ],
+      "seed": 20260914
+    },
+    {
+      "name": "synthetic_31x48",
+      "kind": "synthetic_candidate",
+      "shape": [
+        31,
+        48
+      ],
+      "seed": 20260915
+    },
+    {
+      "name": "synthetic_48x31",
+      "kind": "synthetic_candidate",
+      "shape": [
+        48,
+        31
+      ],
+      "seed": 20260916
+    },
+    {
+      "name": "synthetic_32x48",
+      "kind": "synthetic_candidate",
+      "shape": [
+        32,
+        48
+      ],
+      "seed": 20260917
+    },
+    {
+      "name": "synthetic_64x64",
+      "kind": "synthetic_candidate",
+      "shape": [
+        64,
+        64
+      ],
+      "seed": 20260918
+    },
+    {
+      "name": "synthetic_63x79",
+      "kind": "synthetic_candidate",
+      "shape": [
+        63,
+        79
+      ],
+      "seed": 20260919
+    },
+    {
+      "name": "synthetic_128x128",
+      "kind": "synthetic_candidate",
+      "shape": [
+        128,
+        128
+      ],
+      "seed": 20260920
+    },
+    {
+      "name": "cats_green_stride1",
+      "kind": "natural_sample",
+      "shape": [
+        1200,
+        1200
+      ],
+      "channel": "green",
+      "stride": 1,
+      "sources": [
+        {
+          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat1.jpg",
+          "sha256": "aa350a25a0fedbe875aab0cd69e5bf925e3d4c9a5da2a1769ce34c17e63eae9a"
+        },
+        {
+          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat2.jpg",
+          "sha256": "68fc8a17422f4b1d0ed3491f21e46e262261e4abdabfa459487765cd19e5dc87"
+        },
+        {
+          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat3.jpg",
+          "sha256": "66fdaa81b735b6a9261bdce7314698ad912068048fa115c03a636d0257d5bdeb"
+        }
+      ]
+    },
+    {
+      "name": "cats_green_stride4",
+      "kind": "natural_sample",
+      "shape": [
+        300,
+        300
+      ],
+      "channel": "green",
+      "stride": 4,
+      "sources": [
+        {
+          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat1.jpg",
+          "sha256": "aa350a25a0fedbe875aab0cd69e5bf925e3d4c9a5da2a1769ce34c17e63eae9a"
+        },
+        {
+          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat2.jpg",
+          "sha256": "68fc8a17422f4b1d0ed3491f21e46e262261e4abdabfa459487765cd19e5dc87"
+        },
+        {
+          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat3.jpg",
+          "sha256": "66fdaa81b735b6a9261bdce7314698ad912068048fa115c03a636d0257d5bdeb"
+        }
+      ]
+    }
+  ],
+  "input_sha256": {
+    "cats_green_stride1_inputs.mat": "82528fc1116a79cc6ffa45ada9ab2dc8e164182e8624c66a8ad276b31a42a345",
+    "cats_green_stride4_inputs.mat": "09d037eb9b9c656b3a6051e85aefa45a73a44f7c218c2525320b07c8d9f4c189",
+    "synthetic_128x128_inputs.mat": "630422c27a4e52c84f61f23bea8af9916cc586bc97f71bfae62d89e5ccef1ab3",
+    "synthetic_31x31_inputs.mat": "d493a410c08fe53e83125a72c274e43afbcc32ed42f854160d79fe8db90f8297",
+    "synthetic_31x48_inputs.mat": "04f2ea3a5215b0ffa0015136e299803593459795ed34751aa8f07eaf579d2733",
+    "synthetic_32x48_inputs.mat": "70149e9bd9d642452648fc5689f946c5e9281069a63a248e7db72500051ef17c",
+    "synthetic_48x31_inputs.mat": "58602ec2967315dbda2c0b9a3b6f6c7ff4c55b95d4be9818472d8f2f142f7b45",
+    "synthetic_63x79_inputs.mat": "4bfcfa804dab966667244d504c300d5d10c2f7d8bef14fefb29ace97f84534ec",
+    "synthetic_64x64_inputs.mat": "d124f1595ac7528fa18c7c8b2e74a0217f2b6b0cf2e2fa095876b955aa9e664c"
+  }
+}

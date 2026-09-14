@@ -1,0 +1,520 @@
+{
+  "checked_utc": "2026-09-14T15:16:16.290190+00:00",
+  "sources": [
+    "https://pypi.org/pypi/pyfftw/json",
+    "https://pypi.org/pypi/pyfftw/0.15.0/json"
+  ],
+  "releases": {
+    "latest": {
+      "version": "0.15.1",
+      "requires_python": ">=3.11",
+      "requires_dist": [
+        "numpy>=1.20",
+        "dask[array]>=1.0; extra == \"dask\"",
+        "numpy>=1.20; extra == \"dask\"",
+        "scipy>=1.8.0; extra == \"scipy\""
+      ],
+      "wheels": [
+        {
+          "filename": "pyfftw-0.15.1-cp311-cp311-macosx_13_0_x86_64.whl",
+          "size": 3297881,
+          "sha256": "fb5283238be3c797b7b91cbb1d549787b9d0495a7d48b828832a3c94fa557f48",
+          "url": "https://files.pythonhosted.org/packages/20/c0/4f1a586eed5eba86c27d6fab4ebed44bbfeedd5209e835c19c6406f96a41/pyfftw-0.15.1-cp311-cp311-macosx_13_0_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp311-cp311-macosx_14_0_arm64.whl",
+          "size": 1682075,
+          "sha256": "f4b42864e95f128a676e27a94025cce074d807a81d48ed423c65aa7403a7729a",
+          "url": "https://files.pythonhosted.org/packages/b2/c1/02eaaf7a2f7ca26d7b56b6195617979b44b9213f3dcc1a514663a3bbc264/pyfftw-0.15.1-cp311-cp311-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+          "size": 2557646,
+          "sha256": "2e728dbe262182089a6606b7feb5c67bc55b8b385b0c1b60f71d6a891b5f142a",
+          "url": "https://files.pythonhosted.org/packages/c6/23/e3692116f6e903d1d9705d1f948f94ee133512a0b388d05ea0f8adcb0c07/pyfftw-0.15.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "size": 3158494,
+          "sha256": "294eecf05577b0198e6d041376e016254c4b54040b8a7a330d9d6321b8b30472",
+          "url": "https://files.pythonhosted.org/packages/7a/49/affa553caa93928d2f7d814f26939487d37d4068a0ba4d8238c6ba3000b1/pyfftw-0.15.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp311-cp311-win32.whl",
+          "size": 2226331,
+          "sha256": "ed42033aa729520c66500027157525981613a139c2fd4671dd7d52d58cb4b820",
+          "url": "https://files.pythonhosted.org/packages/88/92/bde713b499fa2062f30f396603bbf09acd0c9c974249638202c931433498/pyfftw-0.15.1-cp311-cp311-win32.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp311-cp311-win_amd64.whl",
+          "size": 2634855,
+          "sha256": "e32a30c34f27c24ee602b89b22d9cd453570bf851e7d8f98506185cb5e99ccfc",
+          "url": "https://files.pythonhosted.org/packages/25/f4/e0583a68e1114b108354207ce0680b898a4b37c48bd3a8cfc1fd0ec1a476/pyfftw-0.15.1-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp312-cp312-macosx_13_0_x86_64.whl",
+          "size": 3315083,
+          "sha256": "074926b5fa6a2193771cb4dc5beaa52ea1d629dc40da363d7de7918df5f3e951",
+          "url": "https://files.pythonhosted.org/packages/4f/76/5673561606f45c60ab3da497deead308e2c4b59c2b705334a01b880f0421/pyfftw-0.15.1-cp312-cp312-macosx_13_0_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp312-cp312-macosx_14_0_arm64.whl",
+          "size": 1698218,
+          "sha256": "2156d7bc72a2e2a1c747767909b1a7ba2bcfde14a51fca3171d7c1f8de6c2f02",
+          "url": "https://files.pythonhosted.org/packages/2d/fb/5042ad5c4ddc2db89844fc853b6358d36497e44f9d32f3aef9c3fa393182/pyfftw-0.15.1-cp312-cp312-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+          "size": 2562434,
+          "sha256": "313340683d5e99b0a36e45b8c2bd92cd86dfbb18917a62e89890927a66bed9e9",
+          "url": "https://files.pythonhosted.org/packages/df/1c/7b76808da67a3775480f64e93acc0a623aad7682ba83428311de05ebc67a/pyfftw-0.15.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "size": 3167162,
+          "sha256": "900d79c7fa1b27b58ec4240f7cb6d512492a9db9bc8cbd18076ed28c84a63b62",
+          "url": "https://files.pythonhosted.org/packages/fb/43/43fbc63ec6790ce6346e6441e82b54356334641d9d6f099f1ed75d302f2a/pyfftw-0.15.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp312-cp312-win32.whl",
+          "size": 2222298,
+          "sha256": "9c94a6d251f2ceb9d6bb86964c43f9eb9cbd8612a60f41b10c8a64e816f6a2ed",
+          "url": "https://files.pythonhosted.org/packages/e4/e1/82d4967ef4ccd8c17e58a9a34fa283436de98c32c08aac4191ef56bf9989/pyfftw-0.15.1-cp312-cp312-win32.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp312-cp312-win_amd64.whl",
+          "size": 2633571,
+          "sha256": "74fe153d6bec682cd85b5601df09cb84ce6e3cc901172a3ce86da7544e457e4c",
+          "url": "https://files.pythonhosted.org/packages/ab/c0/3f4513921fd3cb40986bc6fe4a33e87c5aef671edff483db6f7c4a5f8309/pyfftw-0.15.1-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp313-cp313-macosx_13_0_x86_64.whl",
+          "size": 3315212,
+          "sha256": "a16c4eb45ff5277f8bcb979d43a6a0d7f2e7405dcad984dc45a30064ed487da9",
+          "url": "https://files.pythonhosted.org/packages/c2/f5/5dca09b863e71db438069eb1990526a4409deebc190228177dec3b7cc636/pyfftw-0.15.1-cp313-cp313-macosx_13_0_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp313-cp313-macosx_14_0_arm64.whl",
+          "size": 1698270,
+          "sha256": "2b4bad0184546e3129eeda9d07541eca71232f6e431d57c734930d25f06386e8",
+          "url": "https://files.pythonhosted.org/packages/56/c1/1ff9aa930f98c77bbff9cae122e496f1fd7201abac309f1dbcc9fbe5c7ee/pyfftw-0.15.1-cp313-cp313-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+          "size": 2559574,
+          "sha256": "1716378d1d102527917b872a5baf15e2e3de52d5200ccc22128816cd71c33148",
+          "url": "https://files.pythonhosted.org/packages/9a/3f/e94d5773429dc076ec4b47d029603de1728a5037024ed3dbcc853cfa72e9/pyfftw-0.15.1-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "size": 3166906,
+          "sha256": "16209de9a244ab7b3337e8ce8d528420ffd05881e7d19e5be21d2546a7e5b2c1",
+          "url": "https://files.pythonhosted.org/packages/cb/64/5f773d61cca91a1a741e2403d7191610513d0cca3fc73a41a6941a31fe89/pyfftw-0.15.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp313-cp313-win32.whl",
+          "size": 2222209,
+          "sha256": "db2a65c59d7a707c55a8f0f38be3916b907429ceed316c6875201b202e22ac99",
+          "url": "https://files.pythonhosted.org/packages/c4/8a/dda252557803fde20be41396425a85faf6680eaeed3996e4b765745e9206/pyfftw-0.15.1-cp313-cp313-win32.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp313-cp313-win_amd64.whl",
+          "size": 2633673,
+          "sha256": "dcac51a5a4b8c6600bb2c7edb86d9739860a61bb0b076e20fbf0340919da307d",
+          "url": "https://files.pythonhosted.org/packages/20/6b/9236a2fb77b01b00b957304d53694de2bf034caac89c1d35ab7fa3421fd9/pyfftw-0.15.1-cp313-cp313-win_amd64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp314-cp314-macosx_13_0_x86_64.whl",
+          "size": 3313756,
+          "sha256": "c4e49219794bfe99c7db94d0b392c86ff979db4da2d27d444edbc6de1519ddae",
+          "url": "https://files.pythonhosted.org/packages/3f/5c/ec4cef958e936ac61528644825d052c1c486192aeffadf071071a17cd86a/pyfftw-0.15.1-cp314-cp314-macosx_13_0_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp314-cp314-macosx_14_0_arm64.whl",
+          "size": 1697163,
+          "sha256": "489a6364a613935736d43da67791ab4dfcf4875e968a8b46e99983afde7ec960",
+          "url": "https://files.pythonhosted.org/packages/d3/68/39e06bab39edf6473653670c6c25fe971a7b369a2059ddc971ac5f872653/pyfftw-0.15.1-cp314-cp314-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+          "size": 2561755,
+          "sha256": "379844360c03402f4d2a738fa19924153d5467cdc88aa3752b12bbc1403512b0",
+          "url": "https://files.pythonhosted.org/packages/dc/4d/9ae0dfaf5174a13714cfc5377165de5703230c1df96715cfee9d19fb0b4c/pyfftw-0.15.1-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "size": 3156174,
+          "sha256": "398a342a689061bfc4bfe7271a973e093f78176a632fb4e523b3ed5b72dba4c6",
+          "url": "https://files.pythonhosted.org/packages/d5/3b/bc991e3abf4f6ad9907658e3b282530d345027fa294b510a9eb1fce882c4/pyfftw-0.15.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp314-cp314-win32.whl",
+          "size": 2245736,
+          "sha256": "375ec8b11140eb30262bf9ecfa34d043a42d036c33c66e24bfe734f5aae7ddf0",
+          "url": "https://files.pythonhosted.org/packages/5c/5d/c0a9782c333e8b5de334285e3adc0542f2265107d0c9b720f5730bc43471/pyfftw-0.15.1-cp314-cp314-win32.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-cp314-cp314-win_amd64.whl",
+          "size": 2660474,
+          "sha256": "558c318a1aea81ce2083309c927fd881ccf9c285c5571ce965bb7b18dc4291fd",
+          "url": "https://files.pythonhosted.org/packages/ef/c7/ba88f0b5d81ae0732a2cb2900c52924ddfa6b1623e511533c022a558e058/pyfftw-0.15.1-cp314-cp314-win_amd64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-pp311-pypy311_pp73-macosx_13_0_x86_64.whl",
+          "size": 3278795,
+          "sha256": "41a25b721e79378a3ea29d21d2e6cf25e43c1f44bc0bbf554beccdcdb2b8064e",
+          "url": "https://files.pythonhosted.org/packages/88/45/a34cd015d16002e748de0e218d24ecc2f30eb9ad073f1c7941a51a796a2e/pyfftw-0.15.1-pp311-pypy311_pp73-macosx_13_0_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-pp311-pypy311_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "size": 2570541,
+          "sha256": "5e957f5caa7ccc032d17831ce336cb61b93f516ed7da25ea6c9e1086ed2e323f",
+          "url": "https://files.pythonhosted.org/packages/15/27/0e6195c9c5eeef73a7499772621057aff5ffd04ebb52a71d49cc049a3dad/pyfftw-0.15.1-pp311-pypy311_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyfftw-0.15.1-pp311-pypy311_pp73-win_amd64.whl",
+          "size": 2625398,
+          "sha256": "763cd58e858133493db371ed3a63e9e41463cd40965e2375a079947c2d96805f",
+          "url": "https://files.pythonhosted.org/packages/2e/a9/f1d00acce882645198576a94c4b7fff5465f0bb6c4b7bb1005314527c2d0/pyfftw-0.15.1-pp311-pypy311_pp73-win_amd64.whl"
+        }
+      ]
+    },
+    "0.15.0": {
+      "version": "0.15.0",
+      "requires_python": ">=3.10",
+      "requires_dist": [
+        "numpy>=1.20",
+        "setuptools>=70.1.1",
+        "dask[array]>=1.0; extra == \"dask\"",
+        "numpy>=1.20; extra == \"dask\"",
+        "scipy>=1.8.0; extra == \"scipy\""
+      ],
+      "wheels": [
+        {
+          "filename": "pyFFTW-0.15.0-cp310-cp310-macosx_12_0_x86_64.whl",
+          "size": 2835727,
+          "sha256": "2c35205209dde186669b90eeda92ca6837dfff4814edc5aebb01536b32760eb0",
+          "url": "https://files.pythonhosted.org/packages/84/66/99e0497a2dc8ff67aca6c23734895662b1885fce150a836de60ba9644ec6/pyFFTW-0.15.0-cp310-cp310-macosx_12_0_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp310-cp310-macosx_14_0_arm64.whl",
+          "size": 1272455,
+          "sha256": "28bb5888342114950b2d7df268264863c5644f34130a7fdc0acabd05c885d486",
+          "url": "https://files.pythonhosted.org/packages/b3/2a/9eb5c7aa582bdb0ba25d0ef522281ffa5ff0e34a1cc9d0fb564ee019239a/pyFFTW-0.15.0-cp310-cp310-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp310-cp310-manylinux_2_28_aarch64.whl",
+          "size": 2449453,
+          "sha256": "5748f2d85d790684efd895ce8f3611cceedb75fde944c4788753e0ba1a88637a",
+          "url": "https://files.pythonhosted.org/packages/af/13/e1c59f3a659ce6712d999b5315c22e547a75f1cc5f171f3cdb9ceae13474/pyFFTW-0.15.0-cp310-cp310-manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp310-cp310-manylinux_2_28_x86_64.whl",
+          "size": 3054268,
+          "sha256": "f8fe9c361bb69f58c9488d4d267047f94cfcea89ba7cd1ce6a148f807be88c6c",
+          "url": "https://files.pythonhosted.org/packages/b6/b6/55a5033fd41d7b69d3ff9991d7f170f1f90a4463953a0c85011c7c87d739/pyFFTW-0.15.0-cp310-cp310-manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp310-cp310-win32.whl",
+          "size": 2234523,
+          "sha256": "79a90799d4a4fc8d2c06b545e29a5e0575df81d0b9d131b20476a287f18817ee",
+          "url": "https://files.pythonhosted.org/packages/5a/f9/32cc147de14e30fd674a53097fc11e12a161bf88d120fbc4b5a3013e3ef1/pyFFTW-0.15.0-cp310-cp310-win32.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp310-cp310-win_amd64.whl",
+          "size": 2642503,
+          "sha256": "80ed625c8e8b6c1ba3ba6741ca0c7584c62ac0d99d9d33d7b4617c5087977aa0",
+          "url": "https://files.pythonhosted.org/packages/e0/dc/c469ccb4a06fa530cb34d7c61885cede184c3c0f39c873fb14bbc6c0450c/pyFFTW-0.15.0-cp310-cp310-win_amd64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp311-cp311-macosx_12_0_x86_64.whl",
+          "size": 2836851,
+          "sha256": "facabac06cb2300fdfcb1cfab9af70b24380d24a725a9b4dbf8cdadf04c1a6c0",
+          "url": "https://files.pythonhosted.org/packages/17/6e/325833415acbb267b1533ea8c5dcd243df8b5bb3ecbc6e42778514859dfe/pyFFTW-0.15.0-cp311-cp311-macosx_12_0_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp311-cp311-macosx_14_0_arm64.whl",
+          "size": 1273108,
+          "sha256": "730e86d23ea52a511fd3b0a0b8206dbe9f9f017522dabb838a7ca876e442ea8a",
+          "url": "https://files.pythonhosted.org/packages/11/cf/3e6e1fbb4dda9718682b38109018240a631f9078f659eea4add2189a6e6f/pyFFTW-0.15.0-cp311-cp311-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp311-cp311-manylinux_2_28_aarch64.whl",
+          "size": 2506868,
+          "sha256": "b8ab3ad5b6fadf64e34be2fdc34c9cc2b767b33c7a1b0f3e778f4b3fac0b2566",
+          "url": "https://files.pythonhosted.org/packages/41/b8/69fa1a05a9c1830fefa3805c0b67f43a5a6fa3d83950f2ab088b80826378/pyFFTW-0.15.0-cp311-cp311-manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp311-cp311-manylinux_2_28_x86_64.whl",
+          "size": 3111543,
+          "sha256": "076c42a2b8841fc06fc592d812bfa41a85355dc7f79b6f51016ce981a35efc97",
+          "url": "https://files.pythonhosted.org/packages/29/ca/f9035218cbf7986f214bbe57bfb1f2951d344a0baf601d8ee065d0422e07/pyFFTW-0.15.0-cp311-cp311-manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp311-cp311-win32.whl",
+          "size": 2234192,
+          "sha256": "5c50580ac16173fb547d18ad089148f030ef48a0f1f3b2faf3bb522b7f9fd8b6",
+          "url": "https://files.pythonhosted.org/packages/1e/68/8c56e66ab9903440a41c3859409c2ec06b218c187c859c432d954002e778/pyFFTW-0.15.0-cp311-cp311-win32.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp311-cp311-win_amd64.whl",
+          "size": 2643265,
+          "sha256": "553d62715e8e9ad20c6a6aa556846d785488f16fa2a518abcac58ae3c7087654",
+          "url": "https://files.pythonhosted.org/packages/91/cf/1b8ba1f0c8fb91f2caaf0ff30011a8289d7732b21cfc812b826222cafbaa/pyFFTW-0.15.0-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp312-cp312-macosx_12_0_x86_64.whl",
+          "size": 2833540,
+          "sha256": "27410a9ac0e4ad7821a564549be031d5422d9a96bb35ea63d2d324774f709b65",
+          "url": "https://files.pythonhosted.org/packages/08/5d/5d30a3a39bbe1e1d083d8efe23a62f1deacc445a82e3a55289b820f0ad9d/pyFFTW-0.15.0-cp312-cp312-macosx_12_0_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp312-cp312-macosx_14_0_arm64.whl",
+          "size": 1270715,
+          "sha256": "cd8bfb4a9e844693f8dd92ba97bc91d27404716b70580f846e80d74f6b092ffe",
+          "url": "https://files.pythonhosted.org/packages/4b/dc/ff9969669fcbff0972c1a96a116fa7efad763d136fc9a58f6112bf770688/pyFFTW-0.15.0-cp312-cp312-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp312-cp312-manylinux_2_28_aarch64.whl",
+          "size": 2499664,
+          "sha256": "7d08f75ed35c0af097333b2de368a0b30460a3e7e7bed47780aac3c27f9ec77b",
+          "url": "https://files.pythonhosted.org/packages/c7/1c/30bc73495966285fdd3e79a4a7482dbdd863e505bf3021a455bf7b923423/pyFFTW-0.15.0-cp312-cp312-manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+          "size": 3100310,
+          "sha256": "7ccae636ad163133bc5335d05f56afdb0c756ee013692c667b822a11e188a446",
+          "url": "https://files.pythonhosted.org/packages/6d/81/e5f5769f08aa3efa9527b328a9ebac7a2817f81a2b0f2266e79276686f31/pyFFTW-0.15.0-cp312-cp312-manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp312-cp312-win32.whl",
+          "size": 2229927,
+          "sha256": "b4963a55b442c859ede2d247d84daa71c6c01b64e0d9b2730f5635b962777fb2",
+          "url": "https://files.pythonhosted.org/packages/60/5b/18c12dfb07b82a93b9b459380e2f118afd139cc564e1575624794b15e68d/pyFFTW-0.15.0-cp312-cp312-win32.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp312-cp312-win_amd64.whl",
+          "size": 2641096,
+          "sha256": "6ace61f34f0dd7973207c31ce16fd7bedf9a178bb956f157559f13384f219713",
+          "url": "https://files.pythonhosted.org/packages/dd/d2/cb3fc49bffb2f7cb49da6dbc67888c9c55df1aca6d11c6d1d000e37fc64f/pyFFTW-0.15.0-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp313-cp313-macosx_12_0_x86_64.whl",
+          "size": 2832851,
+          "sha256": "cfbeb106877db1b6bf527735647b861c86ac846ff47671d0d855a9be2de83368",
+          "url": "https://files.pythonhosted.org/packages/a1/0d/90821a720638cbef79319463e3ce5d98f24153cee53316d4ecc1d8c0400d/pyFFTW-0.15.0-cp313-cp313-macosx_12_0_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp313-cp313-macosx_14_0_arm64.whl",
+          "size": 1269651,
+          "sha256": "6d8913036a48ebcc9e3e1a315a6607e5cc31af4aee395aae180ff644c4658bbb",
+          "url": "https://files.pythonhosted.org/packages/12/b7/e625f0cdb2bd65aa43ee35ce8cac1b0abc6c12871cd87fa83e404d82fd1d/pyFFTW-0.15.0-cp313-cp313-macosx_14_0_arm64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp313-cp313-manylinux_2_28_aarch64.whl",
+          "size": 2496935,
+          "sha256": "05324c8c092aa43868554daf6ddd7fd23eee18cd284ab68e749c62427c662737",
+          "url": "https://files.pythonhosted.org/packages/0f/66/d12a9629908008ed97446c44ca2177c8f59e570a445da4136fdbb9e8db1c/pyFFTW-0.15.0-cp313-cp313-manylinux_2_28_aarch64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp313-cp313-manylinux_2_28_x86_64.whl",
+          "size": 3096170,
+          "sha256": "474f4a0ccfddfdfbe3e4a610b1c8f5968b58edf44434bf9d08ea52108a72df54",
+          "url": "https://files.pythonhosted.org/packages/ad/c4/adcf010b151564401e3d401602b0e0cacae1e7cb816f0207397c3ddec626/pyFFTW-0.15.0-cp313-cp313-manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp313-cp313-win32.whl",
+          "size": 2229713,
+          "sha256": "40f8f3341546264178a8d9e8736e91554884595a683b71f8db8399907330f47d",
+          "url": "https://files.pythonhosted.org/packages/b2/96/b1eaad07d5eaf026e2ed0c6f2afdf825628706162071d2665b3824727346/pyFFTW-0.15.0-cp313-cp313-win32.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-cp313-cp313-win_amd64.whl",
+          "size": 2640821,
+          "sha256": "bf04458c5d2fbfe5da270a4b667c59c5792cbe39300379d886acd8ea97fc55cc",
+          "url": "https://files.pythonhosted.org/packages/e9/23/d06a3e5b549f7537ada2b1fc2e5f7c05c38df70c843d463bc469812b1ebd/pyFFTW-0.15.0-cp313-cp313-win_amd64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-pp310-pypy310_pp73-macosx_12_0_x86_64.whl",
+          "size": 2810336,
+          "sha256": "e94576643406ffd4dc29851e4d493c8bfb3bde8390661b7fced050c1e6ff99ac",
+          "url": "https://files.pythonhosted.org/packages/f2/5b/060fb5f48773dc1be3abd4d495a7b0fd02aeb6be57cb6bac214d1fd75447/pyFFTW-0.15.0-pp310-pypy310_pp73-macosx_12_0_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-pp310-pypy310_pp73-manylinux_2_28_x86_64.whl",
+          "size": 2570190,
+          "sha256": "ca1dbb5e86121f24b637413584224dda129774d661be1640f092156f4088b3bf",
+          "url": "https://files.pythonhosted.org/packages/46/5f/ee1692303b7cc15cdaf56861de6da8e12d001f4c45883832ffd26827b777/pyFFTW-0.15.0-pp310-pypy310_pp73-manylinux_2_28_x86_64.whl"
+        },
+        {
+          "filename": "pyFFTW-0.15.0-pp310-pypy310_pp73-win_amd64.whl",
+          "size": 2627837,
+          "sha256": "9ff6b656058f4099db30a5b5d01c7c1c6503c02a68f07398008a094c374d53c5",
+          "url": "https://files.pythonhosted.org/packages/e1/19/b66be24aec24a1e59c8c7a04d58b446af15b809a53d70626acba7e865853/pyFFTW-0.15.0-pp310-pypy310_pp73-win_amd64.whl"
+        }
+      ]
+    }
+  },
+  "wheel_inspections": {
+    "win_amd64": {
+      "filename": "pyfftw-0.15.1-cp312-cp312-win_amd64.whl",
+      "download_bytes": 2633571,
+      "expanded_bytes": 7313039,
+      "native_binaries": [
+        {
+          "name": "pyfftw/libfftw3-3.dll",
+          "size": 2712765
+        },
+        {
+          "name": "pyfftw/libfftw3f-3.dll",
+          "size": 2772692
+        },
+        {
+          "name": "pyfftw/libfftw3l-3.dll",
+          "size": 1247967
+        },
+        {
+          "name": "pyfftw/pyfftw.cp312-win_amd64.pyd",
+          "size": 256000
+        }
+      ],
+      "fftw_version_markers": [
+        "fftw-3.3.5"
+      ]
+    },
+    "macosx_13_0_x86_64": {
+      "filename": "pyfftw-0.15.1-cp312-cp312-macosx_13_0_x86_64.whl",
+      "download_bytes": 3315083,
+      "expanded_bytes": 9267366,
+      "native_binaries": [
+        {
+          "name": "pyfftw/pyfftw.cpython-312-darwin.so",
+          "size": 641936
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3l_omp.3.dylib",
+          "size": 90336
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3l.3.dylib",
+          "size": 941520
+        },
+        {
+          "name": "pyfftw/.dylibs/libomp.dylib",
+          "size": 749040
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3_omp.3.dylib",
+          "size": 90240
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3f_omp.3.dylib",
+          "size": 90336
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3f.3.dylib",
+          "size": 3011520
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3.3.dylib",
+          "size": 2874592
+        },
+        {
+          "name": "pyfftw/.dylibs/libgomp.1.dylib",
+          "size": 481248
+        }
+      ],
+      "fftw_version_markers": [
+        "fftw-3.3.10"
+      ]
+    },
+    "macosx_14_0_arm64": {
+      "filename": "pyfftw-0.15.1-cp312-cp312-macosx_14_0_arm64.whl",
+      "download_bytes": 1698218,
+      "expanded_bytes": 4453971,
+      "native_binaries": [
+        {
+          "name": "pyfftw/pyfftw.cpython-312-darwin.so",
+          "size": 608928
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3l_omp.3.dylib",
+          "size": 90336
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3l.3.dylib",
+          "size": 693920
+        },
+        {
+          "name": "pyfftw/.dylibs/libomp.dylib",
+          "size": 754912
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3_omp.3.dylib",
+          "size": 90240
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3f_omp.3.dylib",
+          "size": 90336
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3f.3.dylib",
+          "size": 693920
+        },
+        {
+          "name": "pyfftw/.dylibs/libfftw3.3.dylib",
+          "size": 693424
+        },
+        {
+          "name": "pyfftw/.dylibs/libgomp.1.dylib",
+          "size": 441360
+        }
+      ],
+      "fftw_version_markers": [
+        "fftw-3.3.10"
+      ]
+    },
+    "manylinux2014_x86_64": {
+      "filename": "pyfftw-0.15.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "download_bytes": 3167162,
+      "expanded_bytes": 9521257,
+      "native_binaries": [
+        {
+          "name": "pyfftw/pyfftw.cpython-312-x86_64-linux-gnu.so",
+          "size": 2643633
+        },
+        {
+          "name": "pyfftw.libs/libfftw3-6b983104.so.3.5.5",
+          "size": 2507721
+        },
+        {
+          "name": "pyfftw.libs/libfftw3_omp-c5fcc56c.so.3.5.5",
+          "size": 40145
+        },
+        {
+          "name": "pyfftw.libs/libfftw3f-b4465a35.so.3.5.5",
+          "size": 2578313
+        },
+        {
+          "name": "pyfftw.libs/libfftw3f_omp-736d7eda.so.3.5.5",
+          "size": 40201
+        },
+        {
+          "name": "pyfftw.libs/libfftw3l-cef73d68.so.3.5.5",
+          "size": 1121129
+        },
+        {
+          "name": "pyfftw.libs/libfftw3l_omp-3ee04e56.so.3.5.5",
+          "size": 40201
+        },
+        {
+          "name": "pyfftw.libs/libgomp-e985bcbb.so.1.0.0",
+          "size": 253289
+        }
+      ],
+      "fftw_version_markers": [
+        "fftw-3.3.5"
+      ]
+    }
+  }
+}

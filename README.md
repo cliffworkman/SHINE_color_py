@@ -15,6 +15,9 @@ See [validation evidence and the stopping condition](docs/VALIDATION.md) and
 The [bounded FFT investigation](docs/FFT_DIAGNOSTICS.md) separates backend
 sensitivity from the [repaired NaN-rescaling bug](docs/NONFINITE_RESCALE.md).
 NumPy remains the runtime FFT backend; pyFFTW is diagnostic tooling only.
+The [backend policy study](docs/FFT_BACKEND_POLICY.md) recommends retaining
+NumPy: both backends match all 162 new screened synthetic/photo outputs exactly.
+That recommendation has not reclassified the existing 18 failures.
 
 Install development dependencies with `python -m pip install -e ".[dev]"`.
 Run tests with `python -m pytest -q -p no:cacheprovider`.

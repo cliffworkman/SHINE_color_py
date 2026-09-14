@@ -46,3 +46,8 @@ ordered reproduction steps, results and scope limits.
 semantics in 12 small cases. Its new evidence and the corrected A/B/C/D replay
 are kept in `reference/diagnostics/nonfinite_rescale/`, preserving the prior
 FFT investigation. See `docs/NONFINITE_RESCALE.md` for reproduction and results.
+
+`export_policy_corpus` runs the later well-conditioned backend policy study in
+separate conditioning/output phases. Its compact evidence and ordered commands
+are in `reference/backend_policy/README.md`; the recommendation is in
+`docs/FFT_BACKEND_POLICY.md`. The original fixtures and 18 failures are retained.

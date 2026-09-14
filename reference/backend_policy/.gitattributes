@@ -1,0 +1,5 @@
+# Preserve raw bytes for evidence whose SHA256 is recorded in other artifacts.
+CRITERIA.md text eol=lf
+*.json text eol=lf
+data/*.mat -text
+data/*.png -text
