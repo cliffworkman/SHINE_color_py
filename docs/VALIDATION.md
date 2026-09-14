@@ -51,6 +51,7 @@ python -m pytest -q -p no:cacheprovider --tb=short
 | --- | --- |
 | Saturating uint8 cast, including NaN/Inf/ties | Exact |
 | Rescale option 1 and option 2 | 15/15 image outputs exact for each |
+| Nonfinite rescale semantics | 12 Octave-probed cases: 24 exact output checks and 12 exact extrema checks |
 | Whole-image lumMatch | 15/15 ordinary and 15/15 mixed constant-set outputs exact |
 | Input/average/output histograms and expanded targets | Exact; histogram output invariants checked over five Python seeds |
 | Means | Exact |
@@ -72,7 +73,7 @@ Relative errors at nearly zero FFT magnitudes are ill-conditioned.
 ## Blocking Gate 2 discrepancy: degenerate Fourier components
 
 This is substantive, not an accepted divergence. The full suite reports
-**97 passed, 18 failed**. All original 58 tests pass. The 18 new failures are
+**133 passed, 18 failed**. All original 58 tests pass. The 18 FFT failures are
 ordinary failing assertions, neither skipped nor xfailed, to keep the gate
 visible. They cover specMatch on 5x7, 5x8, 6x8 and 8x5, and sfMatch on 5x8
 and 8x5, each with rescaling 0, 1 and 2. The 16x18 set agrees exactly for
@@ -99,18 +100,41 @@ zero-energy division and subsequent nonfinite reconstruction explain the
 observed behavior, but no reference algorithm has been patched to force it.
 
 Neither enlarging tolerances nor silently choosing a new phase/zero-energy
-rule would establish faithful parity. No numerical algorithm was corrected:
-the initial investigation did not establish a straightforward Phase 1 bug.
-The subsequent bounded investigation is recorded in
-[FFT_DIAGNOSTICS.md](FFT_DIAGNOSTICS.md). It substantially improves diagnostic
-parity using FFTW with transposed orientation (51/90 to 83/90 exact outputs),
-localizes the original phase errors to tiny coefficients, and confirms a
-separate Python NaN/extrema-rescaling discrepancy. That discrepancy remains
-unfixed under the diagnostic-only scope. Controlled Octave runs did not show
-changed final uint8 outputs, although an intermediate measure run showed small
-FFT roundoff changes. The kernel, tolerances and 18 failing tests remain
-unchanged. Any future zero-component policy still requires an explicit
-behavioral decision. Do not proceed to color conversion or pipeline work.
+rule would establish faithful parity. The initial bounded investigation is
+preserved in [FFT_DIAGNOSTICS.md](FFT_DIAGNOSTICS.md). Controlled Octave runs
+did not show changed final uint8 outputs, although an intermediate measure
+run showed small FFT roundoff changes. The subsequent rescale correction and
+new measurements are in [NONFINITE_RESCALE.md](NONFINITE_RESCALE.md).
+
+## Confirmed Python bug repaired
+
+The 12-case Octave probe establishes that extrema omit NaNs but retain Inf,
+return NaN for all-NaN reductions, and emit no execution warnings for the
+probed cases. Python rescale now uses a local helper implementing those
+reductions. Option 1 omits an all-NaN member's extrema; option 2 retains ordinary
+means and propagates them. Pixels are untouched until the terminal uint8 cast.
+All 36 new reference tests pass, and ordinary finite behavior stays exact.
+
+All four combinations of Python/Octave inverse FFT and Python/Octave rescaling,
+fed the same Octave forward-derived decomposition, now give 90/90 exact outputs.
+This isolates the earlier two downstream mismatches to the rescaling bug.
+
+## Backend-sensitive SHINE behavior and current backend status
+
+The fix does not remove forward phase or radial-energy degeneracy. NumPy remains
+51/90 exact outputs (maximum error 255; pixel-weighted MAE 5.773343187977335).
+Matched-orientation pyFFTW improves from 83/90 to 85/90 (maximum error 12;
+pixel-weighted MAE 0.06282335550628233). Its remaining five mismatches are rooted
+in source 3 of the degenerate 5x7 specMatch set. NumPy's 39 mismatching outputs
+are all traced to forward phase/radial-energy degeneracy, sometimes propagated
+to other images by correctly implemented set-wide scaling. No unexplained
+well-conditioned-input mismatch was found in this corpus.
+
+NumPy remains the runtime backend; pyFFTW is not required or adopted. Original
+fixtures, all 18 failing tests and tolerances are unchanged. The old diagnostic
+records are preserved; new evidence is under
+`reference/diagnostics/nonfinite_rescale/`. Backend choice and any future
+zero-component policy require a separate decision. Gate 3 remains out of scope.
 
 HSV/CIELab comparisons, scikit-image adoption and end-to-end mode/iteration
 validation have not been attempted. Scikit-image was available (0.25.2), but

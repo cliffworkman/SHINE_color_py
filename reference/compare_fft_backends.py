@@ -110,7 +110,10 @@ def object_cell(items):
     return result
 
 
-def run():
+def run(destination=DEST, reference_destination=DEST):
+    destination = Path(destination)
+    reference_destination = Path(reference_destination)
+    destination.mkdir(parents=True,exist_ok=True)
     cases = {p.stem:loadmat(p) for p in sorted(FIXTURES.glob('primitives_*.mat'))}
     report = dict(environment=dict(python=platform.python_version(),numpy=np.__version__,
         scipy=scipy.__version__,pyfftw=pyfftw.__version__,
@@ -123,7 +126,7 @@ def run():
     for config in ('default','estimate_1','measure_1'):
         report['octave_comparisons'][config] = {}
         for name,old in cases.items():
-            current = loadmat(DEST/config/f'{name}.mat')
+            current = loadmat(reference_destination/config/f'{name}.mat')
             record = dict(sources=[],outputs=[])
             for a,b,repeated in zip(cells(current['spectra']),cells(old['spectra']),cells(current['repeated_spectra'])):
                 record['sources'].append(dict(vs_frozen=delta(a,b),repeat=delta(a,repeated),
@@ -158,7 +161,7 @@ def run():
         report['backend_sources'][backend.name] = {}
         for name,old in cases.items():
             inputs = cells(old['inputs'])
-            reference = loadmat(DEST/'default'/f'{name}.mat')
+            reference = loadmat(reference_destination/'default'/f'{name}.mat')
             transforms = [np.fft.fftshift(backend.fft2(a.astype(float)/255)) for a in inputs]
             target = np.mean([np.hypot(a.real,a.imag) for a in transforms],axis=0)
             reference_target = np.mean(cells(reference['amplitudes']),axis=0)
@@ -190,7 +193,7 @@ def run():
     # the EXISTING Python functions, capture their inverse inputs/raw outputs.
     # This bypasses source FFT/phase/magnitude math without changing algorithms.
     for name,old in cases.items():
-        inputs = cells(old['inputs']); ref = loadmat(DEST/'default'/f'{name}.mat')
+        inputs = cells(old['inputs']); ref = loadmat(reference_destination/'default'/f'{name}.mat')
         for op,module,func in [('sf',sf,sf.sf_match),('spec',spec,spec.spec_match)]:
             for variant in ('native','octave_decomposition'):
                 original_inverse = np.fft.ifft2
@@ -213,14 +216,19 @@ def run():
                 report['interventions'][key] = dict(raw=[stats(a) for a in raw])
     # A small independent nonfinite reduction probe, separate from kernel edits.
     nan_inputs = object_cell([np.full((2,2),np.nan),np.array([[0.,10.],[20.,30.]])])
-    savemat(DEST/'python_stage_inputs.mat',dict(traces=object_cell(traces),nan_inputs=nan_inputs),do_compression=True)
-    write_csv(DEST/'output_comparisons.csv',rows)
+    savemat(destination/'python_stage_inputs.mat',dict(traces=object_cell(traces),nan_inputs=nan_inputs),do_compression=True)
+    write_csv(destination/'output_comparisons.csv',rows)
     report['output_summary'] = {runtime:dict(exact=sum(r['unequal']==0 for r in rows if r['runtime']==runtime),
         total=sum(r['runtime']==runtime for r in rows),max_abs=max(r['max_abs'] for r in rows if r['runtime']==runtime))
         for runtime in dict.fromkeys(r['runtime'] for r in rows)}
-    (DEST/'backend_diagnostics.json').write_text(json.dumps(report,separators=(',',':'),allow_nan=False)+'\n')
+    (destination/'backend_diagnostics.json').write_text(json.dumps(report,separators=(',',':'),allow_nan=False)+'\n')
     print(json.dumps(report['output_summary'],indent=2))
 
 
 if __name__ == '__main__':
-    run()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--destination',type=Path,default=DEST)
+    parser.add_argument('--reference-destination',type=Path,default=DEST)
+    args = parser.parse_args()
+    run(args.destination,args.reference_destination)

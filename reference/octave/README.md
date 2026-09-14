@@ -41,3 +41,8 @@ The diagnostic arc uses `fft_environment`, `probe_fft_stability` and
 replay captured inverse inputs. It writes under `reference/diagnostics/fft/`
 and preserves the original fixtures. See `docs/FFT_DIAGNOSTICS.md` for the
 ordered reproduction steps, results and scope limits.
+
+`probe_rescale_extrema` characterizes the real NaN/Inf extrema and rescale
+semantics in 12 small cases. Its new evidence and the corrected A/B/C/D replay
+are kept in `reference/diagnostics/nonfinite_rescale/`, preserving the prior
+FFT investigation. See `docs/NONFINITE_RESCALE.md` for reproduction and results.

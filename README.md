@@ -6,14 +6,15 @@ is untested and remains a future, non-blocking secondary target.
 
 The Phase 1 numerical kernel is implemented. Octave fixtures validate scaling,
 luminance and histogram invariants on the recorded corpus, but expose unresolved
-Fourier degeneracies. **Gate 2 is blocked: the full suite currently has 97
+Fourier degeneracies. **Gate 2 is blocked: the full suite currently has 133
 passing tests and 18 failing reference comparisons.** Color conversion and
 whole-image orchestration are not yet implemented.
 
 See [validation evidence and the stopping condition](docs/VALIDATION.md) and
 [fixture reproduction instructions](reference/octave/README.md).
 The [bounded FFT investigation](docs/FFT_DIAGNOSTICS.md) separates backend
-sensitivity from a confirmed, still-unfixed NaN-rescaling discrepancy.
+sensitivity from the [repaired NaN-rescaling bug](docs/NONFINITE_RESCALE.md).
+NumPy remains the runtime FFT backend; pyFFTW is diagnostic tooling only.
 
 Install development dependencies with `python -m pip install -e ".[dev]"`.
 Run tests with `python -m pytest -q -p no:cacheprovider`.

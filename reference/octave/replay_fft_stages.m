@@ -15,6 +15,7 @@ function replay_fft_stages(toolbox, destination)
       t.octave_outputs{3} = rescale(t.octave_raw,2);
       % Isolate scaling from inverse FFT by also scaling Python's exact raw data.
       t.octave_scaling_python_raw = {rescale(t.python_raw,1),rescale(t.python_raw,2)};
+      t.octave_cast_python_raw = cellfun(@(a) uint8(a*255),t.python_raw,'UniformOutput',false);
       traces{k} = t;
     end
     nan_inputs = loaded.nan_inputs;

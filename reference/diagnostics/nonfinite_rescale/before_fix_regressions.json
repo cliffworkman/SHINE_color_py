@@ -1,0 +1,10 @@
+{
+  "kernel_checkpoint": "a321f5e8a6c1b6424851b3bd08a8768ad460ae3c",
+  "command": "python -m pytest -q -p no:cacheprovider tests/reference/test_octave_rescale_nonfinite.py --tb=no",
+  "scope": "24 new output/warning tests run before the correction; 12 direct reduction tests were added with the helper afterward",
+  "passed": 15,
+  "failed": 9,
+  "output_failures": ["1-partial_nan", "1-nan_member", "1-partial_nan_member", "1-nan_column", "2-partial_nan", "2-partial_nan_member", "2-nan_column"],
+  "warning_failures": ["2-positive_inf_only", "2-opposing_inf_images"],
+  "after_fix": "All 36 new Octave semantic tests pass; the full suite is 133 passed, 18 failed."
+}

@@ -1,5 +1,29 @@
 # Gate 2 FFT diagnostic arc — 2026-09-14
 
+## Follow-up: rescaling repaired; backend decision still open
+
+The original diagnostic narrative below records checkpoint `a321f5e` and its
+pre-fix results. Those records remain unchanged under `reference/diagnostics/fft`.
+The confirmed rescaling bug has now been corrected using a 12-case Octave
+extrema probe: NaNs are omitted only from extrema reductions, Inf is retained,
+and option 2 still uses ordinary means. All 36 new semantic tests pass.
+
+The new A/B/C/D replay (both inverse FFT runtimes crossed with both rescale
+runtimes) gives **90/90 exact outputs in every combination**. NumPy remains
+51/90; matched-orientation pyFFTW improves from 83/90 to **85/90**, with maximum
+error falling from 255 to 12. The two corrected outputs are finite sources 1/2
+of 5x8 sfMatch option 1. Remaining pyFFTW differences are phase-degeneracy
+effects in 5x7 specMatch; NumPy retains phase/radial-energy effects elsewhere.
+No residual inverse-only or rescaling mismatch is observed in these controls.
+
+Current full suite: **133 passed, 18 failed**. NumPy remains the runtime backend;
+no tolerances, old reference tests, golden outputs or zero-handling rules were
+changed. MATLAB numerical parity remains untested; Octave is the current
+executable reference. See [the correction and new measurements](NONFINITE_RESCALE.md)
+for exact extrema semantics, MAE summaries, per-case attribution and reproduction.
+
+## Original diagnostic record (before the correction)
+
 **The evidence supports a mixture of backend-sensitive amplification and a
 specific Python rescaling discrepancy. Gate 2 remains blocked.** No kernel
 code, test tolerance, existing fixture or failing test was changed. No zero
