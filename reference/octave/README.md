@@ -35,3 +35,9 @@ After generating fixtures, run `python -m reference.measure_primitives` and
 observations, never increase test bounds. The current reference tests have
 18 intentional, unmasked failures documenting an unresolved Gate 2 numerical
 discrepancy; see the validation document before interpreting the suite.
+
+The diagnostic arc uses `fft_environment`, `probe_fft_stability` and
+`replay_fft_stages` to record FFTW state, compare controlled plans/threads and
+replay captured inverse inputs. It writes under `reference/diagnostics/fft/`
+and preserves the original fixtures. See `docs/FFT_DIAGNOSTICS.md` for the
+ordered reproduction steps, results and scope limits.

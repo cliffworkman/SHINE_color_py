@@ -1,0 +1,15 @@
+{
+  "scope": "Observations from harness-development attempts before successful state-restoration verification",
+  "raw_arrays_retained": false,
+  "provenance": "Recorded comparison-tool output from this diagnostic session; files were overwritten while correcting the cleanup code, so these observations are supplementary, not the final reproducible dataset.",
+  "observations": {
+    "default_vs_frozen_fft_max_abs": 0.0,
+    "estimate_1_vs_frozen_fft_max_abs": 0.0,
+    "measure_1_vs_frozen_fft_max_abs": 3.66205343881779e-15,
+    "measure_1_phase_max_radians": 1.4432899320127035e-15,
+    "measure_1_exact_uint8_outputs": 90,
+    "total_uint8_outputs": 90,
+    "within_run_repeat_fft_max_abs": 0.0
+  },
+  "cleanup_issue": "Re-importing the initial single-precision wisdom failed. The final probe restores and verifies the requested planner/thread state and double-precision wisdom; it records incidental single-precision wisdom changes separately. Each attempt ran in a separate Octave process. No canonical reference files were changed."
+}

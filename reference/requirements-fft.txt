@@ -1,0 +1,2 @@
+# Optional diagnostic dependency; never a shine_color runtime requirement.
+pyfftw==0.15.1

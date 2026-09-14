@@ -12,6 +12,8 @@ whole-image orchestration are not yet implemented.
 
 See [validation evidence and the stopping condition](docs/VALIDATION.md) and
 [fixture reproduction instructions](reference/octave/README.md).
+The [bounded FFT investigation](docs/FFT_DIAGNOSTICS.md) separates backend
+sensitivity from a confirmed, still-unfixed NaN-rescaling discrepancy.
 
 Install development dependencies with `python -m pip install -e ".[dev]"`.
 Run tests with `python -m pytest -q -p no:cacheprovider`.

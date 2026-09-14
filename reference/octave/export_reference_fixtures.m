@@ -9,6 +9,7 @@ function export_reference_fixtures(toolbox, destination, reference_sha)
     'script', 'reference/octave/export_reference_fixtures.m', ...
     'operations', {{'uint8', 'rescale', 'lumMatch', 'avgHist', 'hist2list', 'histMatch', 'sfMatch', 'specMatch'}}, ...
     'colorspace', 'synthetic 0-255 single channels');
+  manifest.fft_environment = fft_environment();
   packages = pkg('list');
   manifest.packages = struct();
   for k = 1:numel(packages)

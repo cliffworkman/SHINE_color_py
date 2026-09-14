@@ -100,12 +100,17 @@ observed behavior, but no reference algorithm has been patched to force it.
 
 Neither enlarging tolerances nor silently choosing a new phase/zero-energy
 rule would establish faithful parity. No numerical algorithm was corrected:
-the evidence does not establish a straightforward Phase 1 implementation
-bug. A bounded next investigation should determine whether a matching FFTW
-configuration reproduces Octave's zero/phase behavior, including planner and
-transform-axis effects. If that is not stable, choosing a robust degeneracy
-policy would require an explicit documented behavioral decision. Stop before
-color conversion or pipeline implementation until this discrepancy is resolved.
+the initial investigation did not establish a straightforward Phase 1 bug.
+The subsequent bounded investigation is recorded in
+[FFT_DIAGNOSTICS.md](FFT_DIAGNOSTICS.md). It substantially improves diagnostic
+parity using FFTW with transposed orientation (51/90 to 83/90 exact outputs),
+localizes the original phase errors to tiny coefficients, and confirms a
+separate Python NaN/extrema-rescaling discrepancy. That discrepancy remains
+unfixed under the diagnostic-only scope. Controlled Octave runs did not show
+changed final uint8 outputs, although an intermediate measure run showed small
+FFT roundoff changes. The kernel, tolerances and 18 failing tests remain
+unchanged. Any future zero-component policy still requires an explicit
+behavioral decision. Do not proceed to color conversion or pipeline work.
 
 HSV/CIELab comparisons, scikit-image adoption and end-to-end mode/iteration
 validation have not been attempted. Scikit-image was available (0.25.2), but
