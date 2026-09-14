@@ -1,4 +1,4 @@
-"""MATLAB-compatible numeric primitives shared by every SHINE_color operation.
+"""Reference-style numeric primitives shared by every SHINE_color operation.
 
 MATLAB and NumPy disagree, by default, on several small but load-bearing
 numeric conventions used throughout the SHINE_color reference: saturating

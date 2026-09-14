@@ -80,28 +80,12 @@ def match_histogram(image, target_values, rng=None):
     jitter = rng.uniform(0.0, 0.1, size=n_pixels)
     order = np.argsort(flat + jitter)
 
-    # The reference (`match.m`) builds these positions via a MATLAB
-    # colon expression algebraically equal to
-    # linspace(1, n_target, n_pixels), computed by floating-point step
-    # accumulation: step = (n_target - 1) / (n_pixels - 1). When
-    # n_pixels == 1, that step is (n_target - 1) / 0, which is 0/0 = NaN
-    # if n_target is also 1. `linspace` computes the same evenly-spaced
-    # positions directly and has no such degenerate case, so THIS
-    # PYTHON IMPLEMENTATION's single-pixel behavior is intentionally
-    # well-defined (positions = [1.0]).
-    #
-    # This is a deliberate, PROVISIONAL choice, not an established
-    # MATLAB-parity claim: what MATLAB R2024a actually does for this
-    # call shape has not been empirically verified -- we have not run
-    # it. Do not treat this as behaviorally equivalent to MATLAB until
-    # that verification happens.
-    #
-    # TODO(matlab-parity): once MATLAB reference fixtures/probes are
-    # available (see the project plan's "Reuse the MATLAB regression
-    # corpus" / fixture-export phase), directly probe match.m's actual
-    # single-pixel-case output under MATLAB R2024a and either confirm
-    # this Python behavior matches it, adjust it to match, or document
-    # the difference as an accepted, permanent divergence.
+    # Rank positions follow the reference's evenly spaced index selection.
+    # Octave 11.1.0 probe: one source and one target produces a NaN index
+    # and match.m errors. We intentionally retain a well-defined sole-target
+    # result as an accepted Python divergence. One source with >1 targets
+    # selects the first target in both runtimes. See docs/VALIDATION.md and
+    # tests/reference/fixtures/single_pixel.json. MATLAB remains untested.
     positions = np.linspace(1.0, float(n_target), n_pixels)
     indices = matlab_round(positions).astype(np.int64) - 1
     indices = np.clip(indices, 0, n_target - 1)

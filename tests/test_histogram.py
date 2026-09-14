@@ -82,21 +82,14 @@ class TestMatchHistogram:
         np.testing.assert_array_equal(h1, expected)
         np.testing.assert_array_equal(h2, expected)
 
-    def test_single_pixel_python_robustness_pending_matlab_parity(self):
-        # This asserts PYTHON-SIDE ROBUSTNESS ONLY -- it makes no claim
-        # of MATLAB equivalence. MATLAB's own match.m computes this
-        # case's resampling index via a colon expression whose step is
-        # 0/0 = NaN when both the pixel count and target-list length
-        # are 1; its actual behavior under MATLAB R2024a has not been
-        # empirically verified (see the TODO(matlab-parity) note next
-        # to match_histogram's linspace call in histogram.py). Until
-        # that verification happens, treat this as documented,
-        # provisional Python behavior, not established parity.
+    def test_single_pixel_first_target_octave_validated(self):
+        # Octave selects the first target when target length is greater than 1.
+        # The length-1 accepted divergence is tested in tests/reference.
         image = np.array([[42.0]])
         target = np.array([10.0, 200.0])
         out = match_histogram(image, target, rng=np.random.default_rng(0))
         assert out.shape == (1, 1)
-        assert not np.isnan(out).any()
+        np.testing.assert_array_equal(out, [[10.0]])
 
     def test_default_rng_is_fresh_and_unseeded_each_call(self):
         # Two calls with rng=None (the runtime default) on a tied region
