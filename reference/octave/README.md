@@ -51,3 +51,11 @@ FFT investigation. See `docs/NONFINITE_RESCALE.md` for reproduction and results.
 separate conditioning/output phases. Its compact evidence and ordered commands
 are in `reference/backend_policy/README.md`; the recommendation is in
 `docs/FFT_BACKEND_POLICY.md`. The original fixtures and 18 failures are retained.
+
+
+After FFT policy adoption, ordinary pytest coverage uses the archived inputs
+under `reference/backend_policy/data` and promoted exact Octave outputs under
+`tests/reference/fixtures/conditioned`. `python -m reference.promote_policy_fixtures`
+can reproduce that promotion from the study cache, verifying recorded hashes.
+The 18 historical failures are now explicitly marked passing degeneracy tests;
+earlier stopping-condition descriptions above are historical.

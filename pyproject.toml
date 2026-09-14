@@ -16,3 +16,9 @@ dev = ["pytest>=7", "scipy>=1.10"]
 
 [tool.setuptools.packages.find]
 include = ["shine_color*"]
+
+[tool.pytest.ini_options]
+markers = [
+    "octave_degenerate_spectrum: positively tested backend-sensitive Fourier degeneracy",
+    "octave_natural_image: exact parity on the recorded three-photo corpus only",
+]

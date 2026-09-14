@@ -4,20 +4,19 @@ Local behavioral reimplementation of the repaired SHINE_color toolbox.
 GNU Octave is the current executable reference; exact MATLAB numerical parity
 is untested and remains a future, non-blocking secondary target.
 
-The Phase 1 numerical kernel is implemented. Octave fixtures validate scaling,
-luminance and histogram invariants on the recorded corpus, but expose unresolved
-Fourier degeneracies. **Gate 2 is blocked: the full suite currently has 133
-passing tests and 18 failing reference comparisons.** Color conversion and
-whole-image orchestration are not yet implemented.
+Gate 2 is complete: the Phase 1 kernel is validated against the recorded
+GNU Octave corpus, with explicit backend-sensitive Fourier degeneracy tests.
+NumPy/pocketfft is the Python reference FFT backend for v0.1. Both frequency
+operations match 162 independently screened synthetic/photo outputs exactly.
+No special zero handling is introduced; this is not universal Octave or MATLAB
+parity. Color conversion is the next gate; orchestration remains unimplemented.
 
-See [validation evidence and the stopping condition](docs/VALIDATION.md) and
+See [validation evidence](docs/VALIDATION.md), the
+[adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and
 [fixture reproduction instructions](reference/octave/README.md).
-The [bounded FFT investigation](docs/FFT_DIAGNOSTICS.md) separates backend
-sensitivity from the [repaired NaN-rescaling bug](docs/NONFINITE_RESCALE.md).
-NumPy remains the runtime FFT backend; pyFFTW is diagnostic tooling only.
-The [backend policy study](docs/FFT_BACKEND_POLICY.md) recommends retaining
-NumPy: both backends match all 162 new screened synthetic/photo outputs exactly.
-That recommendation has not reclassified the existing 18 failures.
+The [FFT investigation](docs/FFT_DIAGNOSTICS.md) and
+[NaN-rescaling correction](docs/NONFINITE_RESCALE.md) remain historical evidence.
+pyFFTW remains optional diagnostic tooling outside runtime and normal dev extras.
 
 Install development dependencies with `python -m pip install -e ".[dev]"`.
 Run tests with `python -m pytest -q -p no:cacheprovider`.

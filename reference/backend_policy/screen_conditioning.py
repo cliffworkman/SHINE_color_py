@@ -6,7 +6,8 @@ import numpy as np
 from scipy.io import loadmat
 from shine_color.spatial_frequency import _radial_bin_grid
 from reference.measure_primitives import cells
-from .build_corpus import ROOT,DATA
+ROOT=Path(__file__).resolve().parent
+DATA=ROOT/'data'
 
 CACHE=ROOT.parent/'.cache/backend_policy'
 

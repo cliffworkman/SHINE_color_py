@@ -1,0 +1,15 @@
+{
+  "study_commit": "67ab54f75900b79258726c500b52a0dbe4b566e0",
+  "source_commit": "870e058fe8bf1e4090baf2401ff0e127d1c0237a",
+  "output_sha256": {
+    "cats_green_stride1_outputs.mat": "46db3cae0bc96da3b7aaee12ec2a594294898ed194752840c601906ff2d309d7",
+    "cats_green_stride4_outputs.mat": "b5c785f07411ccfcf1de801974a008aca27131b19f4d9569b06bd571141549ea",
+    "synthetic_128x128_outputs.mat": "b21819bdbfdf8709688af7500945789f34fb10f1a227ff7fbaf456ee3e7ee5a6",
+    "synthetic_31x31_outputs.mat": "05ef326c6c2ed5e08908f7ae4f8dd8da5cccc1bdddab8fd1a65500fb017a61e3",
+    "synthetic_31x48_outputs.mat": "60a4e0d2d5430af5b0f2fb163230ce87bc629af696f1193e4fa0003156a97bd0",
+    "synthetic_32x48_outputs.mat": "a03657de79655fee6070de98cee9bba5fbddf113eeb9bf83d4053d763369f969",
+    "synthetic_48x31_outputs.mat": "d6e8fbb02e207acdbf381c57c10f8582b4d14f49cf7e92394d29ff8cb9254514",
+    "synthetic_63x79_outputs.mat": "2462dc60e9d2878c04a38c108f5b6afbe504f27b26bbbdf2926259f12a257bdb",
+    "synthetic_64x64_outputs.mat": "dea270a920120a6d187d031ae67c166db86bbc6ad832135c3a7fa9402a5d1212"
+  }
+}

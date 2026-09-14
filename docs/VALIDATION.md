@@ -30,8 +30,24 @@ it requires stage-specific checks, since spatial assignments affect spectra.
 
 ## Validated against GNU Octave
 
-Gate 1 is complete. **Gate 2 is blocked; the Phase 1 kernel as a whole is not
-Octave-validated. Gates 3 and 4 have not been started.**
+Gates 1 and 2 are complete. **The Phase 1 kernel is validated against the
+recorded GNU Octave corpus with documented backend-sensitive degeneracies.**
+NumPy/pocketfft is the Python reference FFT backend for v0.1. This is a
+corpus-bound validation claim, not universal Octave or MATLAB parity.
+
+The approved policy adds 54 strict frequency tests (42 synthetic, 12 natural),
+covering 162 outputs and verifying the unchanged `1e-10*max(1,max magnitude)`
+conditioning screen before comparison. Exact source arrays and Octave outputs
+are durable repository fixtures; ordinary tests require no ignored cache,
+Octave executable or pyFFTW. The 18 former failures are positive marked tests
+of source degeneracy, its output effect, and exact downstream processing with
+Octave forward quantities. No numerical bounds were changed. No xfails/skips.
+
+The Gate 2 full suite reports **205 passed, zero failures**. Expected invalid
+multiplication in the zero-energy Octave-forward replay is asserted explicitly.
+Gate 3 may now begin; Gate 4 remains outside scope.
+The following original measurements and failure counts describe the historical
+pre-adoption checkpoint and remain evidence, not current unexplained failures.
 
 Measurements on 2026-09-14 used Python 3.12.10, NumPy 2.1.3 and SciPy 1.15.1
 (the exact Python version is also in `primitive_differences.json`).
@@ -70,9 +86,9 @@ image sizes or other runtime builds. All integer comparisons remain exact.
 error on nonzero reference elements, and unequal counts per comparison.
 Relative errors at nearly zero FFT magnitudes are ill-conditioned.
 
-## Blocking Gate 2 discrepancy: degenerate Fourier components
+## Historical Gate 2 discrepancy: degenerate Fourier components
 
-This is substantive, not an accepted divergence. The full suite reports
+Before policy adoption this substantive discrepancy blocked the gate. That suite reported
 **133 passed, 18 failed**. All original 58 tests pass. The 18 FFT failures are
 ordinary failing assertions, neither skipped nor xfailed, to keep the gate
 visible. They cover specMatch on 5x7, 5x8, 6x8 and 8x5, and sfMatch on 5x8

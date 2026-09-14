@@ -1,5 +1,25 @@
 # FFT backend policy study — recommendation for review
 
+**Policy B is adopted following human review.** NumPy/pocketfft is the Python
+reference FFT backend for v0.1. Exact agreement is established on the recorded
+independently screened corpus; backend-sensitive degeneracies remain explicit.
+No zero-handling modification is introduced. pyFFTW stays optional for reproducing
+historical diagnostics in the ignored local environment, outside both runtime
+requirements and ordinary dev extras. Ordinary tests need neither pyFFTW nor
+Octave nor ignored cache files.
+
+Gate 2 closure promotes all 162 screened output comparisons into 54 strict
+three-image tests (42 synthetic, 12 natural). The 18 former failures now assert
+the documented phase/radial degeneracy, observable output divergence and exact
+downstream parity when supplied the same Octave forward quantities. They are
+marked `octave_degenerate_spectrum`, not skipped or xfailed. The tests target the
+recorded behavior; a future backend build eliminating a demonstrated divergence
+requires reviewing that assertion, not restoring a universal zero-phase contract.
+
+The study below is preserved as the evidence reviewed for adoption. Its
+references to a pending decision and 18 failures describe the pre-adoption
+checkpoint, not current test status. See VALIDATION.md for current gate status.
+
 **Recommend option B: retain NumPy for v0.1.** Both Python backends produced
 exact Octave uint8 results on all 126 independently screened synthetic outputs
 and all 36 outputs from three bundled photographs at two resolutions. The
