@@ -45,7 +45,11 @@ Octave forward quantities. No numerical bounds were changed. No xfails/skips.
 
 The Gate 2 full suite reports **205 passed, zero failures**. Expected invalid
 multiplication in the zero-energy Octave-forward replay is asserted explicitly.
-Gate 3 may now begin; Gate 4 remains outside scope.
+Gate 3 ran and stopped before adoption: scikit-image 0.25.2 agrees exactly on
+the recorded HSV working V channels, but changes one Lab working L value for
+RGB [0,1,0] through different low-light formula constants. See
+[COLOR_VALIDATION.md](COLOR_VALIDATION.md). No color.py or runtime dependency
+was added. Gate 3 is incomplete; Gate 4 remains outside scope.
 The following original measurements and failure counts describe the historical
 pre-adoption checkpoint and remain evidence, not current unexplained failures.
 
@@ -160,10 +164,10 @@ recommendation awaiting policy adoption; it does not alter the gate, any test
 status, or the existing bounds. New evidence lives in
 `reference/backend_policy/`, separate from the earlier diagnostic history.
 
-HSV/CIELab comparisons, scikit-image adoption and end-to-end mode/iteration
-validation have not been attempted. Scikit-image was available (0.25.2), but
-has not been added as a runtime dependency. SciPy is a development/test
-dependency only.
+At that historical FFT checkpoint, HSV/CIELab comparisons had not been
+attempted. The subsequent color comparison is documented above and in
+COLOR_VALIDATION.md; scikit-image has not been adopted. End-to-end mode/iteration
+validation remains unattempted. SciPy is a development/test dependency only.
 
 ## Python-specific accepted divergences
 

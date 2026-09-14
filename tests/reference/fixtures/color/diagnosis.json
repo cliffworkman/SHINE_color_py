@@ -1,0 +1,273 @@
+{
+  "status": "diagnostic assertions passed; Gate 3 adoption blocked",
+  "working_channel_mismatches": [
+    {
+      "group": "palette_8x8",
+      "row": 2,
+      "column": 1,
+      "rgb": [
+        0,
+        1,
+        0
+      ],
+      "octave_lab": [
+        0.19607885001495262,
+        -0.40056244209414615,
+        0.28631938255387346
+      ],
+      "python_lab": [
+        0.19607791741637826,
+        -0.4005605369220011,
+        0.286318020749432
+      ],
+      "octave_scaled": 0.5000010675381291,
+      "python_scaled": 0.4999986894117645,
+      "scalar_predicted_octave_scaled": 0.5000010675381291,
+      "scalar_predicted_python_scaled": 0.4999986894117645,
+      "octave_work": 1,
+      "python_work": 0,
+      "octave_reconstructed_rgb_uint8": [
+        1,
+        2,
+        1
+      ],
+      "python_reconstructed_rgb_uint8": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "processed_lab_clipping": [
+    {
+      "group": "palette_8x8",
+      "octave_min": -0.011523735534754071,
+      "octave_max": 1.2136692386302281,
+      "octave_outside_unit_interval": 25,
+      "python_vs_clipped_octave": {
+        "max_abs": 1.3422267623821454e-05,
+        "mean_abs": 6.356247611341486e-07,
+        "unequal": 169,
+        "elements": 192,
+        "distribution": {
+          "exact": 23,
+          "(0,1e-15]": 2,
+          "(1e-15,1e-12]": 0,
+          "(1e-12,1e-09]": 0,
+          "(1e-09,1e-06]": 149,
+          "(1e-06,0.001]": 18,
+          "(0.001,1]": 0,
+          "(1,inf]": 0
+        },
+        "per_channel": [
+          {
+            "max_abs": 1.3422267623821454e-05,
+            "mean_abs": 1.0742802590400118e-06
+          },
+          {
+            "max_abs": 4.771889805521567e-07,
+            "mean_abs": 2.4250984139052816e-07
+          },
+          {
+            "max_abs": 9.197702256383972e-06,
+            "mean_abs": 5.900841829719056e-07
+          }
+        ]
+      },
+      "uint8": {
+        "max_abs": 0.0,
+        "mean_abs": 0.0,
+        "unequal": 0,
+        "elements": 192,
+        "distribution": {},
+        "per_channel": [
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          },
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          },
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "group": "structured_7x9",
+      "octave_min": 0.005906974432138146,
+      "octave_max": 1.0546793740093592,
+      "octave_outside_unit_interval": 2,
+      "python_vs_clipped_octave": {
+        "max_abs": 5.244085196591704e-06,
+        "mean_abs": 4.622865916415869e-07,
+        "unequal": 187,
+        "elements": 189,
+        "distribution": {
+          "exact": 2,
+          "(0,1e-15]": 0,
+          "(1e-15,1e-12]": 0,
+          "(1e-12,1e-09]": 1,
+          "(1e-09,1e-06]": 165,
+          "(1e-06,0.001]": 21,
+          "(0.001,1]": 0,
+          "(1,inf]": 0
+        },
+        "per_channel": [
+          {
+            "max_abs": 5.244085196591704e-06,
+            "mean_abs": 7.221793668915164e-07
+          },
+          {
+            "max_abs": 4.6167538014785237e-07,
+            "mean_abs": 2.733672620443383e-07
+          },
+          {
+            "max_abs": 5.086792814773533e-06,
+            "mean_abs": 3.91313145988906e-07
+          }
+        ]
+      },
+      "uint8": {
+        "max_abs": 0.0,
+        "mean_abs": 0.0,
+        "unequal": 0,
+        "elements": 189,
+        "distribution": {},
+        "per_channel": [
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          },
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          },
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "group": "gray_ramp_1x256",
+      "octave_min": 0.4682612952959034,
+      "octave_max": 1.000000474964367,
+      "octave_outside_unit_interval": 2,
+      "python_vs_clipped_octave": {
+        "max_abs": 4.729580984630388e-07,
+        "mean_abs": 2.0753734280816796e-07,
+        "unequal": 768,
+        "elements": 768,
+        "distribution": {
+          "exact": 0,
+          "(0,1e-15]": 2,
+          "(1e-15,1e-12]": 0,
+          "(1e-12,1e-09]": 0,
+          "(1e-09,1e-06]": 766,
+          "(1e-06,0.001]": 0,
+          "(0.001,1]": 0,
+          "(1,inf]": 0
+        },
+        "per_channel": [
+          {
+            "max_abs": 3.208683383437716e-07,
+            "mean_abs": 2.0191935878573555e-07
+          },
+          {
+            "max_abs": 4.729580984630388e-07,
+            "mean_abs": 2.9762415146641907e-07
+          },
+          {
+            "max_abs": 1.951829375901326e-07,
+            "mean_abs": 1.2306851817234926e-07
+          }
+        ]
+      },
+      "uint8": {
+        "max_abs": 0.0,
+        "mean_abs": 0.0,
+        "unequal": 0,
+        "elements": 768,
+        "distribution": {},
+        "per_channel": [
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          },
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          },
+          {
+            "max_abs": 0.0,
+            "mean_abs": 0.0
+          }
+        ]
+      }
+    }
+  ],
+  "conventions": {
+    "octave_lab_slope": 7.787037037037035,
+    "skimage_lab_slope": 7.787,
+    "octave_lab_threshold": 0.008856451679035631,
+    "skimage_lab_threshold": 0.008856,
+    "rgb_xyz_matrix": [
+      [
+        0.412453,
+        0.35758,
+        0.180423
+      ],
+      [
+        0.212671,
+        0.71516,
+        0.072169
+      ],
+      [
+        0.019334,
+        0.119193,
+        0.950227
+      ]
+    ],
+    "python_xyz_rgb_matrix": [
+      [
+        3.2404813432005266,
+        -1.5371515162713183,
+        -0.4985363261688878
+      ],
+      [
+        -0.9692549499965682,
+        1.8759900014898907,
+        0.04155592655829284
+      ],
+      [
+        0.055646639135177166,
+        -0.20404133836651123,
+        1.0573110696453443
+      ]
+    ],
+    "octave_xyz_rgb_matrix": [
+      [
+        3.240479,
+        -1.53715,
+        -0.498535
+      ],
+      [
+        -0.969256,
+        1.875992,
+        0.041556
+      ],
+      [
+        0.055648,
+        -0.204043,
+        1.057311
+      ]
+    ],
+    "skimage_source_sha256": "d7a5f8597b4d3e665f5c5fd415df2f2924a783dd508f0cb5a46c87fdadedcc61"
+  },
+  "notes": "Scalar slope probe explains the cast-boundary failure. No converter, numerical tolerance, or acceptance policy is introduced."
+}

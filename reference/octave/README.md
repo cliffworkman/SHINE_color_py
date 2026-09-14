@@ -59,3 +59,11 @@ under `reference/backend_policy/data` and promoted exact Octave outputs under
 can reproduce that promotion from the study cache, verifying recorded hashes.
 The 18 historical failures are now explicitly marked passing degeneracy tests;
 earlier stopping-condition descriptions above are historical.
+
+`export_color(toolbox, destination)` exports the bounded Gate 3 RGB/HSV/Lab
+corpus, working-channel scales, native round-trips and processed-channel probes.
+Generate inputs with `python -m reference.build_color_fixtures`, then call the
+Octave function with destination `tests/reference/fixtures/color`. Run
+`python -m reference.compare_color` and `python -m reference.check_color_diagnostics`.
+The candidate is not adopted: see `docs/COLOR_VALIDATION.md` for the Lab
+cast-boundary failure and the resulting Gate 3 stop.

@@ -9,7 +9,9 @@ GNU Octave corpus, with explicit backend-sensitive Fourier degeneracy tests.
 NumPy/pocketfft is the Python reference FFT backend for v0.1. Both frequency
 operations match 162 independently screened synthetic/photo outputs exactly.
 No special zero handling is introduced; this is not universal Octave or MATLAB
-parity. Color conversion is the next gate; orchestration remains unimplemented.
+parity. Gate 3 color comparison found a Lab working-channel mismatch and stopped
+before library adoption; see [color evidence](docs/COLOR_VALIDATION.md).
+Color conversion and orchestration remain unimplemented.
 
 See [validation evidence](docs/VALIDATION.md), the
 [adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and
