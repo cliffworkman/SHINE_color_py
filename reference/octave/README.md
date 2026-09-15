@@ -67,3 +67,10 @@ Octave function with destination `tests/reference/fixtures/color`. Run
 `python -m reference.compare_color` and `python -m reference.check_color_diagnostics`.
 The candidate is not adopted: see `docs/COLOR_VALIDATION.md` for the Lab
 cast-boundary failure and the resulting Gate 3 stop.
+
+The subsequent authorized adapter uses `export_lab_corpus` for expanded
+reference-only boundary selection and inverse/gamut probes. See
+`docs/OCTAVE_LAB_SPEC.md` for predeclared rules and
+`docs/COLOR_ADAPTER_VALIDATION.md` for current adoption, measurements and
+reproduction commands. The older color corpus and scikit-image Lab failure
+remain historical evidence.

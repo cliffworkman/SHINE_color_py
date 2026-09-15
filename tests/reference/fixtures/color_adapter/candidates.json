@@ -1,0 +1,12 @@
+{
+  "generator": "reference/build_lab_corpus.py",
+  "version": 1,
+  "dark_pixels": 35937,
+  "random_pixels": 65536,
+  "search_pixels": 298337,
+  "random_seed": 2026091401,
+  "search_seed": 2026091402,
+  "specification_sha256": "bbe0c1fe505169bc9a31cc6a80813eb849317f26a8183563bff22721428ea958",
+  "candidates_sha256": "016f41d2ff192de6a95a051b804c3c45864e32f58c3cad0bc845fdecb13ae89a",
+  "generator_sha256": "13c02923a553ee98d6daa33fafad44d1b12dd3850ad8f1a9f2c5f73134f0de0d"
+}

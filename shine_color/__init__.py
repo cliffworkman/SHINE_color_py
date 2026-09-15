@@ -1,13 +1,11 @@
 """Python reimplementation of the repaired SHINE_color MATLAB reference.
 
-This package currently implements only the color-space-independent
-numerical kernel: `rescale`, whole-image `luminance.lum_match`,
-non-optimized `histogram.hist_match`, `spatial_frequency.sf_match`, and
-`spectrum.spec_match`. Color-space conversion, mode dispatch, iteration
-orchestration, and file I/O are not yet implemented. GNU Octave is the
-current executable reference; Gate 2 has exposed unresolved Fourier
-degeneracies. See docs/VALIDATION.md. MATLAB validation is a future,
-non-blocking secondary target.
+The numerical kernel and narrow RGB/HSV/Lab color layer are implemented.
+GNU Octave is the current executable reference. Kernel validation explicitly
+documents backend-sensitive Fourier degeneracies; color validation uses
+scikit-image HSV and a NumPy adapter for Octave Lab conventions. Mode dispatch,
+iteration orchestration and file I/O are not implemented. See docs/VALIDATION.md
+for the corpus-bound claims. MATLAB validation remains a future secondary target.
 
 Each function lives in its own module, mirroring the MATLAB reference's
 one-function-per-file layout; import from the specific submodule you

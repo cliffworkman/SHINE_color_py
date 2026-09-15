@@ -1,4 +1,14 @@
-# Gate 3 color comparison — stopped before library adoption
+# Color validation: adopted adapter and historical candidate comparison
+
+The subsequent authorized Lab compatibility adapter resolves the working-L
+discrepancy below. Current results and adoption are documented in
+[COLOR_ADAPTER_VALIDATION.md](COLOR_ADAPTER_VALIDATION.md), with the prior
+[behavioral specification](OCTAVE_LAB_SPEC.md). HSV uses scikit-image 0.25.2;
+Lab uses the project-owned NumPy adapter. The text below preserves the
+original 527c63c diagnostic checkpoint and its stopping decision; it is
+historical evidence, not current gate status.
+
+## Historical Gate 3 stop before library adoption
 
 Gate 2 closed with 205 passing tests at
 `ecebf4de2a3808e62bc5567f6ca800303a31ceb0` (Adopt NumPy FFT policy and close

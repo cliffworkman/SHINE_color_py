@@ -1,4 +1,4 @@
-# FFT backend policy study — recommendation for review
+# FFT backend policy study — policy B adopted
 
 **Policy B is adopted following human review.** NumPy/pocketfft is the Python
 reference FFT backend for v0.1. Exact agreement is established on the recorded

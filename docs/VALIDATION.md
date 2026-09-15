@@ -45,11 +45,15 @@ Octave forward quantities. No numerical bounds were changed. No xfails/skips.
 
 The Gate 2 full suite reports **205 passed, zero failures**. Expected invalid
 multiplication in the zero-energy Octave-forward replay is asserted explicitly.
-Gate 3 ran and stopped before adoption: scikit-image 0.25.2 agrees exactly on
-the recorded HSV working V channels, but changes one Lab working L value for
-RGB [0,1,0] through different low-light formula constants. See
-[COLOR_VALIDATION.md](COLOR_VALIDATION.md). No color.py or runtime dependency
-was added. Gate 3 is incomplete; Gate 4 remains outside scope.
+Gate 3's initial scikit-image Lab discrepancy is preserved in
+[COLOR_VALIDATION.md](COLOR_VALIDATION.md). The authorized NumPy Lab adapter
+subsequently resolves it: all 102,193 working-L values and all tested terminal
+reconstructions agree exactly. HSV uses scikit-image 0.25.2 with exact working V
+on that corpus. The 544 dedicated inverse probes preserve unclipped RGB.
+See [COLOR_ADAPTER_VALIDATION.md](COLOR_ADAPTER_VALIDATION.md) for the fixed
+measured native-float bounds, 113 new tests and detailed scope. color.py now
+exists. **Gate 3 is complete: 318 tests pass, with zero failures, skips or
+xfails.** No Gate 4 implementation has begun. MATLAB parity remains unestablished.
 The following original measurements and failure counts describe the historical
 pre-adoption checkpoint and remain evidence, not current unexplained failures.
 
@@ -165,9 +169,9 @@ status, or the existing bounds. New evidence lives in
 `reference/backend_policy/`, separate from the earlier diagnostic history.
 
 At that historical FFT checkpoint, HSV/CIELab comparisons had not been
-attempted. The subsequent color comparison is documented above and in
-COLOR_VALIDATION.md; scikit-image has not been adopted. End-to-end mode/iteration
-validation remains unattempted. SciPy is a development/test dependency only.
+attempted. Subsequent color work is documented above: scikit-image is now a
+runtime dependency for HSV only, with its declared transitive dependencies
+(including SciPy). End-to-end mode/iteration validation remains unattempted.
 
 ## Python-specific accepted divergences
 
