@@ -3,9 +3,11 @@
 The numerical kernel and narrow RGB/HSV/Lab color layer are implemented.
 GNU Octave is the current executable reference. Kernel validation explicitly
 documents backend-sensitive Fourier degeneracies; color validation uses
-scikit-image HSV and a NumPy adapter for Octave Lab conventions. Mode dispatch,
-iteration orchestration and file I/O are not implemented. See docs/VALIDATION.md
-for the corpus-bound claims. MATLAB validation remains a future secondary target.
+scikit-image HSV and a NumPy adapter for Octave Lab conventions. Mode dispatch
+and iteration orchestration now exist in pipeline.py but Gate 4 acceptance is
+blocked on documented terminal-color and generated-degeneracy cases. File I/O
+is not implemented. See docs/VALIDATION.md for the corpus-bound claims.
+MATLAB validation remains a future secondary target.
 
 Each function lives in its own module, mirroring the MATLAB reference's
 one-function-per-file layout; import from the specific submodule you

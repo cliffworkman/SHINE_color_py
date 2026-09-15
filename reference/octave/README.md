@@ -74,3 +74,12 @@ reference-only boundary selection and inverse/gamut probes. See
 `docs/COLOR_ADAPTER_VALIDATION.md` for current adoption, measurements and
 reproduction commands. The older color corpus and scikit-image Lab failure
 remain historical evidence.
+
+`export_pipeline(toolbox, destination)` exercises the repaired `processImage`
+dispatcher with delegating primitive-capture wrappers, in an external color/
+iteration harness. It does not exercise the SHINE_color filesystem/wizard shell.
+Generate predetermined inputs with `python -m reference.pipeline.build`, export
+to `tests/reference/fixtures/pipeline`, then run the measure/diagnose/report_matrix
+modules in `reference.pipeline`. See `docs/PIPELINE_VALIDATION.md` for current
+Gate 4 stopping failures; do not interpret this fixture export as completed
+pipeline acceptance. Frozen randomized stage outputs are retained for replay.

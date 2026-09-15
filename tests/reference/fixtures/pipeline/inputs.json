@@ -1,0 +1,43 @@
+{
+  "groups": [
+    {
+      "name": "rgb_17x19",
+      "shape": [
+        17,
+        19
+      ],
+      "seed": 2026091404,
+      "input_sha256": "18f03f8cd6d7706a38818f38154a8182c55832cc4eb421a795d05110b19c2aa5"
+    },
+    {
+      "name": "rgb_17x20",
+      "shape": [
+        17,
+        20
+      ],
+      "seed": 2026091405,
+      "input_sha256": "ab3b17e4ccf977562223d9d52a093a2d7c1d3ac04237874b8e3d0def78af76e7"
+    },
+    {
+      "name": "rgb_20x17",
+      "shape": [
+        20,
+        17
+      ],
+      "seed": 2026091406,
+      "input_sha256": "67508115eafa640898522aee534443b4079bc688f57098d2a6c04dd1d4061aa0"
+    },
+    {
+      "name": "rgb_20x20",
+      "shape": [
+        20,
+        20
+      ],
+      "seed": 2026091407,
+      "input_sha256": "4b787714414ce39e801d92ab82f234a9bb47e6c5539beb5232bc4af118d7fb9a"
+    }
+  ],
+  "criteria_sha256": "e1ddda28420dd0684e1ee967d17dfb09b9c684a4b88af5e353a260d19d717178",
+  "generator": "reference/pipeline/build.py",
+  "version": 1
+}

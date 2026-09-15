@@ -13,7 +13,10 @@ parity. The color layer uses scikit-image for HSV and a NumPy adapter matching
 the recorded Octave Lab conventions. All 102,193 validated working L/V values
 and tested uint8 reconstructions agree exactly; see
 [color evidence](docs/COLOR_ADAPTER_VALIDATION.md). Gate 3 is complete and all
-318 tests pass. Orchestration remains unimplemented and Gate 4 requires review.
+318 original tests pass. Whole-image orchestration is now implemented, but
+Gate 4 is blocked on newly exposed terminal HSV quantization and generated
+spectral-degeneracy cases. The full suite has 1,244 passes and 150 ordinary
+failures; see [pipeline evidence](docs/PIPELINE_VALIDATION.md).
 
 See [validation evidence](docs/VALIDATION.md), the
 [adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and

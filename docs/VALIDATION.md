@@ -52,8 +52,33 @@ reconstructions agree exactly. HSV uses scikit-image 0.25.2 with exact working V
 on that corpus. The 544 dedicated inverse probes preserve unclipped RGB.
 See [COLOR_ADAPTER_VALIDATION.md](COLOR_ADAPTER_VALIDATION.md) for the fixed
 measured native-float bounds, 113 new tests and detailed scope. color.py now
-exists. **Gate 3 is complete: 318 tests pass, with zero failures, skips or
-xfails.** No Gate 4 implementation has begun. MATLAB parity remains unestablished.
+exists. **Gate 3 is complete: its 318 tests pass, with zero failures, skips or
+xfails.** MATLAB parity remains unestablished.
+
+## Gate 4 current state: implementation with open acceptance boundaries
+
+The whole-image, non-masked pipeline now implements all eight modes and all
+three color spaces with repaired combined-mode/iteration chaining. Its 116
+API/dataflow tests and 480 reference stage tests pass. The 480 strict
+end-to-end/captured-histogram replay cases contain 150 ordinary failures.
+The complete suite reports **1,244 passed, 150 failed; no skips or xfails**.
+All prior 318 tests remain green and unchanged.
+
+The new failures are 148 HSV terminal-quantization cases and two full-chain
+replay cases with histogram-generated spectral degeneracy. Working V is exact;
+HSV native differences can cross terminal half-integer boundaries. Casting the
+same Octave native RGB in Python yields exact terminal values. All 1,074
+well-conditioned spectral replays are exact; two of six generated-degeneracy
+stages differ and become exact with common Octave forward phase/magnitude.
+No lower-level algorithm or tolerance was changed. **Gate 4 is incomplete.**
+
+See [PIPELINE_VALIDATION.md](PIPELINE_VALIDATION.md) for API, the full mode/
+colorspace/iteration matrix, histogram invariants, localization and review
+questions. No masks, optimized histograms, file I/O, CLI, video or release work
+has begun. The reference dispatcher is exercised through an external in-memory
+harness, not its interactive/filesystem shell.
+
+## Historical kernel measurements
 The following original measurements and failure counts describe the historical
 pre-adoption checkpoint and remain evidence, not current unexplained failures.
 
@@ -171,7 +196,8 @@ status, or the existing bounds. New evidence lives in
 At that historical FFT checkpoint, HSV/CIELab comparisons had not been
 attempted. Subsequent color work is documented above: scikit-image is now a
 runtime dependency for HSV only, with its declared transitive dependencies
-(including SciPy). End-to-end mode/iteration validation remains unattempted.
+(including SciPy). The later in-memory mode/iteration investigation is recorded
+in PIPELINE_VALIDATION.md; its unresolved acceptance boundaries are listed above.
 
 ## Python-specific accepted divergences
 

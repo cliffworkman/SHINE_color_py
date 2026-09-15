@@ -1,0 +1,49 @@
+colorspace,mode,iterations,configurations,exact_terminal_runs,working_failure_runs,histogram_input_failure_runs,degenerate_runs,status
+RGB,1,1,4,4,0,0,0,exact deterministic parity
+RGB,1,2,4,4,0,0,0,exact deterministic parity
+RGB,2,1,4,4,0,0,0,histogram invariant + staged replay parity
+RGB,2,2,4,4,0,0,0,histogram invariant + staged replay parity
+RGB,3,1,12,12,0,0,0,exact deterministic parity
+RGB,3,2,12,12,0,0,1,exact deterministic parity; recorded spectral degeneracy
+RGB,4,1,12,12,0,0,0,exact deterministic parity
+RGB,4,2,12,12,0,0,0,exact deterministic parity
+RGB,5,1,12,12,0,0,0,histogram invariant + staged replay parity
+RGB,5,2,12,12,0,0,1,histogram invariant + staged replay parity; recorded spectral degeneracy
+RGB,6,1,12,12,0,0,0,histogram invariant + staged replay parity
+RGB,6,2,12,12,0,1,1,histogram invariant + staged replay parity; recorded spectral degeneracy; full replay nonexact
+RGB,7,1,12,12,0,0,0,histogram invariant + staged replay parity
+RGB,7,2,12,12,0,0,0,histogram invariant + staged replay parity
+RGB,8,1,12,12,0,0,0,histogram invariant + staged replay parity
+RGB,8,2,12,12,0,0,0,histogram invariant + staged replay parity
+HSV,1,1,4,0,0,0,0,exact deterministic parity; BLOCKED: terminal quantization
+HSV,1,2,4,0,0,0,0,exact deterministic parity; BLOCKED: terminal quantization
+HSV,2,1,4,1,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,2,2,4,1,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,3,1,12,0,0,0,0,exact deterministic parity; BLOCKED: terminal quantization
+HSV,3,2,12,0,0,0,0,exact deterministic parity; BLOCKED: terminal quantization
+HSV,4,1,12,2,0,0,0,exact deterministic parity; BLOCKED: terminal quantization
+HSV,4,2,12,2,0,0,0,exact deterministic parity; BLOCKED: terminal quantization
+HSV,5,1,12,0,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,5,2,12,0,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,6,1,12,2,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,6,2,12,1,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,7,1,12,1,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,7,2,12,0,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,8,1,12,0,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+HSV,8,2,12,2,0,0,0,histogram invariant + staged replay parity; BLOCKED: terminal quantization
+CIELab,1,1,4,4,0,0,0,exact deterministic parity
+CIELab,1,2,4,4,0,0,0,exact deterministic parity
+CIELab,2,1,4,4,0,0,0,histogram invariant + staged replay parity
+CIELab,2,2,4,4,0,0,0,histogram invariant + staged replay parity
+CIELab,3,1,12,12,0,0,0,exact deterministic parity
+CIELab,3,2,12,12,0,0,0,exact deterministic parity
+CIELab,4,1,12,12,0,0,0,exact deterministic parity
+CIELab,4,2,12,12,0,0,0,exact deterministic parity
+CIELab,5,1,12,12,0,0,0,histogram invariant + staged replay parity
+CIELab,5,2,12,12,0,0,0,histogram invariant + staged replay parity
+CIELab,6,1,12,11,1,0,2,histogram invariant + staged replay parity; recorded spectral degeneracy; full replay nonexact
+CIELab,6,2,12,12,0,0,0,histogram invariant + staged replay parity
+CIELab,7,1,12,12,0,0,0,histogram invariant + staged replay parity
+CIELab,7,2,12,12,0,0,0,histogram invariant + staged replay parity
+CIELab,8,1,12,12,0,0,0,histogram invariant + staged replay parity
+CIELab,8,2,12,12,0,0,0,histogram invariant + staged replay parity
