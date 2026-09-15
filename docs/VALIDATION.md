@@ -48,33 +48,46 @@ multiplication in the zero-energy Octave-forward replay is asserted explicitly.
 Gate 3's initial scikit-image Lab discrepancy is preserved in
 [COLOR_VALIDATION.md](COLOR_VALIDATION.md). The authorized NumPy Lab adapter
 subsequently resolves it: all 102,193 working-L values and all tested terminal
-reconstructions agree exactly. HSV uses scikit-image 0.25.2 with exact working V
-on that corpus. The 544 dedicated inverse probes preserve unclipped RGB.
+reconstructions agree exactly. The initial HSV adoption used scikit-image
+0.25.2; the later Gate 4 adapter revalidation now gives exact native HSV,
+working V, and terminal values on that corpus. The 544 dedicated Lab inverse
+probes preserve unclipped RGB.
 See [COLOR_ADAPTER_VALIDATION.md](COLOR_ADAPTER_VALIDATION.md) for the fixed
 measured native-float bounds, 113 new tests and detailed scope. color.py now
 exists. **Gate 3 is complete: its 318 tests pass, with zero failures, skips or
 xfails.** MATLAB parity remains unestablished.
 
-## Gate 4 current state: implementation with open acceptance boundaries
+## Gate 4 complete: whole-image validation with explicit per-stage contracts
 
 The whole-image, non-masked pipeline now implements all eight modes and all
-three color spaces with repaired combined-mode/iteration chaining. Its 116
-API/dataflow tests and 480 reference stage tests pass. The 480 strict
-end-to-end/captured-histogram replay cases contain 150 ordinary failures.
-The complete suite reports **1,244 passed, 150 failed; no skips or xfails**.
-All prior 318 tests remain green and unchanged.
+three color spaces with repaired combined-mode/iteration chaining. All 116
+API/dataflow regressions and 480 reference stage tests pass. All 480 complete
+configuration tests pass: 478 require strict deterministic/captured-histogram
+replay, and two positively assert the documented dynamic-degeneracy mechanism
+and exact common-forward replay through the remaining chain.
+The complete suite reports **1,412 passed; zero failures, skips or xfails**.
+All prior 318 tests remain green and unchanged. Sixteen new HSV acceptance
+tests and two explicit generated-degeneracy tests supplement the prior suite.
 
-The new failures are 148 HSV terminal-quantization cases and two full-chain
-replay cases with histogram-generated spectral degeneracy. Working V is exact;
-HSV native differences can cross terminal half-integer boundaries. Casting the
-same Octave native RGB in Python yields exact terminal values. All 1,074
-well-conditioned spectral replays are exact; two of six generated-degeneracy
-stages differ and become exact with common Octave forward phase/magnitude.
-No lower-level algorithm or tolerance was changed. **Gate 4 is incomplete.**
+The earlier 148 HSV failures are resolved by a small NumPy implementation of
+Octave's forward and inverse arithmetic. Native pipeline HSV reconstruction
+and terminal output now agree exactly, without rounding adjustments. See
+[HSV_ADAPTER_VALIDATION.md](HSV_ADAPTER_VALIDATION.md) for independent
+reference-only selection of 9,363 processed-V boundary cases and full Gate 3
+revalidation. NumPy is now the only runtime dependency.
+
+All 1,074 well-conditioned spectral stages remain strictly exact. Six stage
+inputs fail the unchanged Gate 2 screen; four ordinary outputs happen to agree,
+two differ, and all six replay exactly with common Octave forward quantities.
+Histogram matching can dynamically introduce Fourier degeneracy: conditioning
+applies at each actual spectral-stage input, not only at the original image.
+The two nonexact cases retain their original arrays and observed divergences
+in passing positive mechanism tests. No runtime zero handling, FFT backend,
+casting, Lab, kernel algorithm, or ordinary parity tolerance was changed.
 
 See [PIPELINE_VALIDATION.md](PIPELINE_VALIDATION.md) for API, the full mode/
-colorspace/iteration matrix, histogram invariants, localization and review
-questions. No masks, optimized histograms, file I/O, CLI, video or release work
+colorspace/iteration matrix, histogram invariants and exact scope. No masks,
+optimized histograms, file I/O, CLI, video or release work
 has begun. The reference dispatcher is exercised through an external in-memory
 harness, not its interactive/filesystem shell.
 
@@ -194,10 +207,11 @@ status, or the existing bounds. New evidence lives in
 `reference/backend_policy/`, separate from the earlier diagnostic history.
 
 At that historical FFT checkpoint, HSV/CIELab comparisons had not been
-attempted. Subsequent color work is documented above: scikit-image is now a
-runtime dependency for HSV only, with its declared transitive dependencies
-(including SciPy). The later in-memory mode/iteration investigation is recorded
-in PIPELINE_VALIDATION.md; its unresolved acceptance boundaries are listed above.
+attempted. Subsequent color work initially adopted scikit-image for HSV.
+The completed HSV compatibility study replaces it with NumPy arithmetic;
+scikit-image remains an optional reference-comparison dependency only.
+The completed in-memory mode/iteration validation is recorded in
+PIPELINE_VALIDATION.md with explicit per-stage degeneracy limits.
 
 ## Python-specific accepted divergences
 

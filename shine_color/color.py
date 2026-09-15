@@ -1,11 +1,11 @@
 """Narrow RGB/HSV/Lab working-channel conversions for SHINE_color.
 
-HSV uses scikit-image; Lab targets GNU Octave 11.1.0 / image 2.18.2.
+HSV and Lab target GNU Octave 11.1.0 / image 2.18.2.
 HSV/Lab inverse functions return native float64 RGB. Call to_uint8(rgb*255)
 only when terminal quantization is needed. There is no pipeline dispatch here.
 """
 import numpy as np
-from skimage.color import rgb2hsv, hsv2rgb
+from ._hsv_octave import rgb_to_hsv_octave, hsv_to_rgb_octave
 
 from ._lab_octave import _rgb_uint8, _triples, rgb_to_lab_octave, lab_to_rgb_octave
 from .numeric import to_uint8
@@ -37,11 +37,11 @@ def working_to_l(channel):
 
 
 def rgb_to_hsv(rgb):
-    return rgb2hsv(_rgb_uint8(rgb))
+    return rgb_to_hsv_octave(rgb)
 
 
 def hsv_to_rgb(hsv):
-    return hsv2rgb(_triples(hsv).astype(np.float64))
+    return hsv_to_rgb_octave(hsv)
 
 
 def split_rgb(rgb):

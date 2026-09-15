@@ -7,7 +7,6 @@ from pathlib import Path
 from unittest.mock import patch
 import numpy as np
 import scipy
-import skimage
 from scipy.io import loadmat
 
 from shine_color import pipeline, color, histogram, luminance, spatial_frequency, spectrum
@@ -42,10 +41,10 @@ def delta(actual, expected):
         unequal=sum(int(np.count_nonzero(d)) for d in differences),elements=count)
 
 
-def execute(inputs,run,replay_hist=False, details=False, octave_chroma=False):
+def execute(inputs,run,replay_hist=False, details=False, octave_chroma=False, common_forward_degenerate=False):
     """Instrument only boundaries; optional exact Octave histogram replay."""
     active=[0,1,2] if run['colorspace']==1 else ([2] if run['colorspace']==2 else [0])
-    stage_list=as_list(run['stages']); working=[]; natives=[]; injected=[]
+    stage_list=as_list(run['stages']); working=[]; natives=[]; injected=[]; forward_replays=[]
     original_process=pipeline._process_channel
     original_hist=histogram.hist_match
     original_merge=getattr(color,{1:'merge_rgb',2:'merge_hsv',3:'merge_lab'}[run['colorspace']])
@@ -58,7 +57,30 @@ def execute(inputs,run,replay_hist=False, details=False, octave_chroma=False):
             stage=next(queue)
             injected.append(delta(images,as_list(stage['input'])))
             return [a.copy() for a in as_list(stage['output'])]
-        with patch.object(histogram,'hist_match',hist):
+        def spectral(module,operation,original):
+            stages=iter([s for s in stage_list if s['channel']==channel+1 and s['operation']==operation])
+            def call(images,option):
+                stage=next(stages)
+                reference=as_list(stage['amplitudes'])
+                stats=[characterize(a) for a in reference]
+                stats += [characterize(spatial_frequency._decompose(a)[1]) for a in images]
+                if all(s['passes'] for s in stats): return original(images,option)
+                # An input equality check is mandatory: common-forward replay
+                # must not conceal an upstream discrepancy.
+                input_delta=delta(images,as_list(stage['input']))
+                ordinary=delta(original(images,option),as_list(stage['output']))
+                pairs=iter(zip(as_list(stage['phases']),reference))
+                with patch.object(module,'_decompose',lambda a:next(pairs)):
+                    output=original(images,option)
+                forward_replays.append(dict(operation=operation,channel=channel+1,iteration=int(stage['iteration']),
+                    input_delta=input_delta,ordinary=ordinary,replay=delta(output,as_list(stage['output']))))
+                return output
+            return call
+        with ExitStack() as local:
+            local.enter_context(patch.object(histogram,'hist_match',hist))
+            if common_forward_degenerate:
+                for module,op,method in ((spatial_frequency,'sfMatch','sf_match'),(spectrum,'specMatch','spec_match')):
+                    local.enter_context(patch.object(module,method,spectral(module,op,getattr(module,method))))
             result=original_process(images,mode,iterations,rescale_option)
         working.append(delta(result,list(run['working'][channel,:])))
         return result
@@ -80,7 +102,7 @@ def execute(inputs,run,replay_hist=False, details=False, octave_chroma=False):
                 return tuple(parts)
             stack.enter_context(patch.object(color,method,split))
         output=pipeline.run(inputs,SPACES[run['colorspace']],run['mode'],run['iterations'],run['rescale_option'])
-    result=dict(working=working,native=delta(natives,as_list(run['native_rgb'])),terminal=delta(output,as_list(run['terminal'])),injected_inputs=injected)
+    result=dict(working=working,native=delta(natives,as_list(run['native_rgb'])),terminal=delta(output,as_list(run['terminal'])),injected_inputs=injected,forward_replays=forward_replays)
     if details: result.update(native_arrays=natives,terminal_arrays=output)
     return result
 
@@ -129,7 +151,7 @@ def measure():
         degenerate_spectral_stages=sum(s.get('screen_pass') is False for s in stage_records),
         native_rgb_maxima=bounds,failures=len(failures))
     report=dict(summary=summary,runs=records,stages=stage_records,failures=failures,
-        environment=dict(python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__,skimage=skimage.__version__,platform=platform.platform()),
+        environment=dict(python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__,platform=platform.platform()),
         fixture_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in DEST.glob('*.mat')})
     (DEST/'measurements.json').write_text(json.dumps(report,separators=(',',':'))+'\n',newline='\n')
     print(json.dumps(summary,indent=2)); print(json.dumps(failures[:10],indent=2))

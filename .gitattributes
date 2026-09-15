@@ -1,3 +1,4 @@
 # This pre-implementation specification is bound into fixture provenance.
 docs/OCTAVE_LAB_SPEC.md text eol=lf
 reference/pipeline/CRITERIA.md text eol=lf
+docs/OCTAVE_HSV_SPEC.md text eol=lf

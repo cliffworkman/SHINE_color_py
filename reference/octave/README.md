@@ -80,6 +80,17 @@ dispatcher with delegating primitive-capture wrappers, in an external color/
 iteration harness. It does not exercise the SHINE_color filesystem/wizard shell.
 Generate predetermined inputs with `python -m reference.pipeline.build`, export
 to `tests/reference/fixtures/pipeline`, then run the measure/diagnose/report_matrix
-modules in `reference.pipeline`. See `docs/PIPELINE_VALIDATION.md` for current
-Gate 4 stopping failures; do not interpret this fixture export as completed
-pipeline acceptance. Frozen randomized stage outputs are retained for replay.
+modules in `reference.pipeline`. The original measure/diagnose/report_matrix
+outputs preserve the Gate 4 stopping checkpoint. Current acceptance is in
+`docs/PIPELINE_VALIDATION.md`: run `python -m reference.pipeline.measure_completion`
+against the same frozen references. Do not regenerate randomized fixtures for
+this revalidation. Completion records are written separately.
+
+The later `export_hsv_corpus(destination)` exports a new HSV-only corpus with
+reference-selected processed-V terminal boundaries, preserving all pipeline
+and Gate 3 fixtures. Inputs come from `python -m reference.build_hsv_corpus`.
+`python -m reference.measure_hsv_adapter --prepare` then serializes the old
+scikit-image H/S for `export_hsv_cross(destination)` to reconstruct in Octave.
+Final measurements use `python -m reference.measure_hsv_adapter`. See
+`docs/OCTAVE_HSV_SPEC.md` and `docs/HSV_ADAPTER_VALIDATION.md` for the frozen
+specification, selection threshold, stage comparisons and adapter adoption.

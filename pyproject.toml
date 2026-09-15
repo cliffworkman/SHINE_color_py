@@ -9,11 +9,11 @@ description = "Python reimplementation of the repaired SHINE_color MATLAB toolbo
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.24",
-    "scikit-image==0.25.2",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest>=7", "scipy>=1.10"]
+reference = ["scipy>=1.10", "scikit-image==0.25.2"]
 
 [tool.setuptools.packages.find]
 include = ["shine_color*"]

@@ -1,14 +1,19 @@
-# Gate 4 whole-image pipeline — implemented, acceptance blocked
+# Gate 4: whole-image pipeline validated against GNU Octave
 
-The whole-image pipeline is implemented and the operation-order regressions
-pass, but **Gate 4 is not complete**. The full suite reports **1,244 passed,
-150 failed**, with no skips or xfails. All prior 318 tests and all 116 new
-orchestration/API tests pass. The 150 ordinary failures preserve two newly
-exposed boundaries: HSV native roundoff surviving terminal quantization, and
-post-histogram spectral degeneracy. No prior numeric/color algorithms or
-tolerances have been changed to suppress them.
+**Gate 4 is complete under the documented per-stage contract.** All 480
+recorded configurations are accepted: 478 strict deterministic or captured
+histogram replays, plus two positive dynamic spectral-degeneracy cases with
+exact common-forward replay through the remaining pipeline. The complete suite
+reports **1,412 passed in 29.07 seconds**, zero failures, skips or xfails.
+All 318 pre-pipeline tests and 116 orchestration/API regressions remain green.
 
-## Public API and architecture
+The earlier diagnostic checkpoint `792bb0701f33f0cfb695ef5d8b6ed1319ed885ea`
+and its original measurement/diagnosis files are preserved. Its 150 failures
+were resolved by reproducing Octave HSV arithmetic and applying the previously
+approved Gate 2 degeneracy policy at each actual spectral-stage input.
+No original pipeline MAT file or randomized histogram fixture was regenerated.
+
+## Public API and orchestration
 
 ```python
 from shine_color.pipeline import run
@@ -16,19 +21,20 @@ result = run(images, colorspace, mode, iterations=1, rescale_option=1)
 ```
 
 Input is a sequence of at least two same-size, nonempty `(H,W,3)` NumPy uint8
-RGB images. Strings, paths, stacked batch arrays, floating images, mismatched
-dimensions, empty sets and malformed shapes are rejected. Colorspace accepts
-RGB, HSV, CIELab case-insensitively, with Lab as an alias. Mode is an explicit
-integer 1..8; iteration count is a positive integer; rescale option is 0/1/2.
-Booleans and floating parameter values are not silently treated as integers.
+RGB images. Paths, strings, stacked batches, floats, mismatched dimensions and
+malformed images are rejected. Colorspace accepts RGB, HSV, CIELab
+case-insensitively, with Lab as an alias. Mode is an explicit integer 1..8;
+iterations is a positive integer; rescale option is 0/1/2. Boolean/floating
+parameter values are not silently treated as integers.
 
-Output is a list of terminal RGB uint8 arrays. The function has no filesystem
-side effects. Source arrays are not mutated. RGB channels are processed
-independently; HSV processes only working V, Lab only working L. Conversion
-happens once before iterations and reconstruction once afterwards. Original
-H/S or a*/b* remains untouched. Lab inverse remains unclipped until the one
-explicit terminal `to_uint8(native_rgb*255)` boundary. RGB working channels
-are already uint8 and are recombined directly.
+The output is a list of terminal RGB uint8 arrays. Input images are not
+mutated. There are no filesystem side effects. RGB channels are processed
+independently; HSV processes only working V, Lab only working L. Color split
+occurs once before iterations and reconstruction once afterwards. Original
+H/S or a*/b* remains unchanged. Working values are uint8 on 0..255 throughout
+kernel processing. HSV/Lab reconstruction returns native unclipped float64
+RGB, then one terminal `to_uint8(native_rgb*255)` occurs. RGB channels are
+already uint8 and are merged directly.
 
 | Mode | Ordered operations |
 | --- | --- |
@@ -41,216 +47,203 @@ are already uint8 and are recombined directly.
 | 7 | sfMatch -> histMatch |
 | 8 | specMatch -> histMatch |
 
-The function-oriented `_process_channel` calls existing primitives without
-duplicating their algorithms. Every second stage consumes the first stage's
-output; iteration n+1 consumes iteration n's output. It reproduces the
-**repaired** semantics, not upstream 0.0.5's broken combined-mode and iteration
-behavior. RGB channels are independent; the Python implementation completes
-all iterations of a channel before advancing to the next channel, while the
-reference shell interleaves channels per iteration. Histogram randomness is
-not shared across runtimes, so this does not establish matched random draws.
-The replay tool explicitly indexes captured stages by channel and iteration.
+The existing function-oriented dispatcher invokes the established primitives;
+no kernel algorithm is duplicated. The second stage receives the first stage's
+output, and iteration n+1 receives iteration n's output. This implements the
+repaired semantics rather than upstream 0.0.5's broken combined-mode/iteration
+behavior. Python completes iterations per RGB channel; the external reference
+loop interleaves channels per iteration. Channels are independent. Captured
+histogram replay indexes stages by channel/iteration and does not claim shared
+random draws between runtimes.
 
-Rescale options are forwarded only to spectral primitives. Option 0 never
-calls rescale() through the orchestration layer. Modes 1/2 ignore valid rescale
-options. Default histogram behavior remains unseeded. A private channel-level
-RNG hook and scoped monkeypatching support controlled tests; the public run
-API does not silently seed randomness.
+Rescale options are forwarded to spectral primitives only. Modes 1/2 ignore
+valid rescale choices. Default histogram processing remains unseeded; scoped
+test instrumentation controls randomness without adding a public RNG option.
+Working-scale tests protect statistics/comparisons before inverse scaling;
+no production diagnostics framework was introduced.
 
-All channel-level statistics must compare original/transformed uint8 working
-arrays on the same 0..255 scale, before inverse scaling. Representation tests
-check this boundary; no diagnostic subsystem was added to production.
+## Recorded reference corpus
 
-## Independent corpus and actual reference dispatcher
+The predeclared `reference/pipeline/CRITERIA.md` is hashed into the manifest.
+Four sets of three RGB images have dimensions 17x19, 17x20, 20x17 and 20x20:
+full-range noise, smooth heterogeneous texture with fine noise, and structured
+multichannel sinusoids with bounded integer perturbations. PCG64 seeds are
+2026091404..2026091407. No candidate was discarded based on agreement. These
+are synthetic workflow probes, not a real experimental stimulus sample.
 
-The predeclared rules are in `reference/pipeline/CRITERIA.md`, hashed into the
-input manifest. Four sets contain three synthetic RGB images each, at 17x19,
-17x20,20x17,20x20: full-range noise, heterogeneous smooth texture with fine
-noise, and structured multichannel sinusoids with bounded integer perturbations.
-PCG64 seeds are 2026091404..2026091407. These are synthetic workflow probes,
-not a real experimental stimulus sample. No candidate was discarded or
-regenerated based on agreement.
+Each set covers all 8 modes, 3 color spaces, iterations 1/2, and rescale 0/1/2
+for modes 3..8. Modes 1/2 are measured at rescale 1, with independent regressions
+verifying rescale irrelevance. There are 120 configurations per set, 480 total:
+168 deterministic and 312 containing histogram matching.
 
-Each set covers all 8 modes, all 3 color spaces, iterations 1/2, and rescale
-0/1/2 for modes 3..8. Modes 1/2 are measured at option 1; independent tests
-verify their irrelevance to rescale choice. There are 120 configurations per
-set, **480 configurations total** (168 deterministic, 312 histogram-containing).
+The external Octave harness calls the actual repaired `processImage` dispatcher.
+Thin external capture wrappers call verified original primitive handles and
+record stage input/output. The harness supplies color splitting/reconstruction
+and iteration wiring. It does not invoke the SHINE_color filesystem/wizard/
+plotting shell. Wrapper paths are removed afterwards. The canonical reference
+checkout remains unchanged.
 
-The external Octave harness calls the actual repaired `processImage` function.
-Thin external primitive wrappers delegate to function handles verified to
-resolve to the pinned toolbox, recording stage input/output without changing
-the primitive. Wrapper paths are removed after the run. The harness supplies
-the documented color split/reconstruction and iteration loop externally.
-It does **not** invoke the SHINE_color filesystem/wizard/plotting shell; claims
-are limited to in-memory processing and the actual dispatcher it calls.
+Reference: GNU Octave 11.1.0, image 2.18.2, FFTW 3.3.10, pinned toolbox main
+`870e058fe8bf1e4090baf2401ff0e127d1c0237a`. Original manifests record FFTW
+planner/threads/wisdom, dispatcher hash, delegate paths and platform. Stage
+arrays, native RGB and terminal outputs are durable MAT fixtures. Completion
+measurement verifies every MAT hash against the original diagnostic record.
+Tests need neither Octave nor ignored caches.
 
-Reference: Octave 11.1.0, FFTW 3.3.10, image package 2.18.2 in the recorded
-environment, toolbox commit 870e058fe8bf1e4090baf2401ff0e127d1c0237a. Runtime
-FFT planner/thread/wisdom, dispatcher hash and delegate paths are recorded.
-The canonical reference checkout is unchanged. All sources, per-stage arrays,
-native RGB and terminal uint8 outputs are durable MAT fixtures. Python version
-information and fixture hashes are in measurements.json. No ignored cache is
-needed by the tests.
+## Completed matrix
 
-## Validation matrix
-
-The complete **48-row mode/colorspace/iteration matrix**, with rescale variants
-and all four sets aggregated per row, is `acceptance_matrix.csv`. The table
-below reports configurations passing every strict full-chain assertion,
-including input parity at injected histogram boundaries. Histogram rows use
-captured-stage replay, not independent random-run pixel comparison.
+Cells give strict ordinary/captured-histogram replays, plus any positive
+backend-sensitive configuration. Every listed configuration passes its stated
+contract. The full 48-row mode/colorspace/iteration breakdown, including the
+rescale variants, is `tests/reference/fixtures/pipeline/completion_matrix.csv`.
 
 | Mode | RGB | HSV | CIELab | Comparison |
 | --- | ---: | ---: | ---: | --- |
-| 1 | 8/8 | 0/8 | 8/8 | Deterministic exact working/terminal |
-| 2 | 8/8 | 2/8 | 8/8 | Histogram invariant + captured replay |
-| 3 | 24/24 | 0/24 | 24/24 | Deterministic exact working/terminal |
-| 4 | 24/24 | 4/24 | 24/24 | Deterministic exact working/terminal |
-| 5 | 24/24 | 0/24 | 24/24 | Histogram invariant + spectral/full replay |
-| 6 | 23/24 | 3/24 | 23/24 | Histogram invariant + spectral/full replay |
-| 7 | 24/24 | 1/24 | 24/24 | Spectral replay + terminal histogram invariant |
-| 8 | 24/24 | 2/24 | 24/24 | Spectral replay + terminal histogram invariant |
+| 1 | 8 exact | 8 exact | 8 exact | Deterministic |
+| 2 | 8 exact | 8 exact | 8 exact | Histogram invariant + captured replay |
+| 3 | 24 exact | 24 exact | 24 exact | Deterministic |
+| 4 | 24 exact | 24 exact | 24 exact | Deterministic |
+| 5 | 24 exact | 24 exact | 24 exact | Histogram invariant + spectral/full replay |
+| 6 | 23 exact + 1 degeneracy | 24 exact | 23 exact + 1 degeneracy | Histogram invariant + per-stage spectral contract |
+| 7 | 24 exact | 24 exact | 24 exact | Spectral replay + histogram invariant |
+| 8 | 24 exact | 24 exact | 24 exact | Spectral replay + histogram invariant |
 
-Deterministic strict totals: RGB 56/56, HSV 4/56, Lab 56/56 (116/168 overall).
-Histogram strict replay totals: RGB 103/104, HSV 8/104, Lab 103/104
-(214/312 overall). Thus 330 configurations pass strict full-chain assertions.
-The remaining 150 are ordinary failing tests, not accepted divergences.
-The measurement JSON lists 152 failed checks: these 150 full-chain checks
-plus separate spectral-stage checks for the same two generated-degeneracy
-cases. It does not represent 152 distinct failed configurations.
+All 168 deterministic configurations are exact at working and terminal levels:
+56/56 each for RGB, HSV and Lab. Of 312 histogram configurations, 310 strict
+captured-stage replays are exact; two use positive degeneracy/common-forward
+replay. This does not claim independently randomized whole images are identical.
 
-All **780 histogram-stage checks pass**: exact rounded target histogram and
-exact output intensity histogram, plus dimensions/dtype and mean/sample-SD
-implied by sorted output values. Mode 2 contributes 60 stages; modes 5/6/7/8
-each contribute 180. Target histograms need not themselves sum to pixel count:
-the existing histogram primitive expands/resamples the target. Tests compare
-the actual Octave output distributions, not an unjustified raw target equality.
+All **780 histogram stages** pass exact target/output histogram comparisons,
+shape/dtype checks and mean/sample-SD invariants implied by sorted outputs.
+Mode 2 contributes 60 stages; modes 5/6/7/8 each contribute 180. The target
+histogram need not sum to pixel count; output distributions are compared to
+actual reference outputs after the established expansion/resampling algorithm.
 
-Modes 5/6 replay their actual captured randomized first-stage images into
-Python spectral primitives. Mode 5 is 180/180 exact; mode 6 is 178/180 exact,
-with the two exceptions below. Modes 7/8 each have 180/180 exact spectral
-replays and 180 passing histogram-stage checks. At iteration 2, prior random
-arrangement can affect a spectral stage and its next histogram target; therefore
-independent final histograms are not required to match across runtimes there.
-The comparisons are stage-specific on identical captured input. No spectral
-invariant is incorrectly asserted after uint8 clipping or histogram replacement.
+All **1,074 well-conditioned spectral stages** require and achieve exact
+ordinary replay. Of 1,080 total stages, six fail the unchanged screen. Four
+still produce exact ordinary results, two differ; all six become exact with
+common Octave forward phase/magnitude. Mode 5 has 180/180 exact ordinary
+spectral replays; mode 6 has 178/180 ordinary exact plus two positive mechanism
+cases. Modes 7 and 8 each have 180 exact spectral replays and 180 passing
+histogram-stage invariant checks.
 
-## Spectral conditioning and the two post-histogram exceptions
+At later iterations, previous random spatial arrangement affects the next
+spectrum and potentially its histogram target. Consequently stage comparisons
+use identical captured input, rather than requiring independent random-run
+final histogram or pixel equality. No spectral invariant is incorrectly
+asserted after terminal clipping or histogram replacement.
 
-Every captured spectral input is screened in Octave-exported and NumPy
-decompositions using the unchanged Gate 2 threshold:
-all magnitudes and occupied retained radial sums >1e-10*max(1,max magnitude).
-Of **1,080 spectral stages**, 1,074 pass the screen and all 1,074 replay exactly.
-Six captured stages fail the screen. Four still replay exactly; two do not.
-They are retained separately and their per-source phase localization is saved.
+## HSV reconstruction resolution
 
-Both mismatches occur in the 20x20 set, mode 6, after randomized histogram
-matching: RGB (the iterations=2, rescale=1 run, green channel, first iteration)
-and Lab (iterations=1, rescale=0). The former has 343 differing scalar working
-pixels, maximum difference 1; the latter has one, maximum difference 1.
-All six degenerate cases replay exactly after injecting the same recorded
-Octave forward phase/magnitude. This localizes them to the known FFT phase
-degeneracy class, not the pipeline dispatcher or Lab converter.
+The new NumPy HSV adapter reproduces Octave's actual forward/inverse arithmetic.
+It does not change `to_uint8`, working V, or rounding. Both directions are
+required: keeping scikit-image H/S with Octave inverse still yields 2,201
+unequal terminal components on the independently selected boundary corpus.
 
-The RGB run happens to end with exact terminal images after a later histogram
-replay, but its next histogram input was already nonexact; that is still a
-strict full-chain failure. The Lab difference propagates to three RGB scalar
-components, each differing by 1, with native RGB maximum difference
-0.004087255706704207. This is not evidence of a new Lab algorithm defect.
+The frozen mathematical specification is `docs/OCTAVE_HSV_SPEC.md`. The study
+covers 76,337 forward colors, 9,363 independently selected processed-V boundary
+pairs, 11,832 inverse probes, and all 458 historical Gate 4 occurrences. Every
+adapter native/terminal comparison is exact. All 102,193 Gate 3 HSV records
+are revalidated with zero native, working-V or terminal differences. All prior
+Lab tests remain unchanged and green. Full measurements and selection rules
+are in [HSV_ADAPTER_VALIDATION.md](HSV_ADAPTER_VALIDATION.md).
 
-The gate's strict full-replay assertions remain ordinary failures for these
-two configurations. Separate stage tests positively exercise the approved
-degeneracy mechanism using common-forward replay. Human review must decide
-how to reflect dynamically introduced degeneracy in the pipeline contract;
-no epsilon denominator, phase normalization or backend switch was introduced.
+All 160 HSV pipeline configurations now have **zero native RGB difference
+and zero unequal terminal uint8 values**. The old 148 failing configurations
+and 458 scalar differences remain documented in the original diagnosis.json.
+The cast was not the source and remains untouched.
 
-## New HSV terminal-quantization boundary
+Production dependencies return to **NumPy only**. scikit-image==0.25.2 remains
+in the optional reference extra solely for historical comparison tooling.
+The 24 space/mode dependency smoke runs succeed with SciPy/scikit-image imports
+blocked. The normal pytest suite does not require scikit-image.
 
-**148 HSV configurations have 458 unequal scalar terminal outputs**, each
-differing by one uint8 level. Their working V channels agree exactly. Native
-HSV reconstruction differs by at most 8.326672684688674e-16 over this corpus;
-every changed scaled RGB value is within 1.2789769243681803e-13 of a
-half-integer casting boundary.
+## Dynamic spectral degeneracy contract
 
-A deterministic mode-1 example, source RGB [61,60,122], produces scaled R:
+Conditioning is applied to the **actual input of each spectral stage** using
+the unchanged Gate 2 rule: every magnitude and occupied retained radial
+amplitude sum must exceed `1e-10*max(1,max magnitude)`. Both NumPy and recorded
+Octave decompositions are checked. This is a classification criterion, not an
+output tolerance.
 
-| | Scaled reconstructed R | Terminal R |
-| --- | ---: | ---: |
-| Python/scikit-image | 62.49999999999997 | 62 |
-| Octave | 62.5 | 63 |
+Histogram matching can change the spatial arrangement of intensities and
+create mathematically/numerically degenerate Fourier components even when
+the original input was well-conditioned. This matters especially for modes
+5/6 and later iterations of combined modes. Screening the initial stimulus
+alone cannot guarantee subsequent spectral conditioning.
 
-Python to_uint8 applied to **the same Octave native RGB** reproduces every
-Octave terminal value in all 148 failing runs: zero cast-only mismatches.
-Injecting original Octave H/S still leaves 124 failing configurations, so
-inverse HSV arithmetic contributes independently of the forward chroma
-roundoff. Every differing location and both scaled values are in diagnosis.json.
-No numeric.py change is justified by this probe.
+The two nonexact captured stages remain unchanged:
 
-Gate 3's original assertions remain green; they did not cover these processed-V
-values. Its corpus-bound claim therefore remains accurate, but it cannot be
-extended to universal terminal HSV parity. This is a new explicit acceptance
-boundary, not permission to introduce a one-level pixel tolerance or snap
-values near .5. The previously validated color code is unchanged.
+| Set / configuration | Affected stage | Ordinary working differences |
+| --- | --- | ---: |
+| 20x20 / RGB / mode 6 / iterations 2 / rescale 1 | Green, first-iteration specMatch after histMatch | 343 scalar pixels, max 1 |
+| 20x20 / CIELab / mode 6 / iterations 1 / rescale 0 | Working L specMatch after histMatch | 1 scalar pixel, max 1 |
 
-## Regression tests and stopping condition
+Positive tests assert original working inputs pass the screen, captured
+histogram output equals spectral input, actual stage spectra fail the screen
+with near-zero coefficients, phase disagreement concentrates there, ordinary
+output divergence remains observable, and common-forward replay is exact.
+No arbitrary minimum phase angle is required: even a small phase difference
+can promote a near-zero residual to a finite component.
 
-116 orchestration/API tests pass. They include all modes/color spaces at one
-and two passes against explicit manual Python composition with controlled test
-randomness; combined-mode bypass regressions for modes 5..8; two-pass cases
-that demonstrably differ from restarting (mode 3 and modes 5..8); exact stage
-receiver tests; working-scale protection; rescale forwarding; a terminal Lab
-cast probe; contract errors and source immutability.
+Complete-chain tests then inject only the recorded forward quantities at
+screen-failing stages, require their incoming pixels to match exactly, and
+require subsequent histogram inputs, final working arrays and terminal RGB
+to match exactly. They continue running the actual Python primitives and
+pipeline. Well-conditioned stages are never granted relaxed parity. All
+stage-order and iteration-chain assertions remain mandatory.
 
-480 reference stage tests pass, checking the captured repaired operation order
-and iteration dataflow, histogram invariants and spectral replay. 480 strict
-full-chain tests give 330 passes and 150 failures. Combined with 318 prior
-tests and 116 new regression/API tests, the full command
-`python -m pytest -q -p no:cacheprovider --tb=no` reports
-**1,244 passed, 150 failed in 22.74 seconds**, no skips/xfails.
-No existing tests, fixture arrays or numerical bounds were weakened.
+The ordinary RGB run ends with exact terminal images after a later captured
+histogram output but has a nonexact intermediate histogram input; it is still
+classified as backend-sensitive. The ordinary Lab run has three terminal RGB
+component differences of one level. These ordinary results have not been
+hidden or described as pixel-exact. Common-forward reconstruction has maximum
+native RGB difference 1.1546319456101628e-14 in Lab, zero in RGB/HSV, and zero
+terminal differences. This measured native maximum is not a new tolerance.
 
-Supported claim: the recorded evidence verifies repaired operation ordering,
-iteration chaining, independent RGB processing, preserved HSV/Lab chroma and
-working-scale plumbing. Deterministic RGB/Lab modes match exactly on this
-corpus. Histogram stages and well-conditioned spectral replays agree under
-the documented stage-specific comparisons. Full whole-image Octave parity is
-not established because the above terminal HSV and generated-degeneracy
-cases remain open. This is **not** a Gate 4 completion checkpoint.
+There is no runtime zero handling, phase normalization, denominator adjustment,
+FFT backend switch or SHINE algorithm change. NumPy/pocketfft remains the
+production backend. Classification and common-forward injection are validation
+tooling only.
+
+## Tests, scope and reproduction
+
+The full result is **1,412 passed in 29.07 seconds**, no failures/skips/xfails:
+318 prior tests, 116 orchestration/API regressions, 480 stage-contract tests,
+480 complete-configuration tests, 16 additional HSV tests and two explicit
+dynamic-degeneracy mechanism tests. Combined-mode bypass regressions for modes
+5..8 pass; iteration chaining regressions for mode 3 and modes 5..8 pass;
+12 stage/iteration receiver regressions cover all spaces and combined modes.
+No prior numeric/color test bounds were widened and no fixture was removed.
+
+Supported claim: the recorded whole-image in-memory pipeline is validated
+against GNU Octave for repaired operation ordering, iteration chaining,
+RGB/HSV/Lab working/reconstruction semantics, deterministic working/terminal
+parity, histogram invariants with captured replay, strict well-conditioned
+spectral parity, and explicitly tested backend-sensitive degeneracy with exact
+common-forward downstream replay. This is the completed Gate 4 contract.
 
 MATLAB numerical parity has not been established and remains a future secondary
-validation target. There is no claim for masking, background detection,
-templates, optimized histograms, diagnostic plotting, wizard, CLI, file I/O,
-video, upscaling, universal Octave parity or public release.
+validation target. Universal Octave pixel parity, independent random spatial
+histogram assignment parity, other runtime builds, masking, background detection,
+templates, SSIM optimization, file I/O, CLI, wizard, diagnostic plotting, video,
+upscaling and public release are not established. Gate 5 and excluded features
+were not begun. No remote, push or publication occurred.
 
-Next human decision: authorize a bounded study of Octave-compatible HSV
-reconstruction at terminal cast boundaries, and decide the pipeline-level
-policy for histogram-generated degenerate spectra. Preserve the distinction
-between a faithful native conversion and terminal quantization. No next-gate
-or excluded-feature work should begin from this checkpoint.
-
-## Artifacts and reproduction
-
-Production addition: `shine_color/pipeline.py`; no lower-level algorithm edits.
-Tooling: `reference/pipeline/{build,measure,diagnose,report_matrix}.py`, the
-predeclared criteria and external `export_pipeline.m`/delegating wrappers.
-Tests: `tests/test_pipeline.py`, `tests/reference/test_octave_pipeline.py`.
-Fixtures: `tests/reference/fixtures/pipeline`, including input and reference
-MATs, provenance, compact measurement records, diagnosis and acceptance matrix.
-
-With committed references available:
+Production changes in this completion are `_hsv_octave.py`, the color wrappers
+and dependency metadata; the pipeline dispatcher, numerical kernel and Lab
+adapter are unchanged. New evidence is in `hsv_adapter/`,
+`pipeline/completion_measurements.json` and `pipeline/completion_matrix.csv`.
+Original pipeline measurement/diagnosis files retain the stopping checkpoint.
 
 ```text
-python -m reference.pipeline.measure
-python -m reference.pipeline.diagnose
-python -m reference.pipeline.report_matrix
-python -m pytest tests/test_pipeline.py -q -p no:cacheprovider
+python -m reference.measure_hsv_adapter
+python -m reference.pipeline.measure_completion
+python -m reference.check_numpy_runtime
 python -m pytest -q -p no:cacheprovider
 ```
 
-To regenerate the reference, first preserve this run (histogram spatial
-arrangements are intentionally random), run `python -m reference.pipeline.build`,
-then add reference/octave to the Octave path and call
-`export_pipeline(pinned_toolbox, tests/reference/fixtures/pipeline)` with absolute
-paths. Regeneration creates a new random-stage corpus and needs new measurement;
-old report counts are not promised for new draws. No fixture was regenerated
-to hide an observed mismatch. All work is local; no remote, push or publication.
+Only the first command needs the diagnostic scikit-image reference extra.
+Do not regenerate the frozen randomized Octave pipeline fixtures for these
+checks. A new reference export would be a distinct corpus requiring its own
+measurement and acceptance record.

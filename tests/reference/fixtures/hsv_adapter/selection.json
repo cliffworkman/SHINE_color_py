@@ -1,0 +1,1 @@
+{"rule":"any(abs(RGB*255-(floor(RGB*255)+0.5))<=1e-10)","threshold":1e-10,"pool_size":131072,"count":9363,"processed_values":[0,1,2,31,64,127,128,254,255],"selected_before_python_comparison":true}

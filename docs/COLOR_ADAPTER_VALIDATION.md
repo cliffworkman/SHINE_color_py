@@ -1,5 +1,14 @@
 # Gate 3: Octave-compatible color conversion
 
+**Historical Gate 3 acceptance record.** The Lab adapter and all original
+fixtures/tests below remain unchanged. During Gate 4, the HSV component was
+replaced by a NumPy adapter after a new terminal-boundary study. See
+[HSV_ADAPTER_VALIDATION.md](HSV_ADAPTER_VALIDATION.md) for the current decision:
+all 102,193 Gate 3 HSV records now match exactly in native floats as well as
+working V and terminal uint8. Production dependencies return to NumPy only.
+The scikit-image adoption and "Gate 4 has not begun" statements below describe
+the earlier checkpoint, not the current implementation.
+
 The accepted color layer uses scikit-image 0.25.2 for HSV and a project-owned
 NumPy adapter for Octave-compatible Lab. The adapter resolves the previously
 documented working-L discrepancy without changing casting, adding epsilon
