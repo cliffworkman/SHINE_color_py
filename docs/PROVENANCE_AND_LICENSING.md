@@ -217,3 +217,13 @@ repaired 0.0.6 and Python. Pillow-common post values reproduce the displayed
 126.69 / 74.77. The impossible cat2 baseline SD remains a reported discrepancy,
 not a software golden; its origin is unknown. The confirmation rechecked archived
 Octave results rather than performing another runtime comparison.
+
+## AI-development provenance
+
+OpenAI Codex was used extensively as a coding and analysis assistant during
+Cliff Workman's human-directed and reviewed reimplementation, inspection,
+repair, testing, numerical investigations, provenance audits, and documentation.
+Scientific and numerical claims were independently checked through the
+validation procedures documented in this repository. This assistance does not
+change original SHINE_color authorship, citations, or licensing; the README
+contains the primary disclosure.

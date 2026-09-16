@@ -393,3 +393,27 @@ The new version of the `SHINE_color` now handles video files. If a video file is
 
 ***
 <!-- END inherited README -->
+
+## Built with AI assistance
+
+SHINE_color_py was developed with substantial AI-coding assistance from
+OpenAI Codex. Codex contributed to implementation, inspection and repair,
+test construction, numerical investigations, reference comparisons,
+provenance audits, and documentation.
+
+Cliff Workman directed and reviewed the work. These contributions were treated
+as hypotheses to be checked, not as a source of truth. Scientific and numerical
+claims were independently evaluated against the historical SHINE_color
+implementation, the repaired 0.0.6 fork, recorded GNU Octave reference outputs,
+mathematical contracts, and the published Figure 2 example. In the validated
+environment, the project passes 1,535 tests. The Figure 2 audit establishes
+exact common-input histogram parity between Python and the recorded historical
+and repaired toolbox results under GNU Octave; the repaired confirmation
+rechecked archived results rather than running a fresh Octave comparison.
+
+This disclosure records how Cliff Workman's Python continuation was built
+and verified. Original SHINE_color and SHINE authorship, and authorship of
+Dal Ben (2023), remain separate and unchanged. Codex provided AI-coding
+assistance, not original authorship, independent maintenance, scientific
+decision-making, or copyright ownership. Recording that substantial assistance
+makes the development process inspectable alongside its validation.
