@@ -29,9 +29,13 @@ Gate 5A is complete: **1,499 tests pass, with zero failures, skips or xfails**.
 The subsequent architectural pilot added research-only QC tooling and brought
 the checkpoint to 1,504 passing tests. The final preflight records
 [provenance and unresolved public licensing](docs/PROVENANCE_AND_LICENSING.md).
-The [Figure 2 investigation](docs/FIGURE2_REPRODUCTION.md) stops at an original
-statistic mismatch; a successful published-example reproduction is not claimed.
-The preflight suite passes **1,514 tests**, including ten offline baseline checks.
+The [Figure 2 investigation](docs/FIGURE2_REPRODUCTION.md) records the original
+statistic mismatch, separates Pillow and Octave JPEG decoding, and demonstrates
+exact histogram/output parity on common inputs. A historical publication
+reproduction is not claimed. The recorded pinned-environment preflight suite
+passes **1,514 tests**, including ten offline baseline checks. The Figure 2 audit adds fourteen focused
+checks; its current-interpreter validation and the recorded pinned-environment
+full regression are documented in [the audit record](docs/FIGURE2_REPRODUCTION.md).
 
 See [validation evidence](docs/VALIDATION.md), the
 [adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and

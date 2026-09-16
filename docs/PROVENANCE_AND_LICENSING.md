@@ -73,6 +73,13 @@ upstream algorithms. Synthetic numerical calculations in the probes are
 diagnostic code. The provenance assessment remains distinct from a legal
 conclusion about independent implementation.
 
+For the Figure 2 audit, the exact local 0.0.5 toolbox history at
+`330a9be6e49f59e5d68fb985744b2a50c278e8d8` was compared with the repaired
+reference. The operation-relevant routines `avgHist.m`, `hist2list.m`,
+`match.m`, `histMatch.m` and `lum2scale.m` are byte-identical in both snapshots.
+The comparison found no historical algorithm change that explains the Figure 2
+label discrepancy.
+
 Tracked PNGs are generated synthetic inputs. There are **no tracked JPEGs**,
 architecture photos, architecture pilot outputs, installed dependencies or
 machine caches. The ignored reference snapshot contains upstream source, but
