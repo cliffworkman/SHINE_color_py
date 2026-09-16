@@ -1,6 +1,6 @@
 # SHINE_color Python research implementation
 
-Local behavioral reimplementation of the repaired SHINE_color toolbox.
+Independently implemented Python behavioral reimplementation of the repaired SHINE_color toolbox.
 GNU Octave is the current executable reference; exact MATLAB numerical parity
 is untested and remains a future, non-blocking secondary target.
 
@@ -25,6 +25,13 @@ pipeline, with collision protection and a JSON provenance manifest.
 See [file workflow](docs/FILE_WORKFLOW.md) for examples, representation policies
 and partial-failure behavior. No scientific kernel or reference fixture changed.
 Gate 5A is complete: **1,499 tests pass, with zero failures, skips or xfails**.
+
+The subsequent architectural pilot added research-only QC tooling and brought
+the checkpoint to 1,504 passing tests. The final preflight records
+[provenance and unresolved public licensing](docs/PROVENANCE_AND_LICENSING.md).
+The [Figure 2 investigation](docs/FIGURE2_REPRODUCTION.md) stops at an original
+statistic mismatch; a successful published-example reproduction is not claimed.
+The preflight suite passes **1,514 tests**, including ten offline baseline checks.
 
 See [validation evidence](docs/VALIDATION.md), the
 [adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and
