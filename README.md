@@ -38,6 +38,43 @@ checks, and the repaired 0.0.6 confirmation adds seven more; current validation
 and the recorded pinned-environment full regression are documented in [the
 audit record](docs/FIGURE2_REPRODUCTION.md).
 
+## Reproducing SHINE_color's published histogram-matching example
+
+SHINE_color_py was tested against the same three sample files used in the
+original SHINE_color Figure 2 example. To separate JPEG-decoder effects from
+algorithmic behavior, historical SHINE_color 0.0.5, repaired 0.0.6 and Python
+were also given identical decoded RGB arrays. On common decoded input they
+produce identical 256-bin input histograms, target histograms, matched
+histograms and sorted matched Value-channel outputs in the recorded audit.
+The 0.0.6 follow-up rechecked those archived Octave results; it did not run a
+fresh Octave comparison. With Pillow-decoded inputs, matched outputs give
+M = 126.69 and SD = 74.77, reproducing Figure 2's displayed post-match values.
+
+![Figure 2 validation comparison](docs/assets/figure2_validation_comparison.png)
+
+| Image | Figure 2 baseline | Supplied source | Post-match |
+| --- | --- | --- | --- |
+| cat1 | 172.47 / 44.72 | 172.48 / 44.73 | 126.69 / 74.77 |
+| cat2 | 80.34 / 127.26 | 80.34 / 68.07 | 126.69 / 74.77 |
+| cat3 | 127.26 / 76.76 | 127.26 / 76.76 | 126.69 / 74.77 |
+
+Values are mean / sample SD of working HSV V on the 0–255 scale. Source values
+are Pillow-decoded and rounded to two decimals; the post-match column is the
+Pillow-common path. Exact common-input histogram and sorted-value
+parity is the comparison contract. Figure 2's cat2 baseline reports M = 80.34,
+SD = 127.26, while the supplied image reproduces the mean but not that SD.
+At this mean, SD 127.26 exceeds the attainable bound of approximately 118.46
+for 0–255 data. The origin of this apparent annotation/reporting discrepancy
+is unknown. This SD is not used as a software golden. Cat1's calculated values
+correspond to the displayed values if truncated to two decimals, a plausible
+formatting explanation rather than an established reporting convention.
+JPEG-decoder differences also affect decoded pixels: the Octave-common path
+rounds to post M = 126.70, SD = 74.78. These display-level differences do not
+change the common-input algorithmic comparison.
+
+See the [detailed Figure 2 audit](docs/FIGURE2_REPRODUCTION.md) and
+[provenance/licensing record](docs/PROVENANCE_AND_LICENSING.md).
+
 See [validation evidence](docs/VALIDATION.md), the
 [adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and
 [fixture reproduction instructions](reference/octave/README.md).
