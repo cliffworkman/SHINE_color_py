@@ -186,15 +186,20 @@ HSV terminal outputs are exact throughout the recorded pipeline corpus.
 
 ## Inherited SHINE_color 0.0.6 documentation
 
-The complete repaired-fork README at commit
-`7074df49bf42d622f2ea30c3a838629eada6b787` follows. Scientific descriptions,
-original contact, references, all release notes and the fork's validation note
-are preserved. Statements about MATLAB, the wizard, video and filesystem side
-effects refer to the original/repaired MATLAB toolbox. Adjacent **Python
-equivalent** notes distinguish this implementation. The historical Figure 2
-note is [retained locally](docs/FIGURE2_VALIDATION.md) so its link still works.
-The inherited citation's spelling “MethodX” is retained verbatim; the formatted
-citation above uses the journal name *MethodsX*.
+The inherited repaired-fork README snapshot below was taken at commit
+`7074df49bf42d622f2ea30c3a838629eada6b787`, which contains the complete
+0.0.6 release and Figure 2 validation documentation. That snapshot is now part
+of the fork's final merged `main` history at
+`1421d6b24754e37cde47a3e94867828dfba4562e`. The fork's later, fork-specific
+Codex provenance disclosure is not duplicated inside this inherited block;
+SHINE_color_py records its own Codex-assisted development provenance below.
+Scientific descriptions, original contact, references, all release notes and
+the fork's validation note are preserved. Statements about MATLAB, the wizard,
+video and filesystem side effects refer to the original/repaired MATLAB toolbox.
+Adjacent **Python equivalent** notes distinguish this implementation. The
+historical Figure 2 note is [retained locally](docs/FIGURE2_VALIDATION.md) so its
+link still works. The inherited citation's spelling “MethodX” is retained
+verbatim; the formatted citation above uses the journal name *MethodsX*.
 
 <!-- BEGIN inherited README: SHINE_color 7074df49bf42d622f2ea30c3a838629eada6b787 -->
 ## SHINE_color
