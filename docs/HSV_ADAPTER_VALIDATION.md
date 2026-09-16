@@ -1,5 +1,9 @@
 # Octave-compatible HSV: Gate 4 resolution and Gate 3 revalidation
 
+This is the Gate 4 adapter record. Gate 5A later adds Pillow for the file
+workflow; its scientific core still uses only NumPy. See FILE_WORKFLOW.md
+for the current package dependency and I/O scope. HSV results below are unchanged.
+
 Both HSV directions now use a small vectorized float64 NumPy adapter,
 `shine_color/_hsv_octave.py`, behind the existing color API. It reproduces
 the nominated Octave arithmetic on all recorded probes. No epsilon, rounding

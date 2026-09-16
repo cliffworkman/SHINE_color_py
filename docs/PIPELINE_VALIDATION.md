@@ -1,5 +1,11 @@
 # Gate 4: whole-image pipeline validated against GNU Octave
 
+This document records the Gate 4 checkpoint. Gate 5A subsequently adds the
+file workflow described in [FILE_WORKFLOW.md](FILE_WORKFLOW.md) and makes
+Pillow an explicit runtime dependency. The scientific core and all evidence
+below remain unchanged; statements about excluded file I/O and NumPy-only
+package dependencies below describe the earlier Gate 4 scope.
+
 **Gate 4 is complete under the documented per-stage contract.** All 480
 recorded configurations are accepted: 478 strict deterministic or captured
 histogram replays, plus two positive dynamic spectral-degeneracy cases with

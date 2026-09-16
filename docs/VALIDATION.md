@@ -65,7 +65,7 @@ API/dataflow regressions and 480 reference stage tests pass. All 480 complete
 configuration tests pass: 478 require strict deterministic/captured-histogram
 replay, and two positively assert the documented dynamic-degeneracy mechanism
 and exact common-forward replay through the remaining chain.
-The complete suite reports **1,412 passed; zero failures, skips or xfails**.
+The Gate 4 checkpoint reports **1,412 passed; zero failures, skips or xfails**.
 All prior 318 tests remain green and unchanged. Sixteen new HSV acceptance
 tests and two explicit generated-degeneracy tests supplement the prior suite.
 
@@ -74,7 +74,8 @@ Octave's forward and inverse arithmetic. Native pipeline HSV reconstruction
 and terminal output now agree exactly, without rounding adjustments. See
 [HSV_ADAPTER_VALIDATION.md](HSV_ADAPTER_VALIDATION.md) for independent
 reference-only selection of 9,363 processed-V boundary cases and full Gate 3
-revalidation. NumPy is now the only runtime dependency.
+revalidation. At Gate 4, NumPy was the only runtime dependency; Gate 5A adds
+Pillow solely for image-file handling.
 
 All 1,074 well-conditioned spectral stages remain strictly exact. Six stage
 inputs fail the unchanged Gate 2 screen; four ordinary outputs happen to agree,
@@ -87,9 +88,69 @@ casting, Lab, kernel algorithm, or ordinary parity tolerance was changed.
 
 See [PIPELINE_VALIDATION.md](PIPELINE_VALIDATION.md) for API, the full mode/
 colorspace/iteration matrix, histogram invariants and exact scope. No masks,
-optimized histograms, file I/O, CLI, video or release work
-has begun. The reference dispatcher is exercised through an external in-memory
+optimized histograms, CLI, video or release work has begun. File I/O is added
+separately in Gate 5A below. The reference dispatcher is exercised through an external in-memory
 harness, not its interactive/filesystem shell.
+
+## Gate 5A complete: file-based research workflow
+
+The Python file API wraps the unchanged in-memory pipeline. `process_files`
+loads a complete ordered group and calls `pipeline.run` once; `process_directory`
+selects supported top-level files with stable casefold/name sorting. PNG/JPEG
+inputs become oriented RGB uint8 arrays. Pillow>=10.4 is an explicit runtime
+dependency (tested 10.4.0); the scientific core remains NumPy-only. Outputs are
+PNG only and are reloaded to verify exact terminal-array equality before
+publication. Full policies and examples are in [FILE_WORKFLOW.md](FILE_WORKFLOW.md).
+
+Grayscale is replicated; opaque palettes are looked up; alpha/transparency,
+high-bit-depth PNG, CMYK, multiframe and unsupported formats are rejected.
+The PNG header is checked so Pillow cannot silently reduce RGB16 to RGB8.
+EXIF orientations are physically applied; outputs contain no stale orientation
+or other copied metadata. No ICC/gamma transformation is introduced.
+
+Default collision preflight and atomic no-clobber publication protect existing
+files, including destinations arriving after preflight. Explicit overwrite is
+recorded and never permits replacing an input file. All outputs are staged,
+verified and published before the JSON manifest. Caught publication failures
+roll back; an old manifest is restored only after its old outputs are restored.
+Failed rollback preserves recovery copies and the lock. Windows cleanup sharing
+violations have bounded retries and explicit persistent-failure behavior.
+Power-loss-safe directory transactions and noncooperating overwrite writers
+are outside the contract.
+
+Manifest schema 1 records software versions, optional Git SHA/dirty state,
+source implementation digest, all pipeline parameters and operation order,
+ordered input names/count, UTC timestamps, I/O policies, input/output file
+sizes/dimensions, file SHA-256 values and RGB pixel SHA-256 values. Pixel hashes
+use uint8 C-order HWC bytes with dimensions stored separately. Names are relative;
+no usernames or absolute source paths are required. Histogram modes accurately
+record `stochastic_unseeded`; no public seed or bitwise rerun guarantee is added.
+Internal version remains `0.1.0.dev0`, with no release or tag.
+
+**Complete suite: 1,499 passed in 51.10 seconds; zero failures, skips or xfails.**
+All prior 1,412 tests remain unchanged and green. There are 87 new tests:
+39 image-I/O tests and 48 batch tests. They require exact PNG round trips,
+exact batch/direct equivalence in RGB/HSV/Lab and combined modes 5..8,
+group invocation, representation/metadata policies, ordering, hashes,
+source preservation, collisions, publication/cleanup failures and rollback.
+Histogram equivalence uses scoped test-only RNG control. No scientific kernel,
+pipeline, color adapter, original test or reference fixture changed.
+
+The full-resolution real-photo smoke processes the three previously nominated
+1200x1200 cat JPEGs as one HSV mode-1 group. All three PNG reloads equal the
+returned arrays exactly, manifest hashes verify, and original bytes remain
+unchanged. Temporary outputs are removed. Evidence is retained in
+`reference/file_workflow_smoke.json`; its Git dirty state and source digest
+identify the tested pre-commit implementation honestly.
+
+Supported claim: the validated file-based research workflow preserves the
+pipeline's terminal RGB uint8 arrays exactly in PNG output and records enough
+parameters and file/pixel hashes to identify the stimulus set and software
+configuration. This is not universal scientific or MATLAB validation.
+MATLAB numerical parity remains a future non-blocking secondary target.
+Masking/background detection/templates, optimized/SSIM histogram matching,
+CLI, GUI, wizard, video, upscaling, public release and publication remain
+excluded. Gate 5A stops for human review; no next gate has begun.
 
 ## Historical kernel measurements
 The following original measurements and failure counts describe the historical

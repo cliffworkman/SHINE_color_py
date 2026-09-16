@@ -6,7 +6,8 @@ documents backend-sensitive Fourier degeneracies; color validation uses
 NumPy adapters for Octave HSV and Lab conventions. Whole-image mode dispatch
 and iteration orchestration in pipeline.py meet the Gate 4 corpus contract,
 including positive tests for dynamically generated spectral degeneracy.
-File I/O is not implemented. See docs/VALIDATION.md for the corpus-bound claims.
+io.py and batch.py wrap the core with PNG/JPEG loading, exact PNG output and
+group-level provenance. See docs/VALIDATION.md for the corpus-bound claims.
 MATLAB validation remains a future secondary target.
 
 Each function lives in its own module, mirroring the MATLAB reference's

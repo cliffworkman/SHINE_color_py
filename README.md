@@ -17,8 +17,14 @@ Gates 3 and 4 are complete. All 480 whole-image configurations meet the
 documented contract: 478 strict deterministic/captured-histogram replays and
 two positive dynamic spectral-degeneracy cases with exact common-forward
 replay. HSV terminal outputs are exact throughout the pipeline corpus.
-The full suite has **1,412 passes, zero failures, skips or xfails**;
-see [pipeline evidence](docs/PIPELINE_VALIDATION.md).
+The Gate 4 suite has 1,412 passes; see [pipeline evidence](docs/PIPELINE_VALIDATION.md).
+
+Gate 5A adds a Python file API for PNG/JPEG input and exact RGB PNG output.
+Each ordered stimulus set is normalized as one group through the existing
+pipeline, with collision protection and a JSON provenance manifest.
+See [file workflow](docs/FILE_WORKFLOW.md) for examples, representation policies
+and partial-failure behavior. No scientific kernel or reference fixture changed.
+Gate 5A is complete: **1,499 tests pass, with zero failures, skips or xfails**.
 
 See [validation evidence](docs/VALIDATION.md), the
 [adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and
@@ -29,7 +35,8 @@ pyFFTW remains optional diagnostic tooling outside runtime and normal dev extras
 
 Install development dependencies with `python -m pip install -e ".[dev]"`.
 Run tests with `python -m pytest -q -p no:cacheprovider`.
-NumPy is the only runtime dependency. The optional `reference` extra retains
+Runtime dependencies are NumPy and Pillow; the scientific core remains NumPy-only.
+The optional `reference` extra retains
 scikit-image 0.25.2 solely to reproduce comparisons with the displaced converter.
 
 This repository is local research work pending a licensing/provenance decision.
