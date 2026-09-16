@@ -191,8 +191,12 @@ def run_config(source, output, manifest, config):
     for stage in stage_rows:
         stage["casts"] = [c for c in cast_records if c["stage_index"] == stage["stage_index"]
                           and c["operation"] == stage["operation"]]
+    final_channels = {}
+    for key in working_channels(outputs[0], config["colorspace"]):
+        final_channels[key] = spectral_group(
+            [working_channels(a, config["colorspace"])[key] for a in outputs])[0]
     return dict(config=config, output_directory=str(destination), manifest=result.manifest,
-                images=image_rows, stages=stage_rows,
+                images=image_rows, stages=stage_rows, final_spectral_group=final_channels,
                 terminal_casts=[c for c in cast_records if c["operation"] == "terminal"])
 
 
