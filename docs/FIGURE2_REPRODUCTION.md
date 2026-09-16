@@ -172,12 +172,12 @@ tracked fixture `tests/reference/fixtures/figure2_repaired_confirmation.json`.
 Its ignored artifact directory is
 `reference/.cache/figure2_repaired_confirmation_20260916_v8/`.
 
-The fourteen Figure 2 audit checks, ten Figure 2 baseline checks and seven new
-repaired-confirmation checks pass in
-the current interpreter. The repository's recorded full-regression result is
-1,514 passed under Python 3.12.10, NumPy 2.1.3, SciPy 1.15.1 and Pillow 10.4.0.
-The currently selected interpreter reports NumPy 1.26.4, SciPy 1.13.1 and
-Pillow 12.1.1; its unrelated pre-existing ultra-tight color and degenerate
-spectrum checks are environment-sensitive. No tolerance, xfail or algorithm
-was changed for this audit. Image-bearing outputs remain ignored, and no
-remote, push, tag or release was made.
+The fourteen Figure 2 audit checks, ten Figure 2 baseline checks and seven
+repaired-confirmation checks pass. The full regression was subsequently rerun
+under the validated Python 3.12.10, NumPy 2.1.3, SciPy 1.15.1 and Pillow 10.4.0
+environment: **1,535 passed**. An earlier run in a different interpreter
+(NumPy 1.26.4, SciPy 1.13.1, Pillow 12.1.1) had environment-sensitive color and
+degenerate-spectrum failures; that is not the pinned validation environment.
+No tolerance, xfail or algorithm was changed. Image-bearing audit outputs remain
+ignored. The later GitHub publication decision is documented in the
+[provenance record](PROVENANCE_AND_LICENSING.md).

@@ -1,23 +1,35 @@
-# Provenance and licensing preflight
+# Provenance and licensing
 
-Audit date: 2026-09-16. Baseline Python commit:
+Audit date: 2026-09-16. Original preflight baseline Python commit:
 `0862b5f4635a3500afd823343b016189d0dd127e`.
-This is a repository-content audit, not legal advice or a license grant.
-No final public-distribution license decision has been made. Do not apply MIT
-or any other public license to this project by inference from its reference.
+This document preserves the preflight evidence and records the subsequent
+public-release decision. It does not resolve historical notice conflicts
+by legal interpretation.
 
-## Private repository versus public distribution
+## Public-release decision and scientific lineage
 
-No technical blocker to a private backup/collaboration push was identified in
-the audited tree and reachable history. No credential patterns or private
-architectural-study assets were found. Pending public licensing is not, by
-itself, treated as a blocker to a private research repository. This finding
-does not confer distribution rights or approve a public release. No remote
-was configured and nothing was pushed during this task.
+The owner explicitly authorized public publication at
+[cliffworkman/SHINE_color_py](https://github.com/cliffworkman/SHINE_color_py),
+following the original SHINE_color licensing model and retaining useful
+reference fixtures. This supersedes the earlier pending-publication decision;
+it is not an inference from test agreement or from the root license alone.
 
-Public release still requires decisions on upstream notices, image-derived
-fixtures, third-party notices, and personal paths in historical evidence.
-Reference-output agreement does not settle any of those questions.
+The root [MIT license](../LICENSE), including Rodrigo Dal Ben's original
+copyright, and [toolbox MIT license](UPSTREAM_TOOLBOX_LICENSE.txt) are preserved
+verbatim. [Third-party notices](../THIRD_PARTY_NOTICES.md) retain the narrower
+embedded SHINE/SSIM notices, authorship and citations. Newly written Python
+code and tooling follow the same repository-level MIT terms, with Cliff
+Workman's separate contribution credit. The historical coexistence of MIT and
+more restrictive component notices remains explicit, not adjudicated here.
+
+The lineage is original [SHINE_color](https://github.com/RodDalBen/SHINE_color)
+by Rodrigo Dal Ben → repaired/maintained 0.0.6 → independent Python behavioral
+reimplementation. The [SHINE_color paper](https://doi.org/10.1016/j.mex.2023.102377),
+[SHINE paper](https://doi.org/10.3758/BRM.42.3.671),
+[original website](http://www.mapageweb.umontreal.ca/gosselif/SHINE/) and
+[OSF project](https://osf.io/auzjy/) remain research provenance. Cliff's additions
+are repairs, Python implementation, batch workflows, manifests, regression
+validation, the Figure 2 audit and maintenance; original authorship is unchanged.
 
 ## Implementation and reference provenance
 
@@ -31,7 +43,7 @@ when assessing public-distribution provenance.
 
 The behavioral reference is the repaired `cliffworkman/SHINE_color` merged
 main commit `870e058fe8bf1e4090baf2401ff0e127d1c0237a`. Fixtures use its ignored,
-unmodified snapshot. The supplied sibling checkout remains clean at
+unmodified snapshot. At the original preflight the supplied sibling checkout was clean at
 `c602d4582f51bde8bda4ed10a360734f62e538dc`; the relevant toolbox content agrees
 with the pinned snapshot. Upstream authorship remains with Rodrigo Dal Ben
 for SHINE_color and the credited SHINE authors for the original toolbox.
@@ -42,8 +54,11 @@ educational/research-only and commercial-adaptation permission restrictions.
 That coexistence is unresolved here; the repository-level file is not assumed
 to override embedded notices. GNU Octave/image-package conventions are a
 separate provenance consideration; they are not covered by an inferred SHINE
-license. There is no license field granting public rights in `pyproject.toml`
-and no Python-project LICENSE was added.
+license. The public documentation baseline is the repaired fork's complete
+README at `7074df49bf42d622f2ea30c3a838629eada6b787`. It is retained in the Python
+README with adjacent Python usage notes. Packaging now includes the root MIT
+text and component notices; it neither bundles the reference implementation
+nor changes the scientific kernel.
 
 ## Full tracked-tree inventory
 
@@ -80,7 +95,8 @@ reference. The operation-relevant routines `avgHist.m`, `hist2list.m`,
 The comparison found no historical algorithm change that explains the Figure 2
 label discrepancy.
 
-Tracked PNGs are generated synthetic inputs. There are **no tracked JPEGs**,
+Tracked PNGs are generated synthetic inputs and the photograph-free Figure 2
+histogram/statistics figure. There are **no tracked JPEGs**,
 architecture photos, architecture pilot outputs, installed dependencies or
 machine caches. The ignored reference snapshot contains upstream source, but
 it is not in the tracked tree. `arch_study/` and `reference/.cache/` remain
@@ -93,7 +109,7 @@ reference paper assets and three smaller cat JPEGs. It is **not part of the
 staging while provenance is clarified. Its PDF and `fig2.png` match the sibling
 reference assets; the three small JPEGs do not match the nominated upstream
 sample hashes. Their files were left untouched and were not used for the
-reproduction. Private-push readiness assumes these local materials stay ignored.
+reproduction. These local materials stay ignored and are excluded from publication.
 
 ## Cat images and image-derived fixtures
 
@@ -108,8 +124,8 @@ the Figure 2 caption also attributes them to Pexels. No individual Pexels
 asset URL, photographer attribution, acquisition record, or asset-specific
 redistribution evidence was identified in the inspected materials. The
 paper's CC BY statement and the toolbox's software license are not treated
-as proof of rights to redistribute these standalone JPEGs. Status: unresolved
-public-release review item; no assets were deleted.
+as proof of rights to redistribute these standalone JPEGs. Individual asset
+provenance remains a future documentation task; no standalone JPEGs are added.
 
 Although the JPEG files are not tracked, the tree already contains spatially
 organized cat-derived data, **not just hashes or abstract numerical summaries**:
@@ -122,8 +138,12 @@ organized cat-derived data, **not just hashes or abstract numerical summaries**:
   `cats_green_stride4_outputs.mat`: corresponding transformed reference arrays.
 
 Changing the container from JPEG to MAT does not resolve image provenance.
-These four files require public-release review along with any future derived
-image artifacts. They remain intact for private validation.
+The owner reviewed this distinction and explicitly directed preservation of
+useful existing image-derived fixtures for this public release. These four
+files remain intact for regression reproducibility, with the Pexels attribution
+and missing asset-level records disclosed. This release decision does not
+assert that a software license grants image rights. Future derived assets need
+their own provenance assessment.
 
 The new `tests/reference/fixtures/figure2_baseline.json` is transparent
 nonspatial evidence: source file/pixel hashes, 256-bin intensity counts,
@@ -133,17 +153,27 @@ numerical evidence, not a substitute image container or a legal clearance.
 
 ## Machine-specific paths
 
-Personal absolute paths occur in `reference/backend_policy/corpus_manifest.json`,
+Personal absolute paths originally occurred in `reference/backend_policy/corpus_manifest.json`,
 `tests/reference/fixtures/pipeline/octave_manifest.json`, and the captured
 warning in `tests/reference/fixtures/single_pixel.json`. Additional absolute
 reference-function paths occur in the `color`, `color_adapter` and `hsv_adapter`
 fixture directories' `octave_manifest.json` files. Installation paths
 also occur in `reference/backend_policy/README.md` and
 `reference/compare_fft_backends.py`. Binary MAT string metadata is inspected
-by the inventory as well. Review/redact paths before a public release using
-a documented provenance-preserving procedure, including reachable history
-if necessary. They do not contain credentials; this audit leaves historical
-evidence untouched.
+by the inventory as well. For the public tree, only the checkout prefixes in the corpus manifest,
+pipeline manifest and single-pixel warning were replaced with repository-relative
+paths (or a relative sibling path for the original samples), using forward
+slashes. Reference commits, source hashes, fixture hashes, measurements, error
+identifiers and all numerical arrays remain unchanged. Those path strings
+identify source locations; they are not evidence of a fresh reference run.
+
+The historical commits intentionally remain unchanged, as authorized. Their
+original checkout paths disclose the already-public maintainer username and
+research-tool checkout locations; inspection found no private study filenames,
+credentials or unrelated personal files in those paths. Generic Octave
+installation paths remain as reproducibility evidence in manifests and the
+optional FFT diagnostic script. The public tree has no user-home checkout
+paths. This is not a claim that every historical absolute path was erased.
 
 ## Dependencies: local package metadata
 
@@ -173,11 +203,17 @@ project runtime licenses.
 The full local inventory is
 `reference/.cache/provenance_preflight_20260916/tracked_tree_audit.json`.
 It intentionally remains ignored because it contains historical personal-path
-metadata. Re-run the audit against the intended commit/tree before any future
-public release; additions since this baseline need their own inventory.
+metadata. The public-release audit repeats this inventory against the final staged
+tree and reachable history; its local detailed output is under
+`reference/.cache/public_release/`. See [the release audit](PUBLIC_RELEASE_AUDIT.md)
+for the shareable scope and results. Future additions need the same review.
 
 README claims remain corpus- and environment-bounded GNU Octave validation,
 with MATLAB parity unestablished, documented FFT degeneracy limits and
-stochastic histogram ties. Neither successful tests nor a private push means
-public-release readiness. See `FIGURE2_REPRODUCTION.md` for the separate
-baseline mismatch that currently prevents a strong Figure 2 reproduction claim.
+stochastic histogram ties. See [Figure 2 reproduction](FIGURE2_REPRODUCTION.md):
+the recorded common-input audit establishes exact input/target/matched
+histograms and sorted matched working-V outputs across historical 0.0.5,
+repaired 0.0.6 and Python. Pillow-common post values reproduce the displayed
+126.69 / 74.77. The impossible cat2 baseline SD remains a reported discrepancy,
+not a software golden; its origin is unknown. The confirmation rechecked archived
+Octave results rather than performing another runtime comparison.

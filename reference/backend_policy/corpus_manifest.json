@@ -75,15 +75,15 @@
       "stride": 1,
       "sources": [
         {
-          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat1.jpg",
+          "path": "../SHINE_color_fork/toolbox/SHINE_color_INPUT/samples/cat1.jpg",
           "sha256": "aa350a25a0fedbe875aab0cd69e5bf925e3d4c9a5da2a1769ce34c17e63eae9a"
         },
         {
-          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat2.jpg",
+          "path": "../SHINE_color_fork/toolbox/SHINE_color_INPUT/samples/cat2.jpg",
           "sha256": "68fc8a17422f4b1d0ed3491f21e46e262261e4abdabfa459487765cd19e5dc87"
         },
         {
-          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat3.jpg",
+          "path": "../SHINE_color_fork/toolbox/SHINE_color_INPUT/samples/cat3.jpg",
           "sha256": "66fdaa81b735b6a9261bdce7314698ad912068048fa115c03a636d0257d5bdeb"
         }
       ]
@@ -99,15 +99,15 @@
       "stride": 4,
       "sources": [
         {
-          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat1.jpg",
+          "path": "../SHINE_color_fork/toolbox/SHINE_color_INPUT/samples/cat1.jpg",
           "sha256": "aa350a25a0fedbe875aab0cd69e5bf925e3d4c9a5da2a1769ce34c17e63eae9a"
         },
         {
-          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat2.jpg",
+          "path": "../SHINE_color_fork/toolbox/SHINE_color_INPUT/samples/cat2.jpg",
           "sha256": "68fc8a17422f4b1d0ed3491f21e46e262261e4abdabfa459487765cd19e5dc87"
         },
         {
-          "path": "C:\\Users\\cliff\\Dropbox\\Dropbox\\01_Work\\SHINE_color_fork\\toolbox\\SHINE_color_INPUT\\samples\\cat3.jpg",
+          "path": "../SHINE_color_fork/toolbox/SHINE_color_INPUT/samples/cat3.jpg",
           "sha256": "66fdaa81b735b6a9261bdce7314698ad912068048fa115c03a636d0257d5bdeb"
         }
       ]
