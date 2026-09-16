@@ -100,12 +100,57 @@ The post-label agreement is therefore decoder-dependent. The exact cat 2
 baseline annotation remains unexplained, while the common-input comparison
 does not support a Python histogram or pipeline implementation error. The old
 and repaired toolbox routines `avgHist.m`, `hist2list.m`, `match.m`,
-`histMatch.m` and `lum2scale.m` are byte-identical for this operation.
+`histMatch.m` and `lum2scale.m` are operation-equivalent for this behavior;
+the repaired confirmation verifies that empirically.
 
 The historical plotting code provides no contrary source evidence: the earlier
 `diag_plots.m` has no numeric labels, while the later `diagPlots.m` computes
 indexed `mean2`/`std2` values and rounds them for display. No cat 2 correction
 is inferred from that inspection.
+
+## Repaired 0.0.6 confirmation
+
+The existing external Octave results were rechecked against the frozen repaired
+0.0.6 snapshot named `870e058fe8bf1e4090baf2401ff0e127d1c0237a`. The live
+sibling checkout is clean at `c602d4582f51bde8bda4ed10a360734f62e538dc`;
+its toolbox has the same normalized text tree, while the snapshot remains the
+identity used by the archived reference run. No checkout or source file was
+modified. The historical comparison uses local 0.0.5 history at
+`330a9be6e49f59e5d68fb985744b2a50c278e8d8`.
+
+The table uses SHA-256 prefixes for each three-image histogram or sorted-value
+set. Full hashes and exact comparison booleans are in the compact fixture.
+`M / SD` is listed for post rows; tiny cross-runtime reduction differences are
+reported separately.
+
+| Path / stage | historical 0.0.5 | repaired 0.0.6 | SHINE_color_py | Octave reference |
+| --- | --- | --- | --- | --- |
+| Path A pre | `f0bd…/67ef…/8f47…` | same | same | same |
+| Path A target | `934c590c…` | same | same | same |
+| Path A post | `2651…` (`M 126.693774 / SD 74.771272`) | same | same | same |
+| Path B pre | `1e70…/0882…/b3cf…` | same | same | same |
+| Path B target | `b5fe8aa2…` | same | same | same |
+| Path B post | `ab34…` (`M 126.704679 / SD 74.780523`) | same | same (`SD 74.780523`) | same |
+
+For both paths, 0.0.5 versus 0.0.6 is exact for pre histograms, target
+histogram, post histograms and sorted post values. The repaired snapshot also
+matches the archived Octave reference exactly on those contracts and matches
+Python exactly on the same integer/sorted-value contracts. Means and sample SDs
+agree numerically; independent reductions differ only at approximately
+`2.2e-12` between the two Octave runs and `3.2e-11` between Octave and Python.
+Thus the repaired 0.0.6 changes do not alter Figure 2 HSV histogram-matching
+behavior.
+
+The optional natural-JPEG 0.0.6 path was not rerun because GNU Octave is not
+currently available on the active PATH. Its absence is explicit in the
+confirmation record; no decoder result is inferred. The common-input result
+therefore remains separate from the known Pillow/Octave JPEG-decoder effect.
+
+The printed baseline remains `172.47 / 44.72`, `80.34 / 127.26` and
+`127.26 / 76.76`, with printed post `126.69 / 74.77`. Cat 2's SD remains an
+impossible/non-normative annotation. Cat 1's printed values are consistent
+with truncating the calculated Pillow values (`172.479839…` and `44.729233…`),
+but truncation remains only a plausible formatting explanation.
 
 ## Artifacts, regression and reproduction
 
@@ -122,7 +167,13 @@ does not modify the canonical reference checkout. The tracked fixture
 `tests/reference/fixtures/figure2_audit.json` contains hashes, histogram
 counts, summary values and comparison evidence, but no spatial pixel data.
 
-The fourteen Figure 2 audit checks and the ten Figure 2 baseline checks pass in
+The repaired confirmation uses `reference.figure2_repaired_confirm` and the
+tracked fixture `tests/reference/fixtures/figure2_repaired_confirmation.json`.
+Its ignored artifact directory is
+`reference/.cache/figure2_repaired_confirmation_20260916_v8/`.
+
+The fourteen Figure 2 audit checks, ten Figure 2 baseline checks and seven new
+repaired-confirmation checks pass in
 the current interpreter. The repository's recorded full-regression result is
 1,514 passed under Python 3.12.10, NumPy 2.1.3, SciPy 1.15.1 and Pillow 10.4.0.
 The currently selected interpreter reports NumPy 1.26.4, SciPy 1.13.1 and

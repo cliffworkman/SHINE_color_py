@@ -34,8 +34,9 @@ statistic mismatch, separates Pillow and Octave JPEG decoding, and demonstrates
 exact histogram/output parity on common inputs. A historical publication
 reproduction is not claimed. The recorded pinned-environment preflight suite
 passes **1,514 tests**, including ten offline baseline checks. The Figure 2 audit adds fourteen focused
-checks; its current-interpreter validation and the recorded pinned-environment
-full regression are documented in [the audit record](docs/FIGURE2_REPRODUCTION.md).
+checks, and the repaired 0.0.6 confirmation adds seven more; current validation
+and the recorded pinned-environment full regression are documented in [the
+audit record](docs/FIGURE2_REPRODUCTION.md).
 
 See [validation evidence](docs/VALIDATION.md), the
 [adopted FFT policy](docs/FFT_BACKEND_POLICY.md), and

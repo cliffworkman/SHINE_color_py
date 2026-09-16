@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "scope": "0.0.6 Figure 2 archived common-input confirmation",
+  "archived_external_reference": true,
+  "runtime_note": "No GNU Octave executable was available for a fresh rerun; repaired results are the existing external audit record.",
+  "settings": {
+    "colorspace": "HSV",
+    "mode": 2,
+    "iterations": 1,
+    "rescale_option": 1,
+    "rescale_ignored": true,
+    "group_size": 3,
+    "ties": "stochastic_unseeded"
+  },
+  "repaired_commit": "870e058fe8bf1e4090baf2401ff0e127d1c0237a",
+  "repaired_snapshot": "toolbox",
+  "historical_commit": "330a9be6e49f59e5d68fb985744b2a50c278e8d8",
+  "fork_checkout_head": "c602d4582f51bde8bda4ed10a360734f62e538dc",
+  "fork_checkout_clean": true,
+  "toolbox_tree": {
+    "files": 76,
+    "sha256": "0e1fbed03b5a5ad2c78bc22212e7d1f35acd5994f14153fbc6947d659d185085"
+  },
+  "toolbox_tree_normalized": {
+    "files": 76,
+    "sha256": "5f81d625f7485c1cc07bd5f7b61e9e496547b07715e9cf9ebd7eac8f79c1a461"
+  },
+  "clean_fork_toolbox_tree": {
+    "files": 76,
+    "sha256": "3b77a8662011bdf9baee9f4abd867c029fe99c3a935bc99edfcd0121bd42cef4"
+  },
+  "clean_fork_toolbox_tree_normalized": {
+    "files": 76,
+    "sha256": "5f81d625f7485c1cc07bd5f7b61e9e496547b07715e9cf9ebd7eac8f79c1a461"
+  },
+  "snapshot_matches_clean_fork_toolbox": true,
+  "paths": {
+    "pillow": {
+      "repaired": {
+        "pre_histogram_hashes": [
+          "f0bd1216abdb6adbe1c658568d2436682c81f2ebffb55296599529486411922a",
+          "67ef99ca2decef04c130767a1ac593eac1f887bcbbe4fbf38c8e9518d418c999",
+          "8f4714815d7cb6777d33025b46959af127a75c5f495de8f965914b890ff3523e"
+        ],
+        "target_hash": "934c590ced2c968e0492b1eb1d479b584c32435a6ff1af9bae989c7280470686",
+        "post_histogram_hashes": [
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0"
+        ],
+        "sorted_post_hashes": [
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3"
+        ],
+        "post_statistics": [
+          [
+            126.69377430555555,
+            74.77127210757874
+          ],
+          [
+            126.69377430555555,
+            74.7712721075775
+          ],
+          [
+            126.69377430555555,
+            74.77127210758125
+          ]
+        ]
+      },
+      "historical": {
+        "pre_histogram_hashes": [
+          "f0bd1216abdb6adbe1c658568d2436682c81f2ebffb55296599529486411922a",
+          "67ef99ca2decef04c130767a1ac593eac1f887bcbbe4fbf38c8e9518d418c999",
+          "8f4714815d7cb6777d33025b46959af127a75c5f495de8f965914b890ff3523e"
+        ],
+        "target_hash": "934c590ced2c968e0492b1eb1d479b584c32435a6ff1af9bae989c7280470686",
+        "post_histogram_hashes": [
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0"
+        ],
+        "sorted_post_hashes": [
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3"
+        ],
+        "post_statistics": [
+          [
+            126.69377430555555,
+            74.77127210757878
+          ],
+          [
+            126.69377430555555,
+            74.77127210757783
+          ],
+          [
+            126.69377430555555,
+            74.77127210757973
+          ]
+        ]
+      },
+      "python": {
+        "pre_histogram_hashes": [
+          "f0bd1216abdb6adbe1c658568d2436682c81f2ebffb55296599529486411922a",
+          "67ef99ca2decef04c130767a1ac593eac1f887bcbbe4fbf38c8e9518d418c999",
+          "8f4714815d7cb6777d33025b46959af127a75c5f495de8f965914b890ff3523e"
+        ],
+        "target_hash": "934c590ced2c968e0492b1eb1d479b584c32435a6ff1af9bae989c7280470686",
+        "post_histogram_hashes": [
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0"
+        ],
+        "sorted_post_hashes": [
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3"
+        ],
+        "post_statistics": [
+          [
+            126.69377430555555,
+            74.77127210760914
+          ],
+          [
+            126.69377430555555,
+            74.77127210760912
+          ],
+          [
+            126.69377430555555,
+            74.77127210760911
+          ]
+        ]
+      },
+      "octave_reference": {
+        "pre_histogram_hashes": [
+          "f0bd1216abdb6adbe1c658568d2436682c81f2ebffb55296599529486411922a",
+          "67ef99ca2decef04c130767a1ac593eac1f887bcbbe4fbf38c8e9518d418c999",
+          "8f4714815d7cb6777d33025b46959af127a75c5f495de8f965914b890ff3523e"
+        ],
+        "target_hash": "934c590ced2c968e0492b1eb1d479b584c32435a6ff1af9bae989c7280470686",
+        "post_histogram_hashes": [
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0",
+          "2651a6c560498530b2357f65863544422fa219fc36bea61d55adfefed9deafd0"
+        ],
+        "sorted_post_hashes": [
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3",
+          "54ed86fa9e488da786829236073d7c09d51d6c462460997feca9210a2cfa1fa3"
+        ],
+        "post_statistics": [
+          [
+            126.69377430555555,
+            74.77127210757874
+          ],
+          [
+            126.69377430555555,
+            74.7712721075775
+          ],
+          [
+            126.69377430555555,
+            74.77127210758125
+          ]
+        ]
+      },
+      "repaired_vs_historical": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": false,
+        "post_statistics_max_abs_difference": 1.5205614545266144e-12,
+        "passes": true
+      },
+      "repaired_vs_python": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": false,
+        "post_statistics_max_abs_difference": 3.161915174132446e-11,
+        "passes": true
+      },
+      "repaired_vs_octave_reference": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": true,
+        "post_statistics_max_abs_difference": 0.0,
+        "passes": true
+      },
+      "historical_vs_python": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": false,
+        "post_statistics_max_abs_difference": 3.129230208287481e-11,
+        "passes": true
+      }
+    },
+    "octave": {
+      "repaired": {
+        "pre_histogram_hashes": [
+          "1e70c1a196993f63d0232077ee059c812b0b9d02bc790ea1d9d7f7f99517e8f2",
+          "0882b2c400b6f9f28742fd5305ed1000be3684ba385ba4d86359460ce6b0e1d2",
+          "b3cfd8be4546768966fa7f8261920f20ca64723bcd63ef5bac9bdba296c356fe"
+        ],
+        "target_hash": "b5fe8aa2bc9df8cb4d005cbd1ed462396b67bc1f96b27cd0e11dbe2f7ca926d1",
+        "post_histogram_hashes": [
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40"
+        ],
+        "sorted_post_hashes": [
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c"
+        ],
+        "post_statistics": [
+          [
+            126.70467916666666,
+            74.78052271387551
+          ],
+          [
+            126.70467916666666,
+            74.78052271388542
+          ],
+          [
+            126.70467916666666,
+            74.78052271385911
+          ]
+        ]
+      },
+      "historical": {
+        "pre_histogram_hashes": [
+          "1e70c1a196993f63d0232077ee059c812b0b9d02bc790ea1d9d7f7f99517e8f2",
+          "0882b2c400b6f9f28742fd5305ed1000be3684ba385ba4d86359460ce6b0e1d2",
+          "b3cfd8be4546768966fa7f8261920f20ca64723bcd63ef5bac9bdba296c356fe"
+        ],
+        "target_hash": "b5fe8aa2bc9df8cb4d005cbd1ed462396b67bc1f96b27cd0e11dbe2f7ca926d1",
+        "post_histogram_hashes": [
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40"
+        ],
+        "sorted_post_hashes": [
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c"
+        ],
+        "post_statistics": [
+          [
+            126.70467916666666,
+            74.78052271387499
+          ],
+          [
+            126.70467916666666,
+            74.78052271388493
+          ],
+          [
+            126.70467916666666,
+            74.78052271385693
+          ]
+        ]
+      },
+      "python": {
+        "pre_histogram_hashes": [
+          "1e70c1a196993f63d0232077ee059c812b0b9d02bc790ea1d9d7f7f99517e8f2",
+          "0882b2c400b6f9f28742fd5305ed1000be3684ba385ba4d86359460ce6b0e1d2",
+          "b3cfd8be4546768966fa7f8261920f20ca64723bcd63ef5bac9bdba296c356fe"
+        ],
+        "target_hash": "b5fe8aa2bc9df8cb4d005cbd1ed462396b67bc1f96b27cd0e11dbe2f7ca926d1",
+        "post_histogram_hashes": [
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40"
+        ],
+        "sorted_post_hashes": [
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c"
+        ],
+        "post_statistics": [
+          [
+            126.70467916666666,
+            74.78052271387227
+          ],
+          [
+            126.70467916666666,
+            74.78052271387226
+          ],
+          [
+            126.70467916666666,
+            74.78052271387229
+          ]
+        ]
+      },
+      "octave_reference": {
+        "pre_histogram_hashes": [
+          "1e70c1a196993f63d0232077ee059c812b0b9d02bc790ea1d9d7f7f99517e8f2",
+          "0882b2c400b6f9f28742fd5305ed1000be3684ba385ba4d86359460ce6b0e1d2",
+          "b3cfd8be4546768966fa7f8261920f20ca64723bcd63ef5bac9bdba296c356fe"
+        ],
+        "target_hash": "b5fe8aa2bc9df8cb4d005cbd1ed462396b67bc1f96b27cd0e11dbe2f7ca926d1",
+        "post_histogram_hashes": [
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40",
+          "ab346f3567f26811f358cd82624e0f068b2afe7db7688750a719248e4281dd40"
+        ],
+        "sorted_post_hashes": [
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c",
+          "014bc4d8c7efa53b1322d33bc762dc74cf6bc1d87468833b7ce3537ced3f4b6c"
+        ],
+        "post_statistics": [
+          [
+            126.70467916666666,
+            74.78052271387551
+          ],
+          [
+            126.70467916666666,
+            74.78052271388542
+          ],
+          [
+            126.70467916666666,
+            74.78052271385911
+          ]
+        ]
+      },
+      "repaired_vs_historical": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": false,
+        "post_statistics_max_abs_difference": 2.1884716261411086e-12,
+        "passes": true
+      },
+      "repaired_vs_python": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": false,
+        "post_statistics_max_abs_difference": 1.3173462320992257e-11,
+        "passes": true
+      },
+      "repaired_vs_octave_reference": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": true,
+        "post_statistics_max_abs_difference": 0.0,
+        "passes": true
+      },
+      "historical_vs_python": {
+        "pre_histograms_equal": true,
+        "target_histogram_equal": true,
+        "post_histograms_equal": true,
+        "within_left_post_equal": true,
+        "within_right_post_equal": true,
+        "sorted_values_equal": true,
+        "post_statistics_exact": false,
+        "post_statistics_max_abs_difference": 1.5361933947133366e-11,
+        "passes": true
+      }
+    }
+  },
+  "natural_jpeg": null,
+  "publication": {
+    "baseline": [
+      [
+        "172.47",
+        "44.72"
+      ],
+      [
+        "80.34",
+        "127.26"
+      ],
+      [
+        "127.26",
+        "76.76"
+      ]
+    ],
+    "post": [
+      "126.69",
+      "74.77"
+    ]
+  }
+}
