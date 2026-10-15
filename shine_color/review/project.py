@@ -10,6 +10,7 @@ import json
 import os
 import shutil
 import tempfile
+import time
 import zipfile
 import warnings
 import numpy as np
@@ -321,6 +322,22 @@ def _targets(rows, config, native):
             )
 
 
+def _publish_directory(stage, destination):
+    """Allow short Windows sharing/permission locks to clear; never overwrite."""
+    delays = (0, 0.1, 0.2, 0.4, 0.8, 1.6) if os.name == "nt" else (0,)
+    for attempt, delay in enumerate(delays):
+        if delay:
+            time.sleep(delay)
+        if destination.exists():
+            raise FileExistsError(destination)
+        try:
+            os.rename(stage, destination)
+            return
+        except PermissionError:
+            if attempt == len(delays) - 1:
+                raise
+
+
 def compare_batch(inputs, outputs, *, manifest, review_dir, progress=None):
     """Import a completed batch (or native mode-1 run); never normalize images.
 
@@ -539,7 +556,7 @@ def compare_batch(inputs, outputs, *, manifest, review_dir, progress=None):
         if destination.exists():
             raise FileExistsError(destination)
         try:
-            os.rename(stage, destination)
+            _publish_directory(stage, destination)
         except OSError as exc:
             raise RuntimeError(
                 f"Could not publish review folder. Completed project retained at {stage}. "

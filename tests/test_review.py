@@ -2,6 +2,7 @@
 
 import csv
 import json
+import os
 import urllib.request
 import urllib.error
 import zipfile
@@ -330,6 +331,7 @@ def test_publication_lock_retains_complete_review(tmp_path, monkeypatch):
         raise PermissionError("Simulated folder lock")
 
     monkeypatch.setattr(project.os, "rename", locked)
+    monkeypatch.setattr(project.time, "sleep", lambda delay: None)
     with pytest.raises(RuntimeError, match="Completed project retained"):
         compare_batch(
             source,
@@ -343,6 +345,32 @@ def test_publication_lock_retains_complete_review(tmp_path, monkeypatch):
     assert len(recovered.data["stimuli"]) == 3
     assert recovered.state()["decisions"] == {}
     assert not (tmp_path / "review").exists()
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows publication retry")
+def test_transient_windows_publication_lock_recovers(tmp_path, monkeypatch):
+    from shine_color.review import project
+
+    stage = tmp_path / "stage"
+    stage.mkdir()
+    (stage / "proof.txt").write_text("complete")
+    destination = tmp_path / "published"
+    rename = project.os.rename
+    calls = []
+    delays = []
+
+    def transient(source, target):
+        calls.append((source, target))
+        if len(calls) <= 2:
+            raise PermissionError("Transient sharing lock")
+        return rename(source, target)
+
+    monkeypatch.setattr(project.os, "rename", transient)
+    monkeypatch.setattr(project.time, "sleep", delays.append)
+    project._publish_directory(stage, destination)
+    assert len(calls) == 3 and delays == [0.1, 0.2]
+    assert (destination / "proof.txt").read_text() == "complete"
+    assert not stage.exists()
 
 
 def test_cleanup_lock_does_not_hide_import_error(tmp_path, monkeypatch):

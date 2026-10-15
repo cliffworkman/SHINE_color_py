@@ -74,7 +74,8 @@ show per-image pre/post scatterplots, mean and SD distributions, an average
 probability histogram, and the flagged/rejected list.
 
 Review projects contain their own decoded PNG views and can be moved after
-creation. If Windows or a sync client blocks the final folder rename, the builder
+creation. The builder briefly retries Windows permission errors during final folder publication
+(up to 3.1 seconds total wait). If access remains blocked, it
 reports the retained `.shine-review-*` path and leaves the completed project intact.
 Release the lock and rename that directory, or serve it directly. If import fails
 before completion, the staging directory is removed where possible; a cleanup
@@ -180,8 +181,8 @@ planning pass, incorporating ChatGPT's modes-1–2 scope. OpenAI Codex implement
 and tested it under that direction. No external metadata joins, spectral metrics,
 or cross-run comparisons were added.
 
-Validation on Windows / Python 3.12.10: all 1,563 tests passed (1,535 existing,
-28 new). The new tests exercise all three colorspaces in modes 1 and 2, recovered
+Validation on Windows / Python 3.12.10: all 1,564 tests passed (1,535 existing,
+29 new). The new tests exercise all three colorspaces in modes 1 and 2, recovered
 targets against the scientific API, unequal native pair dimensions, manifest
 validation, recorded versus unavailable evidence, decision persistence/conflicts,
 exports, asset verification, local HTTP controls, and recovery from folder-publication/cleanup locks. Headless Edge checks covered
