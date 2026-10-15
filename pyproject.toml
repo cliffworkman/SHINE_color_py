@@ -30,6 +30,9 @@ license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "docs/UPSTREAM_TOOLBOX_LIC
 [tool.setuptools.packages.find]
 include = ["shine_color*"]
 
+[tool.setuptools.package-data]
+"shine_color.review" = ["assets/*.html", "assets/*.css", "assets/*.js"]
+
 [tool.pytest.ini_options]
 markers = [
     "octave_degenerate_spectrum: positively tested backend-sensitive Fourier degeneracy",

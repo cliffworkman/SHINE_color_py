@@ -44,6 +44,7 @@ See [provenance and licensing](docs/PROVENANCE_AND_LICENSING.md).
 Navigate: [Python use](#install-and-use-python) ·
 [Figure 2 validation](#reproducing-shine_colors-published-histogram-matching-example) ·
 [Python differences](#what-is-different-in-shine_color_py) ·
+[local stimulus review](docs/LOCAL_REVIEW.md) ·
 [validation evidence](#validation-and-reproduction) ·
 [complete inherited documentation](#inherited-shine_color-006-documentation).
 
@@ -95,6 +96,15 @@ For ordered file lists use `process_files`; for arrays use
 The array API returns transformed RGB uint8 arrays. The file API writes PNGs
 and a provenance manifest. See [file workflow](docs/FILE_WORKFLOW.md) for
 representation rules, parameters, ordering, collision and partial-failure behavior.
+
+## Local stimulus review
+
+Review completed mode-1/mode-2 batches in a local browser with synchronized
+original/corrected views, working-channel diagnostics, dataset summaries, saved
+Accept/Flag/Reject decisions and notes, and CSV/JSON export. Existing batch and
+native-dimension manifests are supported. No normalization is performed by the
+reviewer. See the [local review guide](docs/LOCAL_REVIEW.md) for build/open commands,
+measurement definitions, persistence, and portable review snapshots.
 
 ## Reproducing SHINE_color's published histogram-matching example
 
@@ -156,7 +166,7 @@ The scientific method and research lineage remain SHINE_color. This version adds
   spectra have explicit backend-sensitive tests rather than widened tolerances.
 
 Current scope is whole-image processing. Masking/foreground-background separation,
-SSIM-optimized histogram matching, the interactive wizard, video, GUI, upscaling
+SSIM-optimized histogram matching, the interactive normalization wizard, video, upscaling
 and full original diagnostic-plot/SSIM workflows are not implemented. This is
 not a claim of full feature equivalence. The `reference` extra retains
 scikit-image 0.25.2 only for historical converter comparisons.

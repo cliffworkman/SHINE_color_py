@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SHINE · Stimulus review</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <span class="eyebrow">SHINE_color_py · LOCAL RESEARCH REVIEW</span>
+        <h1>What changed?</h1>
+        <p>
+          Inspect the transformation. You decide whether it fits your study.
+        </p>
+      </div>
+      <button id="aboutButton">Methods &amp; lineage</button>
+    </header>
+    <nav>
+      <button id="pairTab" aria-pressed="true">Image review</button
+      ><button id="summaryTab" aria-pressed="false">Dataset summary</button
+      ><span id="counts"></span
+      ><a href="api/export.csv" id="csvExport">Export CSV</a
+      ><a href="api/export.json" id="jsonExport">Export JSON</a>
+    </nav>
+    <p id="notice" role="status">Loading verified review project…</p>
+    <section id="controls">
+      <button id="prev" aria-label="Previous image">←</button
+      ><select id="scene" aria-label="Stimulus"></select
+      ><button id="next" aria-label="Next image">→</button
+      ><label
+        >Show
+        <select id="filter">
+          <option>All</option>
+          <option>Unreviewed</option>
+          <option>Accept</option>
+          <option>Flag</option>
+          <option>Reject</option>
+        </select></label
+      ><label
+        >Sort
+        <select id="sort">
+          <option value="name">Filename</option>
+          <option value="rmse">Largest RGB change</option>
+          <option value="mean">Largest mean shift</option>
+          <option value="sd">Largest contrast shift</option>
+          <option value="hist">Largest histogram change</option>
+          <option value="gamut">Most gamut clipping</option>
+        </select></label
+      ><label
+        >Channel
+        <select id="channel"></select
+      ></label>
+    </section>
+    <main id="pairPage">
+      <div id="workspace">
+        <div class="tools">
+          <button id="fit">Fit images</button
+          ><button id="native">1:1 pixels</button
+          ><button id="minus" aria-label="Zoom out">−</button
+          ><button id="plus" aria-label="Zoom in">+</button
+          ><span id="zoomLabel"></span
+          ><span class="muted"
+            >Wheel to zoom · drag to pan · ← / → navigate</span
+          >
+        </div>
+        <div id="pair">
+          <section class="imagePanel">
+            <div class="caption">Original <span id="dimensions"></span></div>
+            <div
+              class="viewport"
+              id="beforeViewport"
+              tabindex="0"
+              aria-label="Original, synchronized zoom and pan"
+            >
+              <img
+                id="beforeImage"
+                draggable="false"
+                alt="Decoded original image"
+              />
+            </div>
+          </section>
+          <section class="imagePanel">
+            <div class="caption">Corrected <span id="outputName"></span></div>
+            <div
+              class="viewport"
+              id="afterViewport"
+              tabindex="0"
+              aria-label="Corrected, synchronized zoom and pan"
+            >
+              <img
+                id="afterImage"
+                draggable="false"
+                alt="Saved corrected image"
+              />
+            </div>
+          </section>
+        </div>
+        <div class="measurements">
+          <div>
+            <h2>Working-channel distribution</h2>
+            <svg
+              id="histogram"
+              viewBox="0 0 600 170"
+              role="img"
+              aria-label="Original, saved output, and available target histogram"
+            ></svg>
+            <p class="legend">
+              <span class="pre">● Original</span>
+              <span class="post">● Saved output</span>
+              <span class="target">● Derived target, when applicable</span>
+            </p>
+          </div>
+          <div>
+            <h2 id="metricTitle">Measurements</h2>
+            <table id="metrics"></table>
+            <p id="provenance" class="muted"></p>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <h2>Researcher decision</h2>
+        <p class="muted">
+          Large changes are a review priority, not an automatic rejection.
+        </p>
+        <label
+          >Disposition<select id="status">
+            <option>Unreviewed</option>
+            <option>Accept</option>
+            <option>Flag</option>
+            <option>Reject</option>
+          </select></label
+        ><label
+          >Reviewer (optional)<input
+            id="reviewer"
+            maxlength="200"
+            autocomplete="name" /></label
+        ><label
+          >Notes<textarea
+            id="note"
+            rows="7"
+            maxlength="20000"
+            placeholder="What changed? Does it affect the study-relevant features?"
+          ></textarea>
+        </label>
+        <p id="saveStatus" role="status">No changes pending</p>
+        <button id="retry" hidden>Retry save</button>
+        <p class="muted">
+          Decisions are stored in this local project, with revision history. A
+          changed image pair requires a new review.
+        </p>
+        <img id="thumbnail" alt="Corrected overview thumbnail" />
+        <p id="pairIdentity" class="muted"></p>
+      </aside>
+    </main>
+    <section id="summaryPage" hidden>
+      <h2>The normalization group</h2>
+      <p id="groupInfo"></p>
+      <p class="legend">
+        <span class="pre">● Original</span>
+        <span class="post">● Saved output</span
+        ><span class="muted"
+          >Scatter diagonal: unchanged value · hover points for exact
+          values</span
+        >
+      </p>
+      <div class="summaryPlots">
+        <section>
+          <h3>Per-image mean: original → saved output</h3>
+          <svg
+            id="meanScatter"
+            viewBox="0 0 440 300"
+            role="img"
+            aria-label="Pre versus post mean scatterplot"
+          ></svg>
+        </section>
+        <section>
+          <h3>Per-image sample SD: original → saved output</h3>
+          <svg
+            id="sdScatter"
+            viewBox="0 0 440 300"
+            role="img"
+            aria-label="Pre versus post SD scatterplot"
+          ></svg>
+        </section>
+        <section>
+          <h3>Distribution of per-image means</h3>
+          <svg
+            id="meanDistribution"
+            viewBox="0 0 600 170"
+            role="img"
+            aria-label="Pre and post image mean distributions"
+          ></svg>
+        </section>
+        <section>
+          <h3>Distribution of per-image sample SDs</h3>
+          <svg
+            id="sdDistribution"
+            viewBox="0 0 600 170"
+            role="img"
+            aria-label="Pre and post image SD distributions"
+          ></svg>
+        </section>
+        <section>
+          <h3>Average probability histogram</h3>
+          <svg
+            id="groupHistogram"
+            viewBox="0 0 600 170"
+            role="img"
+            aria-label="Equally weighted image histograms"
+          ></svg>
+        </section>
+      </div>
+      <h3>Flagged and rejected</h3>
+      <ul id="flagged"></ul>
+    </section>
+    <dialog id="about">
+      <h2>Built on SHINE</h2>
+      <p>
+        SHINE_color — Rodrigo Dal Ben (2023), <i>MethodsX</i> 11, 102377.
+        <a
+          href="https://doi.org/10.1016/j.mex.2023.102377"
+          target="_blank"
+          rel="noreferrer"
+          >Paper ↗</a
+        >
+      </p>
+      <p>
+        SHINE — Willenbockel, Sadr, Fiset, Horne, Gosselin &amp; Tanaka (2010),
+        <i>Behavior Research Methods</i> 42, 671–684.
+        <a
+          href="https://doi.org/10.3758/BRM.42.3.671"
+          target="_blank"
+          rel="noreferrer"
+          >Paper ↗</a
+        >
+      </p>
+      <p>
+        SHINE_color_py continues the original toolbox through independently
+        validated Python behavior. Maintenance and Python implementation: Cliff
+        Workman, with substantial OpenAI Codex assistance under human direction
+        and review.
+      </p>
+      <p>
+        Review feature: motivated by Vasiliki and Cliff’s architectural-stimulus
+        review; proposed by Cliff Workman and elaborated with ChatGPT.
+        Interaction design follows Cliff Workman’s stimulus-upscaler reviewer.
+        This implementation is independently written.
+      </p>
+      <p>
+        Metrics describe transformations, not scientific quality. L/V are SHINE
+        working channels on 0–255; SD is sample SD. Saved-output statistics
+        include quantization and RGB reconstruction. No display color
+        calibration is implied. Preview RGB follows the recorded decoder policy
+        without ICC/gamma conversion.
+      </p>
+      <p>
+        Phase 1: modes 1–2 only. Spectral diagnostics, metadata joins, cross-run
+        comparisons and SSIM are not implemented. Original licensing and
+        component notices remain in the repository.
+      </p>
+      <button id="closeAbout">Close</button>
+    </dialog>
+    <footer>
+      Local review · No uploads · Original and corrected pixels remain unchanged
+      · <span id="runInfo"></span>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
