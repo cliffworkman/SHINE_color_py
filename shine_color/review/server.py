@@ -54,8 +54,13 @@ class ReviewServer:
                     self.send_header(
                         "Content-Disposition", f'attachment; filename="{attachment}"'
                     )
-                self.end_headers()
-                self.wfile.write(body)
+                try:
+                    self.end_headers()
+                    self.wfile.write(body)
+                except ConnectionError:
+                    # Navigation can cancel an image request during transfer.
+                    # The socket is gone; sending a second error cannot help.
+                    pass
 
             def valid_host(self):
                 return (
