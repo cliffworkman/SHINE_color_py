@@ -319,3 +319,48 @@ def test_failed_export_leaves_no_partial_archive(report, tmp_path):
         report.export(destination, True)
     assert not destination.exists()
     assert not list(tmp_path.glob(".review-export-*"))
+
+
+def test_publication_lock_retains_complete_review(tmp_path, monkeypatch):
+    from shine_color.review import project
+
+    source, result = make_batch(tmp_path)
+
+    def locked(*args):
+        raise PermissionError("Simulated folder lock")
+
+    monkeypatch.setattr(project.os, "rename", locked)
+    with pytest.raises(RuntimeError, match="Completed project retained"):
+        compare_batch(
+            source,
+            result.manifest_path.parent,
+            manifest=result.manifest_path,
+            review_dir=tmp_path / "review",
+        )
+    retained = list(tmp_path.glob(".shine-review-*"))
+    assert len(retained) == 1
+    recovered = open_report(retained[0], verify_assets=True)
+    assert len(recovered.data["stimuli"]) == 3
+    assert recovered.state()["decisions"] == {}
+    assert not (tmp_path / "review").exists()
+
+
+def test_cleanup_lock_does_not_hide_import_error(tmp_path, monkeypatch):
+    from shine_color.review import project
+
+    source, result = make_batch(tmp_path)
+    result.manifest["inputs"][0]["file_sha256"] = "changed"
+    result.manifest_path.write_text(json.dumps(result.manifest))
+
+    def locked(*args):
+        raise PermissionError("Simulated cleanup lock")
+
+    monkeypatch.setattr(project.shutil, "rmtree", locked)
+    with pytest.warns(RuntimeWarning, match="could not be removed"):
+        with pytest.raises(ValueError, match="file_sha256 mismatch"):
+            compare_batch(
+                source,
+                result.manifest_path.parent,
+                manifest=result.manifest_path,
+                review_dir=tmp_path / "review",
+            )

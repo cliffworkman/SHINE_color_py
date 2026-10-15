@@ -11,6 +11,7 @@ import os
 import shutil
 import tempfile
 import zipfile
+import warnings
 import numpy as np
 from PIL import Image
 from .. import io, diagnostics
@@ -394,6 +395,7 @@ def compare_batch(inputs, outputs, *, manifest, review_dir, progress=None):
     (stage / "thumbs").mkdir()
     run_id = digest(raw)
     rows = []
+    completed = False
     try:
         for index, (a, b) in enumerate(pairs):
             before, ma = io._read_rgb(contained(source, a["name"]))
@@ -530,14 +532,27 @@ def compare_batch(inputs, outputs, *, manifest, review_dir, progress=None):
         (stage / "metrics.csv").write_text(
             csv_text(table_rows(data)), encoding="utf-8-sig", newline=""
         )
+        from .state import ReviewState
+
+        ReviewState(Report(stage, data))
+        completed = True
         if destination.exists():
             raise FileExistsError(destination)
-        os.rename(stage, destination)
+        try:
+            os.rename(stage, destination)
+        except OSError as exc:
+            raise RuntimeError(
+                f"Could not publish review folder. Completed project retained at {stage}. "
+                "Release any folder lock, then rename it or serve that directory directly."
+            ) from exc
     finally:
-        if stage.exists():
-            shutil.rmtree(stage)
+        if stage.exists() and not completed:
+            try:
+                shutil.rmtree(stage)
+            except OSError:
+                warnings.warn(
+                    f"Incomplete review staging directory could not be removed: {stage}",
+                    RuntimeWarning,
+                )
     report = Report(destination, data)
-    from .state import ReviewState
-
-    ReviewState(report)
     return report

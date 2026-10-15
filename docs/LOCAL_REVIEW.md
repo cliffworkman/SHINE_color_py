@@ -74,7 +74,13 @@ show per-image pre/post scatterplots, mean and SD distributions, an average
 probability histogram, and the flagged/rejected list.
 
 Review projects contain their own decoded PNG views and can be moved after
-creation. These full-size views use the same stored-RGB decoder policy as the
+creation. If Windows or a sync client blocks the final folder rename, the builder
+reports the retained `.shine-review-*` path and leaves the completed project intact.
+Release the lock and rename that directory, or serve it directly. If import fails
+before completion, the staging directory is removed where possible; a cleanup
+lock is reported without hiding the original import error.
+
+These full-size views use the same stored-RGB decoder policy as the
 normalizer: EXIF orientation is applied, but ICC/gamma conversion is not. An
 untagged PNG view avoids having the browser interpret an original JPEG's embedded
 profile differently. The viewer implies no display calibration. Only overview
@@ -174,11 +180,11 @@ planning pass, incorporating ChatGPT's modes-1–2 scope. OpenAI Codex implement
 and tested it under that direction. No external metadata joins, spectral metrics,
 or cross-run comparisons were added.
 
-Validation on Windows / Python 3.12.10: all 1,561 tests passed (1,535 existing,
-26 new). The new tests exercise all three colorspaces in modes 1 and 2, recovered
+Validation on Windows / Python 3.12.10: all 1,563 tests passed (1,535 existing,
+28 new). The new tests exercise all three colorspaces in modes 1 and 2, recovered
 targets against the scientific API, unequal native pair dimensions, manifest
 validation, recorded versus unavailable evidence, decision persistence/conflicts,
-exports, asset verification, and local HTTP controls. Headless Edge checks covered
+exports, asset verification, local HTTP controls, and recovery from folder-publication/cleanup locks. Headless Edge checks covered
 immediate note/navigation saves, reload persistence, synchronized zoom/pan and fit,
 filtering, dataset plots, CSV download, lineage, and the exported read-only viewer.
 A wheel build/install check confirmed that all browser assets ship in the package.
